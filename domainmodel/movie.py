@@ -13,10 +13,10 @@ class Movie:
 			self.movie_year = yearArg
 		self.movie_description = None
 		self.movie_director = None
-		self.movie_actors = []
-		self.movie_genres = []
+		self.movie_actors = list()
+		self.movie_genres = list()
 		self.movie_runtime_minutes = None
-		self.movie_reviews = []
+		self.movie_reviews = list()
 		self.movie_rating = None
 		self.movie_votes = 0
 	
@@ -130,8 +130,8 @@ class Movie:
 	def add_review(self, newReview):
 		if isinstance(newReview, Review) and not newReview in self.movie_reviews:
 			self.movie_reviews.append(newReview)
-			v = self.movie_votes + 1
-			self.movie_votes = v
+			self.movie_votes += 1
+			v = self.movie_votes
 			if self.movie_rating is None:
 				self.movie_rating = newReview.rating
 			else:
