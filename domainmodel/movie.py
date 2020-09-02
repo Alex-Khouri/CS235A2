@@ -4,7 +4,8 @@ from domainmodel.director import Director
 from domainmodel.review import Review
 
 class Movie:
-	def __init__(self, titleArg=None, yearArg=None):
+	def __init__(self, titleArg, yearArg):
+		# !TO-DO! Add initialisers for all possible fields
 		self.movie_title = None
 		if isinstance(titleArg, str) and len(titleArg) > 0:
 			self.movie_title = titleArg.strip()
@@ -158,6 +159,9 @@ class Movie:
 	def remove_review(self, remReview):
 		if isinstance((remReview, Review)) and remReview in self.movie_reviews:
 			self.movie_reviews.remove(remReview)
-			v = self.movie_votes - 1
-			self.movie_rating = self.movie_rating*((v+1)/v) - remReview.rating*(1/v)
-			self.movie_votes = v
+			self.movie_votes -= 1
+			v = self.movie_votes
+			if self.movie_votes == 0:
+				self.movie_rating = None
+			else:
+				self.movie_rating = self.movie_rating*((v+1)/v) - remReview.rating*(1/v)

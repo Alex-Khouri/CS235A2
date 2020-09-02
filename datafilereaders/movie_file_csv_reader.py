@@ -63,6 +63,7 @@ class MovieFileCSVReader:
 					genres = row['Genre'].split(',')
 					for i in range(len(genres)):
 						genres[i] = Genre(genres[i].strip())
+					# !TO-DO! Populate movie with year, description, director, actors, genres, runtime_minutes, rating, votes
 					self.movies.append(movie)
 					self.actors.update(set(actors))
 					self.directors.add(director)
