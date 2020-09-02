@@ -131,8 +131,11 @@ class Movie:
 		if isinstance(newReview, Review) and not newReview in self.movie_reviews:
 			self.movie_reviews.append(newReview)
 			v = self.movie_votes + 1
-			self.movie_rating = self.movie_rating*((v-1)/v) + newReview.rating*(1/v)
 			self.movie_votes = v
+			if self.movie_rating is None:
+				self.movie_rating = newReview.rating
+			else:
+				self.movie_rating = self.movie_rating*((v-1)/v) + newReview.rating*(1/v)
 			
 	def remove_actor(self, remActor):
 		if isinstance(remActor, Actor) and remActor in self.movie_actors:
