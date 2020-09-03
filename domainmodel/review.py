@@ -60,3 +60,6 @@ class Review:
 	def user(self, newUser):
 		if isinstance(newUser, User):
 			self.review_user = newUser
+
+if __name__ == "__main__":
+	from domainmodel.movie import Movie

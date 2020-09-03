@@ -31,22 +31,22 @@ class MovieFileCSVReader:
 
 	@dataset_of_movies.setter
 	def dataset_of_movies(self, newMovies):
-		if (isinstance(newMovies, list)):
+		if isinstance(newMovies, list):
 			self.movies = newMovies
 
 	@dataset_of_actors.setter
 	def dataset_of_actors(self, newActors):
-		if (isinstance(newActors, set)):
+		if isinstance(newActors, set):
 			self.actors = newActors
 
 	@dataset_of_directors.setter
 	def dataset_of_directors(self, newDirectors):
-		if (isinstance(newDirectors, set)):
+		if isinstance(newDirectors, set):
 			self.directors = newDirectors
 
 	@dataset_of_genres.setter
 	def dataset_of_genres(self, newGenres):
-		if (isinstance(newGenres, set)):
+		if isinstance(newGenres, set):
 			self.genres = newGenres
 
 	def read_csv_file(self):
@@ -57,12 +57,15 @@ class MovieFileCSVReader:
 				try:
 					movie = Movie(row['Title'].strip(), int(row['Year'].strip()))
 					movie.description = row['Description']
-					movie.director = row['Director']
-					movie.actors = row['Actors']
-					movie.genres = row['Genre']
-					movie.runtime_minutes = row['Runtime (Minutes)']
-					movie.rating = row['Rating']
-					movie.votes = row['Votes']
+					movie.director = Director(row['Director'])
+					row['Actors'].split(",")
+					for actor in row['Actors'].split(","):
+						movie.add_actor(Actor(actor.strip()))
+					for genre in row['Genre'].split(","):
+						movie.add_genre(Genre(genre.strip()))
+					movie.runtime_minutes = int(row['Runtime (Minutes)'])
+					movie.rating = float(row['Rating'])
+					movie.votes = int(row['Votes'])
 					actors = row['Actors'].split(',')
 					for i in range(len(actors)):
 						actors[i] = Actor(actors[i].strip())

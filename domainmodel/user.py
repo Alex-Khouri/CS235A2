@@ -99,3 +99,7 @@ class User:
 	def remove_review(self, review):
 		if isinstance(review, Review):
 			self.user_reviews.remove(review)
+
+if __name__ == "__main__":
+	from domainmodel.movie import Movie
+	from domainmodel.review import Review

@@ -174,5 +174,5 @@ class Movie:
 
 
 class TestMovie:
-	def test_print_all(self, movie):
+	def test_full_repr(self, movie):
 		return f"<Movie>\nTitle: {movie.title}\nYear: {movie.year}\nDescription: {movie.description}\nDirector: {movie.director}\nActors: {movie.actors}\nGenres: {movie.genres}\nRuntime: {movie.runtime_minutes}\nRating: {movie.rating}\nVotes: {movie.votes}\n</Movie>\n"
