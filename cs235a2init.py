@@ -6,8 +6,6 @@ def main():
     movie_file_reader = MovieFileCSVReader(filename)
     movie_file_reader.read_csv_file()
 
-    
-
 
 if __name__ == "__main__":
     main()
