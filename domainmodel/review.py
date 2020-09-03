@@ -1,6 +1,5 @@
 from datetime import datetime
 
-from domainmodel.movie import Movie
 from domainmodel.user import User
 
 class Review:

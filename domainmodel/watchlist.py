@@ -1,4 +1,3 @@
-from domainmodel.movie import Movie
 
 
 class Watchlist:
@@ -117,11 +116,12 @@ class TestWatchlistMethods:
 		watchlist.remove_movie(Movie("Guardians of the Galaxy", 2012))
 		assert str(watchlist.first_movie_in_watchlist()) == "None"
 
-
-testObject = TestWatchlistMethods()
-testObject.test_init()
-testObject.test_add_movie()
-testObject.test_remove_movie()
-testObject.test_select_movie_to_watch()
-testObject.test_size()
-testObject.test_first_movie_in_watchlist()
+if __name__ == "__main__":
+	from domainmodel.movie import Movie
+	testObject = TestWatchlistMethods()
+	testObject.test_init()
+	testObject.test_add_movie()
+	testObject.test_remove_movie()
+	testObject.test_select_movie_to_watch()
+	testObject.test_size()
+	testObject.test_first_movie_in_watchlist()

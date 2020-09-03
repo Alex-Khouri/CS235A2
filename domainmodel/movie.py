@@ -4,14 +4,11 @@ from domainmodel.director import Director
 from domainmodel.review import Review
 
 class Movie:
-	def __init__(self, titleArg, yearArg):
-		# !TO-DO! Add initialisers for all possible fields
-		self.movie_title = None
-		if isinstance(titleArg, str) and len(titleArg) > 0:
-			self.movie_title = titleArg.strip()
-		self.movie_year = None
-		if isinstance(yearArg, int) and yearArg >= 1900:
-			self.movie_year = yearArg
+	def __init__(self, movTitle=None, movYear=None):
+		if isinstance(movTitle, str) and len(movTitle) > 0:
+			self.movie_title = movTitle.strip()
+		if isinstance(movYear, int) and movYear >= 1900:
+			self.movie_year = movYear
 		self.movie_description = None
 		self.movie_director = None
 		self.movie_actors = list()
@@ -39,6 +36,10 @@ class Movie:
 	@property
 	def title(self):
 		return self.movie_title
+
+	@property
+	def year(self):
+		return self.movie_year
 	
 	@property
 	def description(self):
@@ -76,7 +77,12 @@ class Movie:
 	def title(self, newTitle):
 		if isinstance(newTitle, str) and len(newTitle) > 0:
 			self.movie_title = newTitle.strip()
-	
+
+	@year.setter
+	def year(self, newYear):
+		if isinstance(newYear, int) and newYear >= 1900:
+			self.movie_year = newYear
+
 	@description.setter
 	def description(self, newDescrip):
 		if isinstance(newDescrip, str) and len(newDescrip) > 0:
@@ -165,3 +171,8 @@ class Movie:
 				self.movie_rating = None
 			else:
 				self.movie_rating = self.movie_rating*((v+1)/v) - remReview.rating*(1/v)
+
+
+class TestMovie:
+	def test_print_all(self, movie):
+		return f"<Movie>\nTitle: {movie.title}\nYear: {movie.year}\nDescription: {movie.description}\nDirector: {movie.director}\nActors: {movie.actors}\nGenres: {movie.genres}\nRuntime: {movie.runtime_minutes}\nRating: {movie.rating}\nVotes: {movie.votes}\n</Movie>\n"
