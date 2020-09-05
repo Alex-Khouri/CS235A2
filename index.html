@@ -23,20 +23,24 @@
             <td>
             <div id="SearchBox" class="banner" style="text-align:center;">
                 <form>
-                <input id="SearchBox" type="text" placeholder="Search..." size=15 style="height:35px; font-size:100%;">
-                <select id="SearchType" name="searchType" style="height:41px; font-size:100%;">
+                <!-- ADD ACTION TO FORM TAG -->
+                <input id="SearchBox" class="textbox" type="text" name="searchQuery" placeholder="Search..." size=15>
+                <select id="SearchType" class="button" name="searchType" style="height:41px; font-size:100%;">
                     <option value="title">Title</option>
                     <option value="genre">Genre</option>
                     <option value="director">Director</option>
                     <option value="actor">Actor</option>
                 </select>
-                <input id="SearchSubmit" type="submit" value="Search" style="height:41px; font-size:100%;">
+                <input id="SearchSubmit" class="button" type="submit" value="Search">
                 </form>
             </div>
             </td>
             <td>
             <div id="LoginPanel" class="banner" style="text-align:center;">
-
+                <form>
+                <!-- ADD ACTION TO FORM TAG -->
+                <input id="LoginButton" class="button" type="submit" value="Login">
+                </form>
             </div>
             </td>
         </tr>

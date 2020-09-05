@@ -10,3 +10,22 @@ div.banner {
     padding-right:20px;
 }
 
+a {
+    color: white;
+}
+
+.button {
+    border: 2px solid white;
+    border-radius: 5px;
+    background-color: white;
+    height: 41px;
+    font-size: 100%;
+}
+
+.textbox {
+    border: 2px solid white;
+    border-radius: 5px;
+    background-color: white;
+    height:35px;
+    font-size:100%;
+}
