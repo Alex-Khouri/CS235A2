@@ -11,34 +11,43 @@
     <table style="margin-left:auto; margin-right:auto">
         <tr>
             <td>
-            <div id="Navbar" style="text-align: center;">
+            <div id="Navbar" class="banner" style="text-align:center;">
 
             </div>
             </td>
             <td>
-            <div id="BannerLogo" style="text-align: center;">
-                <img src="images/getflix_logo.png" alt="Getflix Logo" width="300">
+            <div id="BannerLogo" class="banner" style="text-align:center;">
+                <img src="images/getflix_logo.png" alt="Getflix Logo" height="100px">
             </div>
             </td>
             <td>
-            <div id="SearchBox" style="text-align: center;">
-
+            <div id="SearchBox" class="banner" style="text-align:center;">
+                <form>
+                <input id="SearchBox" type="text" placeholder="Search..." size=15 style="height:35px; font-size:100%;">
+                <select id="SearchType" name="searchType" style="height:41px; font-size:100%;">
+                    <option value="title">Title</option>
+                    <option value="genre">Genre</option>
+                    <option value="director">Director</option>
+                    <option value="actor">Actor</option>
+                </select>
+                <input id="SearchSubmit" type="submit" value="Search" style="height:41px; font-size:100%;">
+                </form>
             </div>
             </td>
             <td>
-            <div id="LoginPanel" style="text-align: center;">
+            <div id="LoginPanel" class="banner" style="text-align:center;">
 
             </div>
             </td>
         </tr>
         <tr>
             <td>
-            <div id="MovieList" style="text-align: center;">
+            <div id="MovieList" style="text-align:center;">
 
             </div>
             </td>
             <td>
-            <div id="Watchlist" style="text-align: center;">
+            <div id="Watchlist" style="text-align:center;">
 
             </div>
             </td>
