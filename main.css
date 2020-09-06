@@ -8,6 +8,7 @@ body {
 
 a {
     color: white;
+    cursor: pointer;
 }
 
 table {
