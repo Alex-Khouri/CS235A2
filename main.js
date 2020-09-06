@@ -1,11 +1,23 @@
 
 
-function login() {
+function loginUser() {
     showMainWindow()
+    document.getElementById("LoginPanel").style.display = "none";
+    document.getElementById("LogoutPanel").style.display = "block";
+    document.getElementById("RegisterPanel").style.display = "none";
 }
 
-function register() {
+function logoutUser() {
+    document.getElementById("LoginPanel").style.display = "block";
+    document.getElementById("LogoutPanel").style.display = "none";
+    document.getElementById("RegisterPanel").style.display = "block";
+}
+
+function registerUser() {
     showMainWindow()
+    document.getElementById("LoginPanel").style.display = "none";
+    document.getElementById("LogoutPanel").style.display = "block";
+    document.getElementById("RegisterPanel").style.display = "none";
 }
 
 function showMainWindow() {

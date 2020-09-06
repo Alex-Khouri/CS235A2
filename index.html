@@ -18,7 +18,7 @@
             <td>
             <div id="Searchbar" class="banner">
                 <form>
-                <!-- ADD ACTION TO FORM TAG -->
+                <!-- ADD `ACTION` ATTRIBUTE TO `FORM` TAG -->
                 <input id="SearchBox" class="textbox" type="text" name="SearchQuery" placeholder="Search..." size=15>
                 <select id="SearchType" class="button" name="SearchType">
                     <option value="title">Title</option>
@@ -33,6 +33,9 @@
             <td>
             <div id="LoginPanel" class="banner" style="text-align:right; padding-right:0px">
                 <input id="LoginButton" class="button" type="submit" value="Login" onclick="showLoginWindow();">
+            </div>
+            <div id="LogoutPanel" class="banner" style="text-align:right; padding-right:0px; display:none">
+                <input id="LogoutButton" class="button" type="submit" value="Logout" onclick="logoutUser();">
             </div>
             </td>
             <td>
@@ -67,7 +70,7 @@
     <div id="LoginWindow" class="window" style="display:none">
         <h3>Enter Login Details:</h3>
         <form>
-        <!-- ADD ACTION TO FORM TAG -->
+        <!-- ADD `ACTION` ATTRIBUTE TO `FORM` TAG -->
         <table>
             <tr>
                 <td class="formLabel">
@@ -86,13 +89,13 @@
                 </td>
             </tr>
         </table>
-        <input id="LoginSubmit" class="button" type="submit" value="Login" onclick="login();">
+        <input id="LoginSubmit" class="button" type="submit" value="Login" onclick="loginUser();">
         </form>
     </div>
     <div id="RegisterWindow" class="window" style="display:none">
         <h3>Enter Registration Details:</h3>
         <form>
-        <!-- ADD ACTION TO FORM TAG -->
+        <!-- ADD `ACTION` ATTRIBUTE TO `FORM` TAG -->
         <table>
         <tr>
             <td class="formLabel">
@@ -119,7 +122,7 @@
             </td>
         </tr>
         </table>
-        <input id="RegSubmit" class="button" type="submit" value="Register" onclick="register();">
+        <input id="RegSubmit" class="button" type="submit" value="Register" onclick="registerUser();">
         </form>
     </div>
 </body>
