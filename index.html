@@ -8,7 +8,7 @@
     <title id="title">Getflix</title>
 </head>
 <body>
-    <table>
+    <table style="width: 100%">
         <tr>
             <td>
             <div id="BannerLogo" class="banner">
@@ -26,61 +26,101 @@
                     <option value="director">Director</option>
                     <option value="actor">Actor</option>
                 </select>
-                <input id="SearchSubmit" class="button" type="submit" value="Search">
+                <input id="SearchSubmit" class="button" type="submit" value="Search" onclick="showMainWindow();">
                 </form>
             </div>
             </td>
             <td>
             <div id="LoginPanel" class="banner" style="text-align:right; padding-right:0px">
-                <form>
-                <!-- ADD ACTION TO FORM TAG -->
-                <input id="LoginButton" class="button" type="submit" value="Login">
-                </form>
+                <input id="LoginButton" class="button" type="submit" value="Login" onclick="showLoginWindow();">
             </div>
             </td>
             <td>
             <div id="RegisterPanel" class="banner" style="text-align:left; padding-left:0px">
-                <form>
-                <!-- ADD ACTION TO FORM TAG -->
-                <input id="RegisterButton" class="button" type="submit" value="Register">
-                </form>
+                <input id="RegisterButton" class="button" type="submit" value="Register" onclick="showRegisterWindow();">
             </div>
             </td>
         </tr>
     </table>
     <hr style="height:3px; background-color:black; border-color:black; border-radius:3px">
-    <div id="LoginWindow" class="window">
+    <div id="MainWindow" class="window">
+        <table>
+            <tr>
+                <td>
+                <div id="BrowseWindow" class="window">
+    
+                </div>
+                </td>
+                <td>
+                <div id="MovieListWindow" class="window">
+    
+                </div>
+                </td>
+                <td>
+                <div id="WatchlistWindow" class="window">
+    
+                </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="LoginWindow" class="window" style="display:none">
         <h3>Enter Login Details:</h3>
         <form>
         <!-- ADD ACTION TO FORM TAG -->
-        <label for="Username">Username: </label>
-        <input id="UsernameBox" class="textbox" type="text" name="Username" size=30><br><br>
-        <label for="Password">Password: </label>
-        <input id="PasswordBox" class="textbox" type="password" name="Password" size=30><br><br>
-        <input id="LoginSubmit" class="button" type="submit" value="Login">
+        <table>
+            <tr>
+                <td class="formLabel">
+                <label for="LoginUsername">Username: </label>
+                </td>
+                <td class="formInput">
+                <input id="LoginUsername" class="textbox" type="text" name="LoginUsername" size=30>
+                </td>
+            </tr>
+            <tr>
+                <td class="formLabel">
+                <label for="LoginPassword">Password: </label>
+                </td>
+                <td class="formInput">
+                <input id="LoginPassword" class="textbox" type="password" name="LoginPassword" size=30>
+                </td>
+            </tr>
+        </table>
+        <input id="LoginSubmit" class="button" type="submit" value="Login" onclick="login();">
         </form>
     </div>
-    <div id="RegisterWindow" class="window">
-        
-    </div>
-    <table>
+    <div id="RegisterWindow" class="window" style="display:none">
+        <h3>Enter Registration Details:</h3>
+        <form>
+        <!-- ADD ACTION TO FORM TAG -->
+        <table>
         <tr>
-            <td>
-            <div id="BrowseWindow" class="window">
-
-            </div>
+            <td class="formLabel">
+            <label for="RegUsername">Username: </label>
             </td>
-            <td>
-            <div id="MovieListWindow" class="window">
-
-            </div>
-            </td>
-            <td>
-            <div id="WatchlistWindow" class="window">
-
-            </div>
+            <td class="formInput">
+            <input id="RegUsername" class="textbox" type="text" name="RegUsername" size=30>
             </td>
         </tr>
-    </table>
+        <tr>
+            <td class="formLabel">
+            <label for="RegPassword1">Password: </label>
+            </td>
+            <td class="formInput">
+            <input id="RegPassword1" class="textbox" type="password" name="RegPassword1" size=30>
+            </td>
+        </tr>
+        <tr>
+            <td class="formLabel">
+            <label for="RegPassword2">Re-enter Password: </label>
+            </td>
+            <td class="formInput">
+            <input id="RegPassword2" class="textbox" type="password" name="RegPassword2" size=30>
+            </td>
+        </tr>
+        </table>
+        <input id="RegSubmit" class="button" type="submit" value="Register" onclick="register();">
+        </form>
+    </div>
 </body>
 </html>
