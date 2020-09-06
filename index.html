@@ -11,16 +11,16 @@
     <table>
         <tr>
             <td>
-            <div id="BannerLogo" class="banner" style="text-align:center">
+            <div id="BannerLogo" class="banner">
                 <img src="images/getflix_logo.png" alt="Getflix Logo" height="100px">
             </div>
             </td>
             <td>
-            <div id="Search" class="banner" style="text-align:center">
+            <div id="Searchbar" class="banner">
                 <form>
                 <!-- ADD ACTION TO FORM TAG -->
-                <input id="SearchBox" class="textbox" type="text" name="searchQuery" placeholder="Search..." size=15>
-                <select id="SearchType" class="button" name="searchType" style="height:41px; font-size:100%">
+                <input id="SearchBox" class="textbox" type="text" name="SearchQuery" placeholder="Search..." size=15>
+                <select id="SearchType" class="button" name="SearchType">
                     <option value="title">Title</option>
                     <option value="genre">Genre</option>
                     <option value="director">Director</option>
@@ -31,30 +31,52 @@
             </div>
             </td>
             <td>
-            <div id="LoginPanel" class="banner" style="text-align:center">
+            <div id="LoginPanel" class="banner" style="text-align:right; padding-right:0px">
                 <form>
                 <!-- ADD ACTION TO FORM TAG -->
                 <input id="LoginButton" class="button" type="submit" value="Login">
                 </form>
             </div>
             </td>
+            <td>
+            <div id="RegisterPanel" class="banner" style="text-align:left; padding-left:0px">
+                <form>
+                <!-- ADD ACTION TO FORM TAG -->
+                <input id="RegisterButton" class="button" type="submit" value="Register">
+                </form>
+            </div>
+            </td>
         </tr>
     </table>
     <hr style="height:3px; background-color:black; border-color:black; border-radius:3px">
+    <div id="LoginWindow" class="window">
+        <h3>Enter Login Details:</h3>
+        <form>
+        <!-- ADD ACTION TO FORM TAG -->
+        <label for="Username">Username: </label>
+        <input id="UsernameBox" class="textbox" type="text" name="Username" size=30><br><br>
+        <label for="Password">Password: </label>
+        <input id="PasswordBox" class="textbox" type="password" name="Password" size=30><br><br>
+        <input id="LoginSubmit" class="button" type="submit" value="Login">
+        </form>
+    </div>
+    <div id="RegisterWindow" class="window">
+        
+    </div>
     <table>
         <tr>
             <td>
-            <div id="BrowseList" style="text-align:center">
+            <div id="BrowseWindow" class="window">
 
             </div>
             </td>
             <td>
-            <div id="MovieList" style="text-align:center">
+            <div id="MovieListWindow" class="window">
 
             </div>
             </td>
             <td>
-            <div id="Watchlist" style="text-align:center">
+            <div id="WatchlistWindow" class="window">
 
             </div>
             </td>
