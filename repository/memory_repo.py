@@ -6,43 +6,43 @@ class MemoryRepo:
 	def __init__(self, file_name):
 		csvReader = MovieFileCSVReader(file_name)
 		csvReader.read_csv_file()
-		self.movies = csvReader.dataset_of_movies()
-		self.actors = csvReader.dataset_of_actors()
-		self.directors = csvReader.dataset_of_directors()
-		self.genres = csvReader.dataset_of_genres()
+		self.repo_movies = csvReader.dataset_of_movies
+		self.repo_actors = csvReader.dataset_of_actors
+		self.repo_directors = csvReader.dataset_of_directors
+		self.repo_genres = csvReader.dataset_of_genres
 
 	@property
 	def movies(self):
-		return self.movies
+		return self.repo_movies
 
 	@property
 	def actors(self):
-		return self.actors
+		return self.repo_actors
 
 	@property
 	def directors(self):
-		return self.directors
+		return self.repo_directors
 
 	@property
 	def genres(self):
-		return self.genres
+		return self.repo_genres
 
 	@movies.setter
 	def movies(self, newMovies):
 		if isinstance(newMovies, list):
-			self.movies = newMovies
+			self.repo_movies = newMovies
 
 	@actors.setter
 	def actors(self, newActors):
 		if isinstance(newActors, set):
-			self.actors = newActors
+			self.repo_actors = newActors
 
 	@directors.setter
 	def directors(self, newDirectors):
 		if isinstance(newDirectors, set):
-			self.directors = newDirectors
+			self.repo_directors = newDirectors
 
 	@genres.setter
 	def genres(self, newGenres):
 		if isinstance(newGenres, set):
-			self.genres = newGenres
+			self.repo_genres = newGenres
