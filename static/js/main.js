@@ -40,21 +40,17 @@ function showRegisterWindow() {
 
 /* DROPDOWN MENU */
 // Toggle dropdown content visibility when user clicks button
-function openDropdown(dropdownContentID) {
-    console.log("openDropdown() triggered!")
-    let element = document.getElementById(dropdownContentID)
+function openDropdownMenu(dropdownContentID) {
+    let element = document.getElementById(dropdownContentID);
     if (element.style.display === "none") {
-        element.style.display = "block"
-        console.log(`${element} made visible!`)
+        element.style.display = "block";
     } else {
-        element.style.display = "none"
-        console.log(`${element} made hidden!`)
+        element.style.display = "none";
     }
     let dropdowns = document.getElementsByClassName("dropdown-content");
     for (let dropdown of dropdowns) {
         if (dropdown.id !== dropdownContentID) {
             dropdown.style.display = "none";
-            console.log(`${dropdown} made hidden!`)
         }
     }
 }
