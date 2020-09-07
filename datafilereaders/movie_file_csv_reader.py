@@ -58,7 +58,6 @@ class MovieFileCSVReader:
 					movie = Movie(row['Title'].strip(), int(row['Year'].strip()))
 					movie.description = row['Description']
 					movie.director = Director(row['Director'])
-					row['Actors'].split(",")
 					for actor in row['Actors'].split(","):
 						movie.add_actor(Actor(actor.strip()))
 					for genre in row['Genre'].split(","):

@@ -1,24 +1,16 @@
 from flask import Flask, request
+from datafilereaders.movie_file_csv_reader import MovieFileCSVReader
+from repository.memory_repo import MemoryRepo
 
 app = Flask(__name__)
+repo = MemoryRepo('datafiles/Data1000Movies.csv')
+repo.read_csv_file()
 
 # UPDATE PATHS TO MATCH `ACTION` ATTRIBUTES IN `FORM` TAGS
 
-@app.route('/<SearchQuery><SearchType>')
-def search_movies(SearchQuery, SearchType):
-	pass
-
-@app.route('/<LoginUsername><LoginPassword>')
-def login(LoginUsername, LoginPassword):
-	pass
-
-@app.route('/<RegUsername><RegPassword1><RegPassword2>')
-def register(RegUsername, RegPassword1, RegPassword2):
-	pass
-
 @app.route('/')
-def logout(SearchQuery, SearchType):
-	pass
+def index():
+	return request.args.to_dict()
 
 if __name__ == "__main__":
 	app.run(host='localhost', port=5000)
