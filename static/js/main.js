@@ -42,10 +42,10 @@ function showRegisterWindow() {
 // Toggle dropdown content visibility when user clicks button
 function openDropdownMenu(dropdownContentID) {
     let element = document.getElementById(dropdownContentID);
-    if (element.style.display === "none") {
-        element.style.display = "block";
-    } else {
+    if (element.style.display === "block") {
         element.style.display = "none";
+    } else {
+        element.style.display = "block";
     }
     let dropdowns = document.getElementsByClassName("dropdown-content");
     for (let dropdown of dropdowns) {

@@ -5,6 +5,7 @@ class Director:
 			self.name = name
 		else:
 			self.name = None
+		self.director_movies = list()
 	
 	def __repr__(self):
 		return f"<Director {self.name}>"
@@ -21,10 +22,27 @@ class Director:
 	@property
 	def director_full_name(self):
 		return self.name
+
+	@property
+	def movies(self):
+		return self.director_movies
 	
 	@director_full_name.setter
 	def director_full_name(self, newName):
 		self.name = newName
+
+	@movies.setter
+	def movies(self, newMovies):
+		if isinstance(newMovies, list):
+			self.director_movies = newMovies
+
+	def add_movie(self, newMovie):
+		if isinstance(newMovie, Movie) and not newMovie in self.actor_movies:
+			self.actor_movies.append(newMovie)
+
+	def remove_movie(self, remMovie):
+		if isinstance(remMovie, Movie) and remMovie in self.actor_movies:
+			self.actor_movies.remove(remMovie)
 
 
 class TestDirectorMethods:
@@ -36,3 +54,7 @@ class TestDirectorMethods:
 		assert director2.director_full_name is None
 		director3 = Director(42)
 		assert director3.director_full_name is None
+
+
+if __name__ == "__main__":
+	from domainmodel.movie import Movie

@@ -5,6 +5,7 @@ class Actor:
 			self.name = name
 		else:
 			self.name = None
+		self.actor_movies = list()
 		self.colleagues = []
 	
 	def __repr__(self):
@@ -22,13 +23,34 @@ class Actor:
 	@property
 	def actor_full_name(self):
 		return self.name
+
+	@property
+	def movies(self):
+		return self.actor_movies
 	
 	@actor_full_name.setter
 	def actor_full_name(self, newName):
 		self.name = newName
+
+	@movies.setter
+	def movies(self, newMovies):
+		if isinstance(newMovies, list):
+			self.actor_movies = newMovies
 		
 	def add_actor_colleague(self, colleague):
 		self.colleagues.append(colleague)
+
+	def add_movie(self, newMovie):
+		if isinstance(newMovie, Movie) and not newMovie in self.actor_movies:
+			self.actor_movies.append(newMovie)
 		
 	def check_if_this_actor_worked_with(self, colleague):
 		return (colleague in self.colleagues)
+
+	def remove_movie(self, remMovie):
+		if isinstance(remMovie, Movie) and remMovie in self.actor_movies:
+			self.actor_movies.remove(remMovie)
+
+
+if __name__ == "__main__":
+	from domainmodel.movie import Movie

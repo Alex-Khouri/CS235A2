@@ -51,6 +51,8 @@ div.window {
     font-size: 100%;
 }
 
+.show {display:block;}
+
 /* DROPDOWN MENU */
 .dropbtn {
     border: 2px solid white;
@@ -61,7 +63,7 @@ div.window {
     cursor: pointer;
 }
     .dropbtn:hover, .dropbtn:focus {
-        background-color: #4F4F4F;
+        background-color: #8F8F8F;
     }
     .dropdown {
         position: relative;
@@ -70,8 +72,10 @@ div.window {
     .dropdown-content {
         display: none;
         position: absolute;
+        border: 2px solid #f1f1f1;
+        border-radius: 5px;
         background-color: #f1f1f1;
-        min-width: 160px;
+        min-width: 100px;
         overflow: auto;
     }
     .dropdown-content a {
@@ -81,6 +85,6 @@ div.window {
         display: block;
     }
     .dropdown a:hover {
-        background-color: #ddd;
+        background-color: #8F8F8F;
     }
 

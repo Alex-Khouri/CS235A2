@@ -12,11 +12,12 @@
         <tr>
             <td>
             <div class="dropdown">
-                <button onclick="openDropdownMenu('browseDropdown');" class="dropbtn">Browse</button>
-                <div id="browseDropdown" class="dropdown-content">
-                    <a>Home</a>
-                    <a>About</a>
-                    <a>Contact</a>
+                <button onclick="openDropdownMenu('BrowseDropdown');" class="dropbtn">Browse Movies...</button>
+                <div id="BrowseDropdown" class="dropdown-content">
+                    <a>Titles</a>
+                    <a>Genres</a>
+                    <a>Actors</a>
+                    <a>Directors</a>
                 </div>
             </div>
             </td>
@@ -29,7 +30,7 @@
             <div id="Searchbar" class="banner">
                 <form>
                 <!-- ADD `ACTION` ATTRIBUTE TO `FORM` TAG -->
-                <input id="SearchBox" class="textbox" type="text" name="SearchQuery" placeholder="Search..." size=15>
+                <input id="SearchBox" class="textbox" type="text" name="SearchQuery" placeholder="Search Movies..." size=15>
                 <select id="SearchType" class="button" name="SearchType">
                     <option value="title">Title</option>
                     <option value="genre">Genre</option>

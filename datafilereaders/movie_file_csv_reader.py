@@ -68,10 +68,13 @@ class MovieFileCSVReader:
 					actors = row['Actors'].split(',')
 					for i in range(len(actors)):
 						actors[i] = Actor(actors[i].strip())
+						actors[i].add_movie(movie)
 					director = Director(row['Director'].strip())
+					director.add_movie(movie)
 					genres = row['Genre'].split(',')
 					for i in range(len(genres)):
 						genres[i] = Genre(genres[i].strip())
+						genres[i].add_movie(movie)
 					self.movies.append(movie)
 					self.actors.update(set(actors))
 					self.directors.add(director)
