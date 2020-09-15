@@ -4,8 +4,8 @@ from domainmodel.user import User
 
 class Review:
 	def __init__(self, revUser, revMovie, revText, revRating):
-		self.review_user = revUser if isinstance(revUser, User) else None
-		self.review_movie = revMovie if isinstance(revMovie, Movie) else None
+		self.review_user = revUser
+		self.review_movie = revMovie
 		self.review_text = revText.strip() if isinstance(revText, str) else None
 		self.review_rating = revRating if (isinstance(revRating, int) and (revRating in range (1,11))) else None
 		self.review_timestamp = datetime.datetime.now()
@@ -38,8 +38,7 @@ class Review:
 
 	@movie.setter
 	def movie(self, newMovie):
-		if isinstance(newMovie, Movie):
-			self.review_movie = newMovie
+		self.review_movie = newMovie
 	
 	@review_text.setter
 	def review_text(self, newText):
@@ -58,8 +57,8 @@ class Review:
 
 	@user.setter
 	def user(self, newUser):
-		if isinstance(newUser, User):
-			self.review_user = newUser
+		self.review_user = newUser
+
 
 if __name__ == "__main__":
 	from domainmodel.movie import Movie

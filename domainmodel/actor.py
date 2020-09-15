@@ -41,14 +41,14 @@ class Actor:
 		self.colleagues.append(colleague)
 
 	def add_movie(self, newMovie):
-		if isinstance(newMovie, Movie) and not newMovie in self.actor_movies:
+		if not newMovie in self.actor_movies:
 			self.actor_movies.append(newMovie)
 		
 	def check_if_this_actor_worked_with(self, colleague):
-		return (colleague in self.colleagues)
+		return colleague in self.colleagues
 
 	def remove_movie(self, remMovie):
-		if isinstance(remMovie, Movie) and remMovie in self.actor_movies:
+		if remMovie in self.actor_movies:
 			self.actor_movies.remove(remMovie)
 
 

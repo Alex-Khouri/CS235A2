@@ -90,8 +90,7 @@ class Movie:
 	
 	@director.setter
 	def director(self, newDirector):
-		if isinstance(newDirector, Director):
-			self.movie_director = newDirector
+		self.movie_director = newDirector
 			
 	@actors.setter
 	def actors(self, newActors):
@@ -127,15 +126,15 @@ class Movie:
 			self.movie_votes = newVotes
 
 	def add_actor(self, newActor):
-		if isinstance(newActor, Actor) and not newActor in self.movie_actors:
+		if not newActor in self.movie_actors:
 			self.movie_actors.append(newActor)
 			
 	def add_genre(self, newGenre):
-		if isinstance(newGenre, Genre) and not newGenre in self.movie_genres:
+		if not newGenre in self.movie_genres:
 			self.movie_genres.append(newGenre)
 
 	def add_review(self, newReview):
-		if isinstance(newReview, Review) and not newReview in self.movie_reviews:
+		if not newReview in self.movie_reviews:
 			self.movie_reviews.append(newReview)
 			self.movie_votes += 1
 			v = self.movie_votes
@@ -145,7 +144,7 @@ class Movie:
 				self.movie_rating = self.movie_rating*((v-1)/v) + newReview.rating*(1/v)
 			
 	def remove_actor(self, remActor):
-		if isinstance(remActor, Actor) and remActor in self.movie_actors:
+		if remActor in self.movie_actors:
 			self.movie_actors.remove(remActor)
 		elif isinstance(remActor, str):
 			for actor in self.movie_actors:
@@ -154,7 +153,7 @@ class Movie:
 					break
 			
 	def remove_genre(self, remGenre):
-		if isinstance(remGenre, Genre) and remGenre in self.movie_genres:
+		if remGenre in self.movie_genres:
 			self.movie_genres.remove(remGenre)
 		elif isinstance(remGenre, str):
 			for genre in self.movie_genres:
@@ -163,7 +162,7 @@ class Movie:
 					break
 
 	def remove_review(self, remReview):
-		if isinstance((remReview, Review)) and remReview in self.movie_reviews:
+		if remReview in self.movie_reviews:
 			self.movie_reviews.remove(remReview)
 			self.movie_votes -= 1
 			v = self.movie_votes

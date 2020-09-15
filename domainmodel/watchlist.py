@@ -29,11 +29,11 @@ class Watchlist:
 			self.movieList = newMovieList
 
 	def add_movie(self, movie):
-		if isinstance(movie, Movie) and not movie in self.movieList:
+		if not movie in self.movieList:
 			self.movieList.append(movie)
 
 	def remove_movie(self, movie):
-		if isinstance(movie, Movie) and movie in self.movieList:
+		if movie in self.movieList:
 			self.movieList.remove(movie)
 
 	def select_movie_to_watch(self, index):
@@ -115,6 +115,7 @@ class TestWatchlistMethods:
 		assert str(watchlist.first_movie_in_watchlist()) == "<Movie Guardians of the Galaxy, 2012>"
 		watchlist.remove_movie(Movie("Guardians of the Galaxy", 2012))
 		assert str(watchlist.first_movie_in_watchlist()) == "None"
+
 
 if __name__ == "__main__":
 	from domainmodel.movie import Movie

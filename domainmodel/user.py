@@ -71,8 +71,7 @@ class User:
 
 	@watchlist.setter
 	def watchlist(self, newWatchlist):
-		if isinstance(newWatchlist, Watchlist):
-			self.user_watchlist = newWatchlist
+		self.user_watchlist = newWatchlist
 
 	@comments.setter
 	def comments(self, newComments):
@@ -85,20 +84,18 @@ class User:
 			self.user_timewatching = newTimeWatching
 
 	def watch_movie(self, movie):
-		if isinstance(movie, Movie):
-			if not movie in self.user_watched:
-				self.user_watched.append(movie)
-			self.user_timewatching += movie.runtime_minutes
-			if movie in self.user_watchlist:
-				self.user_watchlist.remove_movie(movie)
+		if not movie in self.user_watched:
+			self.user_watched.append(movie)
+		self.user_timewatching += movie.runtime_minutes
+		if movie in self.user_watchlist:
+			self.user_watchlist.remove_movie(movie)
 
 	def add_review(self, review):
-		if isinstance(review, Review):
-			self.user_reviews.append(review)
+		self.user_reviews.append(review)
 
 	def remove_review(self, review):
-		if isinstance(review, Review):
-			self.user_reviews.remove(review)
+		self.user_reviews.remove(review)
+
 
 if __name__ == "__main__":
 	from domainmodel.movie import Movie

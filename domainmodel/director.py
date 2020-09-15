@@ -1,6 +1,6 @@
 
 class Director:
-	def __init__(self, name=None):
+	def __init__(self, name):
 		if (isinstance(name, str) and len(name) > 0):
 			self.name = name
 		else:
@@ -37,12 +37,12 @@ class Director:
 			self.director_movies = newMovies
 
 	def add_movie(self, newMovie):
-		if isinstance(newMovie, Movie) and not newMovie in self.actor_movies:
-			self.actor_movies.append(newMovie)
+		if not newMovie in self.director_movies:
+			self.director_movies.append(newMovie)
 
 	def remove_movie(self, remMovie):
-		if isinstance(remMovie, Movie) and remMovie in self.actor_movies:
-			self.actor_movies.remove(remMovie)
+		if remMovie in self.director_movies:
+			self.director_movies.remove(remMovie)
 
 
 class TestDirectorMethods:
