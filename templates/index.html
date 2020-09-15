@@ -67,7 +67,10 @@
                 </td>
                 <td>
                 <div id="MovieListWindow" class="window">
-    
+                    <h3>{{ movie.title }}</h3>
+                    <p><b>Year: {{ movie.year }}</b></p>
+                    <p>Synopsis: <em>"{{ movie.description }}"</em></p>
+                    <p>Director: {{ movie.director.director_full_name }}</p>
                 </div>
                 </td>
                 <td>

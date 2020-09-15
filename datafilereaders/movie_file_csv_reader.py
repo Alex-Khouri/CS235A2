@@ -5,8 +5,10 @@ from domainmodel.actor import Actor
 from domainmodel.genre import Genre
 from domainmodel.director import Director
 
+
 class MovieFileCSVReader:
 	def __init__(self, file_name):
+		print("Initialising MovieFileCSVReader") # DEBUGGING
 		self.file_name = file_name if isinstance(file_name, str) else None
 		self.movies = list()
 		self.actors = set()
@@ -57,24 +59,21 @@ class MovieFileCSVReader:
 				try:
 					movie = Movie(row['Title'].strip(), int(row['Year'].strip()))
 					movie.description = row['Description']
-					movie.director = Director(row['Director'])
-					for actor in row['Actors'].split(","):
-						movie.add_actor(Actor(actor.strip()))
-					for genre in row['Genre'].split(","):
-						movie.add_genre(Genre(genre.strip()))
+					director = Director(row['Director'].strip())
+					movie.director = director
+					print("LINE REACHED")  # DEBUGGING
+					director.add_movie(movie)
+					actors = {Actor(actor.strip()) for actor in row['Actors'].split(",")}
+					for actor in actors:
+						movie.add_actor(actor)
+						actor.add_movie(movie)
+					genres = {Genre(genre.strip()) for genre in row['Genre'].split(",")}
+					for genre in genres:
+						movie.add_genre(genre)
+						genre.add_movie(movie)
 					movie.runtime_minutes = int(row['Runtime (Minutes)'])
 					movie.rating = float(row['Rating'])
 					movie.votes = int(row['Votes'])
-					actors = row['Actors'].split(',')
-					for i in range(len(actors)):
-						actors[i] = Actor(actors[i].strip())
-						actors[i].add_movie(movie)
-					director = Director(row['Director'].strip())
-					director.add_movie(movie)
-					genres = row['Genre'].split(',')
-					for i in range(len(genres)):
-						genres[i] = Genre(genres[i].strip())
-						genres[i].add_movie(movie)
 					self.movies.append(movie)
 					self.actors.update(set(actors))
 					self.directors.add(director)
