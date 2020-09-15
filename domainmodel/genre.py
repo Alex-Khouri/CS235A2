@@ -37,10 +37,10 @@ class Genre:
 			self.genre_movies = newMovies
 
 	def add_movie(self, newMovie):
-		self.actor_movies.append(newMovie)
+		self.genre_movies.append(newMovie)
 
 	def remove_movie(self, remMovie):
-		self.actor_movies.remove(remMovie)
+		self.genre_movies.remove(remMovie)
 
 
 if __name__ == "__main__":

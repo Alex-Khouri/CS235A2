@@ -69,8 +69,6 @@ class MovieFileCSVReader:
 					genres = {Genre(genre.strip()) for genre in row['Genre'].split(",")}
 					for genre in genres:
 						movie.add_genre(genre)
-						if int(row['Rank']) < 11:  # DEBUGGING
-							print("LINE REACHED")
 						genre.add_movie(movie)
 					movie.runtime_minutes = int(row['Runtime (Minutes)'])
 					movie.rating = float(row['Rating'])
