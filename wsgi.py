@@ -3,6 +3,10 @@ from repository.memory_repo import MemoryRepo
 
 app = Flask(__name__)
 repo = MemoryRepo('datafiles/Data1000Movies.csv')
+movies = repo.movies
+actors = repo.actors
+directors = repo.directors
+genres = repo.genres
 
 # UPDATE PATHS TO MATCH `ACTION` ATTRIBUTES IN `FORM` TAGS
 
