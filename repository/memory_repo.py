@@ -4,7 +4,6 @@ from datafilereaders.movie_file_csv_reader import MovieFileCSVReader
 class MemoryRepo:
 
 	def __init__(self, file_name):
-		print("Initialising MemoryRepo") # DEBUGGING
 		csvReader = MovieFileCSVReader(file_name)
 		csvReader.read_csv_file()
 		self.repo_movies = csvReader.dataset_of_movies

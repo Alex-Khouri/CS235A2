@@ -67,10 +67,15 @@
                 </td>
                 <td>
                 <div id="MovieListWindow" class="window">
-                    <h3>{{ movie.title }}</h3>
-                    <p><b>Year: {{ movie.year }}</b></p>
-                    <p>Synopsis: <em>"{{ movie.description }}"</em></p>
-                    <p>Director: {{ movie.director.director_full_name }}</p>
+                    {% for movie in movies %}
+                    <h3>{{ movie.title }} <em>({{ movie.year }})</em></h3>
+                    <p><b>Genres: </b>{{ movie.get_genres_string() }}</p>
+                    <p><b>Director: </b>{{ movie.director.director_full_name }}</p>
+                    <p><b>Actors: </b>{{ movie.get_actors_string() }}</p>
+                    <p><b>Synopsis: </b><em>"{{ movie.description }}"</em></p>
+                    <p><b>Rating: </b>{{ movie.rating }}/10</p>
+                    <hr style="height:2px; background-color:white; border-color:white; border-radius:2px">
+                    {% endfor %}
                 </div>
                 </td>
                 <td>

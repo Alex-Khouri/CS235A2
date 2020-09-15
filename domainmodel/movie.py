@@ -171,6 +171,12 @@ class Movie:
 			else:
 				self.movie_rating = self.movie_rating*((v+1)/v) - remReview.rating*(1/v)
 
+	def get_actors_string(self):
+		return ", ".join([actor.actor_full_name for actor in self.movie_actors])
+
+	def get_genres_string(self):
+		return ", ".join([genre.genre_name for genre in self.movie_genres])
+
 
 class TestMovie:
 	def test_full_repr(self, movie):

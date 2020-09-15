@@ -8,7 +8,6 @@ from domainmodel.director import Director
 
 class MovieFileCSVReader:
 	def __init__(self, file_name):
-		print("Initialising MovieFileCSVReader") # DEBUGGING
 		self.file_name = file_name if isinstance(file_name, str) else None
 		self.movies = list()
 		self.actors = set()
