@@ -31,10 +31,16 @@ class Watchlist:
 	def add_movie(self, movie):
 		if not movie in self.movieList:
 			self.movieList.append(movie)
+			return True
+		else:
+			return False
 
 	def remove_movie(self, movie):
 		if movie in self.movieList:
 			self.movieList.remove(movie)
+			return True
+		else:
+			return False
 
 	def select_movie_to_watch(self, index):
 		if index in range(len(self.movieList)):

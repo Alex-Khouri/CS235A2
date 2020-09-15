@@ -46,9 +46,7 @@
                 <input id="LoginButton" class="button" type="submit" value="Login" onclick="showLoginWindow();">
             </div>
             <div id="LogoutPanel" class="banner" style="text-align:right; padding-right:0px; display:none">
-                <form action="/logout">
                 <input id="LogoutButton" class="button" type="submit" value="Logout" onclick="logoutUser();">
-                </form>
             </div>
             </td>
             <td>
@@ -90,7 +88,8 @@
     </div>
     <div id="LoginWindow" class="window" style="display:none">
         <h3>Enter Login Details:</h3>
-        <form action="/login">
+        <form>
+        <!-- ADD `ACTION` ATTRIBUTE TO `FORM` TAG -->
         <table>
             <tr>
                 <td class="formLabel">
@@ -114,7 +113,8 @@
     </div>
     <div id="RegisterWindow" class="window" style="display:none">
         <h3>Enter Registration Details:</h3>
-        <form action="/register">
+        <form>
+        <!-- ADD `ACTION` ATTRIBUTE TO `FORM` TAG -->
         <table>
         <tr>
             <td class="formLabel">

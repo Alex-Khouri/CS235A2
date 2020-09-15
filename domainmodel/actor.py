@@ -43,6 +43,9 @@ class Actor:
 	def add_movie(self, newMovie):
 		if not newMovie in self.actor_movies:
 			self.actor_movies.append(newMovie)
+			return True
+		else:
+			return False
 		
 	def check_if_this_actor_worked_with(self, colleague):
 		return colleague in self.colleagues
@@ -50,6 +53,9 @@ class Actor:
 	def remove_movie(self, remMovie):
 		if remMovie in self.actor_movies:
 			self.actor_movies.remove(remMovie)
+			return True
+		else:
+			return False
 
 
 if __name__ == "__main__":

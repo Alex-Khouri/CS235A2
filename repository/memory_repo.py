@@ -10,6 +10,7 @@ class MemoryRepo:
 		self.repo_actors = csvReader.dataset_of_actors
 		self.repo_directors = csvReader.dataset_of_directors
 		self.repo_genres = csvReader.dataset_of_genres
+		self.repo_users = list()
 
 	@property
 	def movies(self):
@@ -26,6 +27,10 @@ class MemoryRepo:
 	@property
 	def genres(self):
 		return self.repo_genres
+
+	@property
+	def users(self):
+		return self.repo_users
 
 	@movies.setter
 	def movies(self, newMovies):
@@ -46,6 +51,31 @@ class MemoryRepo:
 	def genres(self, newGenres):
 		if isinstance(newGenres, set):
 			self.repo_genres = newGenres
+
+	@users.setter
+	def users(self, newUsers):
+		if isinstance(newUsers, list):
+			self.repo_users = newUsers
+
+	def add_user(self, newUser):
+		if newUser not in self.repo_users and newUser.user_name not in [user.user_name for user in self.repo_users]:
+			self.repo_users.append(newUser)
+			return True
+		else:
+			return False
+
+	def remove_user(self, remUser):
+		if remUser in self.repo_users:
+			self.repo_users.remove(remUser)
+			return True
+		else:
+			return False
+
+	def get_user(self, username):
+		for user in self.repo_users:
+			if user.user_name == username:
+				return user
+		return None
 
 
 class TestMemoryRepo:

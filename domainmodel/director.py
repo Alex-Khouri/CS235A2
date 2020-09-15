@@ -39,10 +39,16 @@ class Director:
 	def add_movie(self, newMovie):
 		if not newMovie in self.director_movies:
 			self.director_movies.append(newMovie)
+			return True
+		else:
+			return False
 
 	def remove_movie(self, remMovie):
 		if remMovie in self.director_movies:
 			self.director_movies.remove(remMovie)
+			return True
+		else:
+			return False
 
 
 class TestDirectorMethods:

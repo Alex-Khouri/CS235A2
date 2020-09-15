@@ -128,38 +128,49 @@ class Movie:
 	def add_actor(self, newActor):
 		if not newActor in self.movie_actors:
 			self.movie_actors.append(newActor)
+			return True
+		else:
+			return False
 			
 	def add_genre(self, newGenre):
 		if not newGenre in self.movie_genres:
 			self.movie_genres.append(newGenre)
+			return True
+		else:
+			return False
 
 	def add_review(self, newReview):
-		if not newReview in self.movie_reviews:
-			self.movie_reviews.append(newReview)
-			self.movie_votes += 1
-			v = self.movie_votes
-			if self.movie_rating is None:
-				self.movie_rating = newReview.rating
-			else:
-				self.movie_rating = self.movie_rating*((v-1)/v) + newReview.rating*(1/v)
+		self.movie_reviews.append(newReview)
+		self.movie_votes += 1
+		v = self.movie_votes
+		if self.movie_rating is None:
+			self.movie_rating = newReview.rating
+		else:
+			self.movie_rating = self.movie_rating*((v-1)/v) + newReview.rating*(1/v)
 			
 	def remove_actor(self, remActor):
 		if remActor in self.movie_actors:
 			self.movie_actors.remove(remActor)
+			return True
 		elif isinstance(remActor, str):
 			for actor in self.movie_actors:
 				if actor.actor_full_name == remActor:
 					self.movie_actors.remove(actor)
-					break
+					return True
+		else:
+			return False
 			
 	def remove_genre(self, remGenre):
 		if remGenre in self.movie_genres:
 			self.movie_genres.remove(remGenre)
+			return True
 		elif isinstance(remGenre, str):
 			for genre in self.movie_genres:
 				if genre.genre_name == remGenre:
 					self.movie_genres.remove(genre)
-					break
+					return True
+		else:
+			return False
 
 	def remove_review(self, remReview):
 		if remReview in self.movie_reviews:
@@ -170,6 +181,9 @@ class Movie:
 				self.movie_rating = None
 			else:
 				self.movie_rating = self.movie_rating*((v+1)/v) - remReview.rating*(1/v)
+			return True
+		else:
+			return False
 
 	def get_actors_string(self):
 		return ", ".join([actor.actor_full_name for actor in self.movie_actors])
