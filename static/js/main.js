@@ -20,6 +20,7 @@ function registerUser() {
     document.getElementById("RegisterPanel").style.display = "none";
 }
 
+
 function showMainWindow() {
     document.getElementById("MainWindow").style.display = "block";
     document.getElementById("LoginWindow").style.display = "none";
@@ -38,8 +39,7 @@ function showRegisterWindow() {
     document.getElementById("RegisterWindow").style.display = "block";
 }
 
-/* DROPDOWN MENU */
-// Toggle dropdown content visibility when user clicks button
+
 function openDropdownMenu(dropdownContentID) {
     let element = document.getElementById(dropdownContentID);
     if (element.style.display === "block") {
@@ -54,7 +54,7 @@ function openDropdownMenu(dropdownContentID) {
         }
     }
 }
-// Close dropdown if user clicks outside menu
+
 window.onclick = function(event) {
     if (!event.target.matches('.dropbtn')) {
         let dropdowns = document.getElementsByClassName("dropdown-content");
@@ -63,4 +63,5 @@ window.onclick = function(event) {
         }
     }
 }
+
 

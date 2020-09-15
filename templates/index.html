@@ -13,12 +13,44 @@
             <td>
             <div class="dropdown">
                 <button onclick="openDropdownMenu('BrowseDropdown');" class="dropbtn">Browse Movies...</button>
-                <div id="BrowseDropdown" class="dropdown-content">
-                    <a>Titles</a>
-                    <a>Genres</a>
-                    <a>Actors</a>
-                    <a>Directors</a>
-                </div>
+                <ul id="BrowseDropdown" class="dropdown-content">
+                    <li><a class="dropdown">
+                        <button onclick="openDropdownMenu('TitleDropdown');" class="dropbtn">Titles</button></a>
+                        <ul id="TitleDropdown" class="submenu">
+                            <li><a>Title 1</a></li>
+                            <li><a>Title 2</a></li>
+                            <li><a>Title 3</a></li>
+                            <li><a>Title 4</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="dropdown">
+                        <button onclick="openDropdownMenu('GenreDropdown');" class="dropbtn">Genres</button></a>
+                        <ul id="GenreDropdown" class="submenu">
+                            <li><a>Genre 1</a></li>
+                            <li><a>Genre 2</a></li>
+                            <li><a>Genre 3</a></li>
+                            <li><a>Genre 4</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="dropdown">
+                        <button onclick="openDropdownMenu('ActorDropdown');" class="dropbtn">Actors</button></a>
+                        <ul id="ActorDropdown" class="submenu">
+                            <li><a>Actor 1</a></li>
+                            <li><a>Actor 2</a></li>
+                            <li><a>Actor 3</a></li>
+                            <li><a>Actor 4</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="dropdown">
+                        <button onclick="openDropdownMenu('DirectorDropdown');" class="dropbtn">Directors</button></a>
+                        <ul id="DirectorDropdown" class="submenu">
+                            <li><a>Director 1</a></li>
+                            <li><a>Director 2</a></li>
+                            <li><a>Director 3</a></li>
+                            <li><a>Director 4</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
             </td>
             <td>
