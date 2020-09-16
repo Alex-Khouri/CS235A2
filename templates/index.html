@@ -11,44 +11,13 @@
     <table style="width:100%">
         <tr>
             <td>
-            <div class="dropdown">
-                <form action="/browse">
-                <button onclick="show('BrowseMenu');" class="dropbtn">Browse Movies...</button>
-                <ul id="BrowseMenu" class="dropdown-content">
-                    <li><a class="dropdown">
-                        <button onclick="showTitleSubmenu();" class="dropbtn">Titles</button></a>
-                        <ul id="TitleSubmenu" class="submenu">
-                            {% for char in vars["titleChars"] %}
-                            <li><a>{{ char }}</a></li>
-                            {% endfor %}
-                        </ul>
-                    </li>
-                    <li><a class="dropdown">
-                        <button onclick="showDirectorSubmenu();" class="dropbtn">Actors</button></a>
-                        <ul id="DirectorSubmenu" class="submenu">
-                            {% for director in vars["allDirectors"] %}
-                            <li><a>{{ director.director_full_name }}</a></li>
-                            {% endfor %}
-                        </ul>
-                    </li>
-                    <li><a class="dropdown">
-                        <button onclick="showActorSubmenu();" class="dropbtn">Directors</button></a>
-                        <ul id="ActorSubmenu" class="submenu">
-                            {% for actor in vars["allActors"] %}
-                            <li><a>{{ actor.actor_full_name }}</a></li>
-                            {% endfor %}
-                        </ul>
-                    </li>
-                    <li><a class="dropdown">
-                        <button onclick="showGenreSubmenu();" class="dropbtn">Genres</button></a>
-                        <ul id="GenreSubmenu" class="submenu">
-                            {% for genre in vars["allGenres"] %}
-                            <li><a>{{ genre }}</a></li>
-                            {% endfor %}
-                        </ul>
-                    </li>
-                </ul>
-                </form>
+            <div class="dropdown-menu">
+                <button class="menu-btn">Open <</button>
+                <div class="menu-content">
+                <a class="links" href="#">Contact Us</a>
+                <a class="links" href="#">Visit Us</a>
+                <a class="links" href="#">About Us</a>
+                </div>
             </div>
             </td>
             <td>

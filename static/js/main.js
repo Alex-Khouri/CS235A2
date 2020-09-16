@@ -9,6 +9,10 @@ function hide(ID) {
     document.getElementById(ID).classList.remove("visible");
     document.getElementById(ID).classList.add("hidden");
 }
+function toggle(ID) {
+    document.getElementById(ID).classList.toggle("visible");
+    document.getElementById(ID).classList.toggle("hidden");
+}
 
 
 function showMainWindow() {
@@ -71,6 +75,17 @@ function registerUser() {
     show("LogoutPanel")
     hide("RegisterPanel")
 }
+
+
+let dropdownBtn = document.querySelector('.menu-btn');
+let menuContent = document.querySelector('.menu-content');
+dropdownBtn.addEventListener('click',()=>{
+   if(menuContent.style.display===""){
+      menuContent.style.display="block";
+   } else {
+      menuContent.style.display="";
+   }
+})
 
 
 // function openDropdownMenu(dropdownContentID) {
