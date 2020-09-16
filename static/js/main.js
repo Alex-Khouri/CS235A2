@@ -1,67 +1,76 @@
 
 
-function loginUser() {
-    showMainWindow()
-    document.getElementById("LoginPanel").style.display = "none";
-    document.getElementById("LogoutPanel").style.display = "block";
-    document.getElementById("RegisterPanel").style.display = "none";
-}
 
-function logoutUser() {
-    document.getElementById("LoginPanel").style.display = "block";
-    document.getElementById("LogoutPanel").style.display = "none";
-    document.getElementById("RegisterPanel").style.display = "block";
+function show(ID) {
+    document.getElementById(ID).classList.remove("hidden");
+    document.getElementById(ID).classList.add("visible");
 }
-
-function registerUser() {
-    showMainWindow()
-    document.getElementById("LoginPanel").style.display = "none";
-    document.getElementById("LogoutPanel").style.display = "block";
-    document.getElementById("RegisterPanel").style.display = "none";
+function hide(ID) {
+    document.getElementById(ID).classList.remove("visible");
+    document.getElementById(ID).classList.add("hidden");
 }
 
 
 function showMainWindow() {
-    document.getElementById("MainWindow").style.display = "block";
-    document.getElementById("LoginWindow").style.display = "none";
-    document.getElementById("RegisterWindow").style.display = "none";
+    show("MainWindow")
+    hide("LoginWindow")
+    hide("RegisterWindow")
 }
-
 function showLoginWindow() {
-    document.getElementById("MainWindow").style.display = "none";
-    document.getElementById("LoginWindow").style.display = "block";
-    document.getElementById("RegisterWindow").style.display = "none";
+    hide("MainWindow")
+    show("LoginWindow")
+    hide("RegisterWindow")
 }
-
 function showRegisterWindow() {
-    document.getElementById("MainWindow").style.display = "none";
-    document.getElementById("LoginWindow").style.display = "none";
-    document.getElementById("RegisterWindow").style.display = "block";
+    hide("MainWindow")
+    hide("LoginWindow")
+    show("RegisterWindow")
 }
 
 
-function openDropdownMenu(dropdownContentID) {
-    let element = document.getElementById(dropdownContentID);
-    if (element.style.display === "block") {
-        element.style.display = "none";
-    } else {
-        element.style.display = "block";
-    }
-    let dropdowns = document.getElementsByClassName("dropdown-content");
-    for (let dropdown of dropdowns) {
-        if (dropdown.id !== dropdownContentID) {
-            dropdown.style.display = "none";
-        }
-    }
+function loginUser() {
+    showMainWindow()
+    hide("LoginPanel")
+    show("LogoutPanel")
+    hide("RegisterPanel")
+}
+function logoutUser() {
+    show("LoginPanel")
+    hide("LogoutPanel")
+    show("RegisterPanel")
+}
+function registerUser() {
+    showMainWindow()
+    hide("LoginPanel")
+    show("LogoutPanel")
+    hide("RegisterPanel")
 }
 
-window.onclick = function(event) {
-    if (!event.target.matches('.dropbtn')) {
-        let dropdowns = document.getElementsByClassName("dropdown-content");
-        for (let dropdown of dropdowns) {
-            dropdown.style.display = "none";
-        }
-    }
-}
+
+// WRITE FUNCTIONS TO MANUALLY CONTROL DROPDOWN MENU/SUBMENU VISIBILITY
+
+
+// function openDropdownMenu(dropdownContentID) {
+//     let element = document.getElementById(dropdownContentID);
+//     if (element.style.display === "block") {
+//         element.style.display = "none";
+//     } else {
+//         element.style.display = "block";
+//     }
+//     let dropdowns = document.getElementsByClassName("dropdown-content");
+//     for (let dropdown of dropdowns) {
+//         if (dropdown.id !== dropdownContentID) {
+//             dropdown.style.display = "none";
+//         }
+//     }
+// }
+// window.onclick = function(event) {
+//     if (!event.target.matches('.dropbtn')) {
+//         let dropdowns = document.getElementsByClassName("dropdown-content");
+//         for (let dropdown of dropdowns) {
+//             dropdown.style.display = "none";
+//         }
+//     }
+// }
 
 

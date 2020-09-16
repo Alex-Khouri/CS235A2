@@ -51,7 +51,8 @@ div.window {
     font-size: 100%;
 }
 
-.show {display:block;}
+.visible {display:block;}
+.hidden {display:none;}
 
 /* DROPDOWN MENU */
 .dropbtn {

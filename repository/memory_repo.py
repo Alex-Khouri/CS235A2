@@ -58,7 +58,7 @@ class MemoryRepo:
 			self.repo_users = newUsers
 
 	def add_user(self, newUser):
-		if newUser not in self.repo_users and newUser.user_name not in [user.user_name for user in self.repo_users]:
+		if newUser not in self.repo_users and newUser.username not in [user.username for user in self.repo_users]:
 			self.repo_users.append(newUser)
 			return True
 		else:
@@ -73,7 +73,7 @@ class MemoryRepo:
 
 	def get_user(self, username):
 		for user in self.repo_users:
-			if user.user_name == username:
+			if user.username == username:
 				return user
 		return None
 

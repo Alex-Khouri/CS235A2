@@ -4,17 +4,19 @@ from domainmodel.user import User
 
 app = Flask(__name__)
 repo = MemoryRepo('datafiles/Data1000Movies.csv')
-allMovies = repo.movies
-allActors = repo.actors
-allDirectors = repo.directors
-allGenres = repo.genres
-allUsers = repo.users
-currentUser = None
+serverData = {
+	"allMovies": repo.movies,
+	"allActors": repo.actors,
+	"allDirectors": repo.directors,
+	"allGenres": repo.genres,
+	"allUsers": repo.users,
+	"currentUser": None
+}
 
 
 @app.route('/')
 def index():
-	return render_template('index.html', movies=allMovies, actors=allActors, directors=allDirectors, genres=allGenres)
+	return render_template('index.html', vars=serverData)
 
 @app.route('/login')
 def login():
@@ -23,9 +25,9 @@ def login():
 	user = repo.get_user(username)
 	if user is not None and password == user.password:
 		currentUser = user
-		return render_template('logged_in.html', movies=allMovies, actors=allActors, directors=allDirectors, genres=allGenres)
+		return render_template('logged_in.html', vars=serverData)
 	else:  # USE TEMPLATE TO DISPLAY FAILED LOGIN MESSAGE
-		return render_template('index.html', movies=allMovies, actors=allActors, directors=allDirectors, genres=allGenres)
+		return render_template('index.html', args=serverData)
 
 @app.route('/register')
 def register():
@@ -35,14 +37,26 @@ def register():
 	if password1 == password2:
 		currentUser = User(username, password1)
 		repo.add_user(currentUser)
-		return render_template('logged_in.html', movies=allMovies, actors=allActors, directors=allDirectors, genres=allGenres)
-	else:  # USE TEMPLATE TO DISPLAY FAILED LOGIN MESSAGE
-		return render_template('index.html', movies=allMovies, actors=allActors, directors=allDirectors, genres=allGenres)
+		return render_template('logged_in.html', vars=serverData)
+	else:  # USE TEMPLATE TO DISPLAY FAILED REGISTRATION MESSAGE
+		return render_template('index.html', vars=serverData)
 
 @app.route('/logout')
 def logout():
 	currentUser = None
-	return render_template('index.html', movies=allMovies, actors=allActors, directors=allDirectors, genres=allGenres)
+	return render_template('index.html', vars=serverData)
+
+@app.route('/browse')
+def browse():
+	query = request.args.get("BrowseQuery")
+	category = request.args.get("BrowseCategory")
+	return render_template('index.html', vars=serverData)
+
+@app.route('/search')
+def search():
+	query = request.args.get("SearchQuery")
+	category = request.args.get("SearchCategory")
+	return render_template('index.html', vars=serverData)
 
 
 if __name__ == "__main__":

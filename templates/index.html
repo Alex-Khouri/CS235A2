@@ -60,10 +60,9 @@
             </td>
             <td>
             <div id="Searchbar" class="banner">
-                <form>
-                <!-- ADD `ACTION` ATTRIBUTE TO `FORM` TAG -->
+                <form action="/search">
                 <input id="SearchBox" class="textbox" type="text" name="SearchQuery" placeholder="Search Movies..." size=15>
-                <select id="SearchType" class="button" name="SearchType">
+                <select id="SearchCategory" class="button" name="SearchCategory">
                     <option value="title">Title</option>
                     <option value="genre">Genre</option>
                     <option value="director">Director</option>
@@ -101,7 +100,7 @@
                 </td>
                 <td>
                 <div id="MovieListWindow" class="window">
-                    {% for movie in movies %}
+                    {% for movie in vars["allMovies"] %}
                     <h3>{{ movie.title }} <em>({{ movie.year }})</em></h3>
                     <p><b>Genres: </b>{{ movie.get_genres_string() }}</p>
                     <p><b>Director: </b>{{ movie.director.director_full_name }}</p>

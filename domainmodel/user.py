@@ -2,7 +2,7 @@ from domainmodel.watchlist import Watchlist
 
 class User:
 	def __init__(self, userName, userPassword):
-		self.user_name = userName.strip().lower() if isinstance(userName, str) else None
+		self.user_username = userName.strip().lower() if isinstance(userName, str) else None
 		self.user_password = userPassword if isinstance(userPassword, str) else None
 		self.user_watched = list()
 		self.user_reviews = list()
@@ -10,20 +10,20 @@ class User:
 		self.user_timewatching = 0
 
 	def __repr__(self):
-		return f"<User {self.user_name}>"
+		return f"<User {self.user_username}>"
 
 	def __eq__(self, other):
-		return self.user_name == other.userName
+		return self.user_username == other.username
 
 	def __lt__(self, other):
-		return self.user_name < other.userName
+		return self.user_username < other.username
 
 	def __hash__(self):
-		return hash(self.user_name)
+		return hash(self.user_username)
 
 	@property
-	def user_name(self):
-		return self.user_name
+	def username(self):
+		return self.user_username
 
 	@property
 	def password(self):
@@ -49,10 +49,10 @@ class User:
 	def comments(self):
 		return self.user_comments
 
-	@user_name.setter
-	def user_name(self, newName):
+	@username.setter
+	def username(self, newName):
 		if isinstance(newName, str):
-			self.user_name = newName.strip().lower()
+			self.user_username = newName.strip().lower()
 
 	@password.setter
 	def password(self, newPassword):
