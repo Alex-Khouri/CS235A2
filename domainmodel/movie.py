@@ -166,7 +166,7 @@ class Movie:
 			return True
 		elif isinstance(remGenre, str):
 			for genre in self.movie_genres:
-				if genre.genre_name == remGenre:
+				if genre.name == remGenre:
 					self.movie_genres.remove(genre)
 					return True
 		else:
@@ -189,7 +189,7 @@ class Movie:
 		return ", ".join([actor.actor_full_name for actor in self.movie_actors])
 
 	def get_genres_string(self):
-		return ", ".join([genre.genre_name for genre in self.movie_genres])
+		return ", ".join([genre.name for genre in self.movie_genres])
 
 
 class TestMovie:

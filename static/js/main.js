@@ -28,6 +28,32 @@ function showRegisterWindow() {
 }
 
 
+function showTitleSubmenu() {
+    show("TitleSubmenu")
+    hide("GenreSubmenu")
+    hide("ActorSubmenu")
+    hide("DirectorSubmenu")
+}
+function showGenreSubmenu() {
+    hide("TitleSubmenu")
+    show("GenreSubmenu")
+    hide("ActorSubmenu")
+    hide("DirectorSubmenu")
+}
+function showActorSubmenu() {
+    hide("TitleSubmenu")
+    hide("GenreSubmenu")
+    show("ActorSubmenu")
+    hide("DirectorSubmenu")
+}
+function showDirectorSubmenu() {
+    hide("TitleSubmenu")
+    hide("GenreSubmenu")
+    hide("ActorSubmenu")
+    show("DirectorSubmenu")
+}
+
+
 function loginUser() {
     showMainWindow()
     hide("LoginPanel")
@@ -45,9 +71,6 @@ function registerUser() {
     show("LogoutPanel")
     hide("RegisterPanel")
 }
-
-
-// WRITE FUNCTIONS TO MANUALLY CONTROL DROPDOWN MENU/SUBMENU VISIBILITY
 
 
 // function openDropdownMenu(dropdownContentID) {

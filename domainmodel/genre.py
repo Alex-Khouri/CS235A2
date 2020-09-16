@@ -2,34 +2,34 @@
 class Genre:
 	def __init__(self, name=None):
 		if (isinstance(name, str) and len(name) > 0):
-			self.name = name
+			self.genre_name = name
 		else:
-			self.name = None
+			self.genre_name = None
 		self.genre_movies = list()
 	
 	def __repr__(self):
-		return f"<Genre {self.name}>"
+		return f"<Genre {self.genre_name}>"
 	
 	def __eq__(self, other):
-		return (self.__class__ == other.__class__ and self.name == other.name)
+		return (self.__class__ == other.__class__ and self.genre_name == other.genre_name)
 	
 	def __lt__(self, other):
-		return (self.name < other.name)
+		return (self.genre_name < other.genre_name)
 	
 	def __hash__(self):
-		return hash(self.name)
+		return hash(self.genre_name)
 	
 	@property
-	def genre_name(self):
-		return self.name
+	def name(self):
+		return self.genre_name
 
 	@property
 	def movies(self):
 		return self.genre_movies
 	
-	@genre_name.setter
-	def genre_name(self, newName):
-		self.name = newName
+	@name.setter
+	def name(self, newName):
+		self.genre_name = newName
 
 	@movies.setter
 	def movies(self, newMovies):

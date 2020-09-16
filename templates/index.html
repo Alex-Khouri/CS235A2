@@ -12,42 +12,39 @@
         <tr>
             <td>
             <div class="dropdown">
-                <button onclick="openDropdownMenu('BrowseDropdown');" class="dropbtn">Browse Movies...</button>
                 <form action="/browse">
-                <ul id="BrowseDropdown" class="dropdown-content">
+                <button onclick="show('BrowseMenu');" class="dropbtn">Browse Movies...</button>
+                <ul id="BrowseMenu" class="dropdown-content">
                     <li><a class="dropdown">
-                        <button onclick="openDropdownMenu('TitleDropdown');" class="dropbtn">Titles</button></a>
-                        <ul id="TitleDropdown" class="submenu">
+                        <button onclick="showTitleSubmenu();" class="dropbtn">Titles</button></a>
+                        <ul id="TitleSubmenu" class="submenu">
                             {% for char in vars["titleChars"] %}
                             <li><a>{{ char }}</a></li>
                             {% endfor %}
                         </ul>
                     </li>
                     <li><a class="dropdown">
-                        <button onclick="openDropdownMenu('GenreDropdown');" class="dropbtn">Genres</button></a>
-                        <ul id="GenreDropdown" class="submenu">
-                            <li><a>Genre 1</a></li>
-                            <li><a>Genre 2</a></li>
-                            <li><a>Genre 3</a></li>
-                            <li><a>Genre 4</a></li>
+                        <button onclick="showDirectorSubmenu();" class="dropbtn">Actors</button></a>
+                        <ul id="DirectorSubmenu" class="submenu">
+                            {% for director in vars["allDirectors"] %}
+                            <li><a>{{ director.director_full_name }}</a></li>
+                            {% endfor %}
                         </ul>
                     </li>
                     <li><a class="dropdown">
-                        <button onclick="openDropdownMenu('ActorDropdown');" class="dropbtn">Actors</button></a>
-                        <ul id="ActorDropdown" class="submenu">
-                            <li><a>Actor 1</a></li>
-                            <li><a>Actor 2</a></li>
-                            <li><a>Actor 3</a></li>
-                            <li><a>Actor 4</a></li>
+                        <button onclick="showActorSubmenu();" class="dropbtn">Directors</button></a>
+                        <ul id="ActorSubmenu" class="submenu">
+                            {% for actor in vars["allActors"] %}
+                            <li><a>{{ actor.actor_full_name }}</a></li>
+                            {% endfor %}
                         </ul>
                     </li>
                     <li><a class="dropdown">
-                        <button onclick="openDropdownMenu('DirectorDropdown');" class="dropbtn">Directors</button></a>
-                        <ul id="DirectorDropdown" class="submenu">
-                            <li><a>Director 1</a></li>
-                            <li><a>Director 2</a></li>
-                            <li><a>Director 3</a></li>
-                            <li><a>Director 4</a></li>
+                        <button onclick="showGenreSubmenu();" class="dropbtn">Genres</button></a>
+                        <ul id="GenreSubmenu" class="submenu">
+                            {% for genre in vars["allGenres"] %}
+                            <li><a>{{ genre }}</a></li>
+                            {% endfor %}
                         </ul>
                     </li>
                 </ul>

@@ -7,12 +7,11 @@ repo = MemoryRepo('datafiles/Data1000Movies.csv')
 servData = {
 	"titleChars": ["0-9","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"],
 	"allMovies": repo.movies,
-	"allActors": repo.actors,
 	"allDirectors": repo.directors,
+	"allActors": repo.actors,
 	"allGenres": repo.genres,
 	"allUsers": repo.users,
 	"currentUser": None,
-	"authMessage": "",
 	"filterQuery": "",
 	"filterCategory": ""
 }
