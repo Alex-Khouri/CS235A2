@@ -13,14 +13,14 @@
             <td>
             <div class="dropdown">
                 <button onclick="openDropdownMenu('BrowseDropdown');" class="dropbtn">Browse Movies...</button>
+                <form action="/browse">
                 <ul id="BrowseDropdown" class="dropdown-content">
                     <li><a class="dropdown">
                         <button onclick="openDropdownMenu('TitleDropdown');" class="dropbtn">Titles</button></a>
                         <ul id="TitleDropdown" class="submenu">
-                            <li><a>Title 1</a></li>
-                            <li><a>Title 2</a></li>
-                            <li><a>Title 3</a></li>
-                            <li><a>Title 4</a></li>
+                            {% for char in vars["titleChars"] %}
+                            <li><a>{{ char }}</a></li>
+                            {% endfor %}
                         </ul>
                     </li>
                     <li><a class="dropdown">
@@ -51,6 +51,7 @@
                         </ul>
                     </li>
                 </ul>
+                </form>
             </div>
             </td>
             <td>
