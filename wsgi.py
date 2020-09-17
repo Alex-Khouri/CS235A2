@@ -19,7 +19,7 @@ servData = {
 
 @app.route('/')
 def index():
-	return render_template('index.html', vars=servData)
+	return render_template('index.html', **servData)
 
 @app.route('/login')
 def login():
@@ -28,9 +28,9 @@ def login():
 	user = repo.get_user(username)
 	if user is not None and password == user.password:
 		servData["currentUser"] = user
-		return render_template('logged_in.html', vars=servData)
+		return render_template('logged_in.html', **servData)
 	else:  # USE TEMPLATE TO DISPLAY FAILED LOGIN MESSAGE
-		return render_template('index.html', args=servData)
+		return render_template('index.html', **servData)
 
 @app.route('/register')
 def register():
@@ -40,26 +40,26 @@ def register():
 	if password1 == password2:
 		servData["currentUser"] = User(username, password1)
 		repo.add_user(servData["currentUser"])
-		return render_template('logged_in.html', vars=servData)
+		return render_template('logged_in.html', **servData)
 	else:  # USE TEMPLATE TO DISPLAY FAILED REGISTRATION MESSAGE
-		return render_template('index.html', vars=servData)
+		return render_template('index.html', **servData)
 
 @app.route('/logout')
 def logout():
 	servData["currentUser"] = None
-	return render_template('index.html', vars=servData)
+	return render_template('index.html', **servData)
 
 @app.route('/browse')
 def browse():
 	servData["filterQuery"] = request.args.get("BrowseQuery")
 	servData["filterCategory"] = request.args.get("BrowseCategory")
-	return render_template('index.html', vars=servData)
+	return render_template('index.html', **servData)
 
 @app.route('/search')
 def search():
 	servData["filterQuery"] = request.args.get("SearchQuery")
 	servData["filterCategory"] = request.args.get("SearchCategory")
-	return render_template('index.html', vars=servData)
+	return render_template('index.html', **servData)
 
 
 if __name__ == "__main__":

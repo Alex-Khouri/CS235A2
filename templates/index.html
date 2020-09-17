@@ -68,9 +68,9 @@
                 </td>
                 <td>
                 <div id="MovieListWindow" class="window">
-                    {% for movie in vars["allMovies"] %}
+                    {% for movie in allMovies %}
                     <!-- FINISH FILTER CHECKs -->
-                    {% if vars["filterQuery"] == "" %}
+                    {% if filterQuery == "" %}
                     <h3>{{ movie.title }} <em>({{ movie.year }})</em></h3>
                     <p><b>Genres: </b>{{ movie.get_genres_string() }}</p>
                     <p><b>Director: </b>{{ movie.director.director_full_name }}</p>
