@@ -12,11 +12,12 @@
         <tr>
             <td>
             <div class="dropdown-menu">
-                <button class="menu-btn">Open <</button>
+                <button class="menu-btn">Browse Movies...</button>
                 <div class="menu-content">
-                <a class="links" href="#">Contact Us</a>
-                <a class="links" href="#">Visit Us</a>
-                <a class="links" href="#">About Us</a>
+                <button class="links">Titles &#8594</a>
+                <button class="links">Genres &#8594</a>
+                <button class="links">Directors &#8594</a>
+                <button class="links">Actors &#8594</a>
                 </div>
             </div>
             </td>
@@ -68,6 +69,8 @@
                 <td>
                 <div id="MovieListWindow" class="window">
                     {% for movie in vars["allMovies"] %}
+                    <!-- FINISH FILTER CHECKs -->
+                    {% if vars["filterQuery"] == "" %}
                     <h3>{{ movie.title }} <em>({{ movie.year }})</em></h3>
                     <p><b>Genres: </b>{{ movie.get_genres_string() }}</p>
                     <p><b>Director: </b>{{ movie.director.director_full_name }}</p>
@@ -75,6 +78,7 @@
                     <p><b>Synopsis: </b><em>"{{ movie.description }}"</em></p>
                     <p><b>Rating: </b>{{ movie.rating }}/10</p>
                     <hr style="height:2px; background-color:white; border-color:white; border-radius:2px">
+                    {% endif %}
                     {% endfor %}
                 </div>
                 </td>
@@ -91,18 +95,18 @@
         <form action="/login">
         <table>
             <tr>
-                <td class="formLabel">
+                <td class="form-label">
                 <label for="LoginUsername">Username: </label>
                 </td>
-                <td class="formInput">
+                <td class="form-input">
                 <input id="LoginUsername" class="textbox" type="text" name="LoginUsername" size=30>
                 </td>
             </tr>
             <tr>
-                <td class="formLabel">
+                <td class="form-label">
                 <label for="LoginPassword">Password: </label>
                 </td>
-                <td class="formInput">
+                <td class="form-input">
                 <input id="LoginPassword" class="textbox" type="password" name="LoginPassword" size=30>
                 </td>
             </tr>
@@ -115,26 +119,26 @@
         <form action="/register">
         <table>
         <tr>
-            <td class="formLabel">
+            <td class="form-label">
             <label for="RegUsername">Username: </label>
             </td>
-            <td class="formInput">
+            <td class="form-input">
             <input id="RegUsername" class="textbox" type="text" name="RegUsername" size=30>
             </td>
         </tr>
         <tr>
-            <td class="formLabel">
+            <td class="form-label">
             <label for="RegPassword1">Password: </label>
             </td>
-            <td class="formInput">
+            <td class="form-input">
             <input id="RegPassword1" class="textbox" type="password" name="RegPassword1" size=30>
             </td>
         </tr>
         <tr>
-            <td class="formLabel">
+            <td class="form-label">
             <label for="RegPassword2">Re-enter Password: </label>
             </td>
-            <td class="formInput">
+            <td class="form-input">
             <input id="RegPassword2" class="textbox" type="password" name="RegPassword2" size=30>
             </td>
         </tr>

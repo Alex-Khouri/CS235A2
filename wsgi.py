@@ -13,7 +13,7 @@ servData = {
 	"allUsers": repo.users,
 	"currentUser": None,
 	"filterQuery": "",
-	"filterCategory": ""
+	"filterCategory": ""  # TitleChar, Title, Genre, Director, or Actor
 }
 
 
