@@ -68,9 +68,7 @@
                 </td>
                 <td>
                 <div id="MovieListWindow" class="window">
-                    {% for movie in allMovies %}
-                    <!-- FINISH FILTER CHECKs -->
-                    {% if filterQuery == "" %}
+                    {% for movie in filteredMovies %}
                     <h3>{{ movie.title }} <em>({{ movie.year }})</em></h3>
                     <p><b>Genres: </b>{{ movie.get_genres_string() }}</p>
                     <p><b>Director: </b>{{ movie.director.director_full_name }}</p>
@@ -78,7 +76,6 @@
                     <p><b>Synopsis: </b><em>"{{ movie.description }}"</em></p>
                     <p><b>Rating: </b>{{ movie.rating }}/10</p>
                     <hr style="height:2px; background-color:white; border-color:white; border-radius:2px">
-                    {% endif %}
                     {% endfor %}
                 </div>
                 </td>

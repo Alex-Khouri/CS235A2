@@ -2,58 +2,58 @@
 
 class Watchlist:
 	def __init__(self):
-		self.movieList = list()
+		self.watchlist_movie_list = list()
 		self.iterIndex = 0
 
 	def __repr__(self):
-		return str(self.movieList)
+		return str(self.watchlist_movie_list)
 
 	def __iter__(self):
 		return self
 
 	def __next__(self):
-		if self.iterIndex >= len(self.movieList):
+		if self.iterIndex >= len(self.watchlist_movie_list):
 			self.iterIndex = 0
 			raise StopIteration
-		iterValue = self.movieList[self.iterIndex]
+		iterValue = self.watchlist_movie_list[self.iterIndex]
 		self.iterIndex += 1
 		return iterValue
 
 	@property
 	def movie_list(self):
-		return self.movieList
+		return self.watchlist_movie_list
 
 	@movie_list.setter
 	def movie_list(self, newMovieList):
 		if isinstance(newMovieList, list):
-			self.movieList = newMovieList
+			self.watchlist_movie_list = newMovieList
 
 	def add_movie(self, movie):
-		if not movie in self.movieList:
-			self.movieList.append(movie)
+		if not movie in self.watchlist_movie_list:
+			self.watchlist_movie_list.append(movie)
 			return True
 		else:
 			return False
 
 	def remove_movie(self, movie):
-		if movie in self.movieList:
-			self.movieList.remove(movie)
+		if movie in self.watchlist_movie_list:
+			self.watchlist_movie_list.remove(movie)
 			return True
 		else:
 			return False
 
 	def select_movie_to_watch(self, index):
-		if index in range(len(self.movieList)):
-			return self.movieList[index]
+		if index in range(len(self.watchlist_movie_list)):
+			return self.watchlist_movie_list[index]
 		else:
 			return None
 
 	def size(self):
-		return len(self.movieList)
+		return len(self.watchlist_movie_list)
 
 	def first_movie_in_watchlist(self):
-		if len(self.movieList) > 0:
-			return self.movieList[0]
+		if len(self.watchlist_movie_list) > 0:
+			return self.watchlist_movie_list[0]
 		else:
 			return None
 
