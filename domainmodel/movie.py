@@ -4,9 +4,11 @@ from domainmodel.director import Director
 from domainmodel.review import Review
 
 class Movie:
-	def __init__(self, movTitle=None, movYear=None):
+	def __init__(self, movTitle, movYear):
+		self.movie_title = None
 		if isinstance(movTitle, str) and len(movTitle) > 0:
 			self.movie_title = movTitle.strip()
+		self.movie_year = None
 		if isinstance(movYear, int) and movYear >= 1900:
 			self.movie_year = movYear
 		self.movie_description = None
