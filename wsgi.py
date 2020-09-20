@@ -69,8 +69,8 @@ def logout():
 
 @app.route('/browse')
 def browse():
-	query = request.args.get("BrowseQuery").strip().lower()  # "0-9" if category == TitleChar
 	category = request.args.get("BrowseCategory")  # i.e. TitleChar, Genre, Director, or Actor
+	query = request.args.get("BrowseQuery").strip().lower()  # "0-9" if category == TitleChar
 	if query == "":
 		servData["filteredMovies"] = servData["allMovies"]
 	else:
@@ -99,8 +99,8 @@ def browse():
 
 @app.route('/search')
 def search():
-	query = request.args.get("SearchQuery").strip().lower()
 	category = request.args.get("SearchCategory")  # i.e. Title, Genre, Director, or Actor
+	query = request.args.get("SearchQuery").strip().lower()
 	if query == "":
 		servData["filteredMovies"] = servData["allMovies"]
 	else:
