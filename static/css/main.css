@@ -10,8 +10,16 @@ a {
     cursor: pointer;
 }
 table {
+    width: 100%;
+    text-align: justify;
+    table-layout: fixed;
     margin-left: auto;
     margin-right: auto;
+}
+td {
+    table-layout: fixed;
+    overflow: hidden;
+    word-wrap: break-word;
 }
 
 
@@ -21,33 +29,38 @@ td.form-label {
 td.form-input {
     text-align: left;
 }
-div.banner {
+
+
+.banner {
     text-align: center;
     padding-left: 20px;
     padding-right: 20px;
 }
-div.window {
+.window {
     text-align: center;
+    vertical-align: text-top;
 }
-div.browse-window {
+.browse-window {
+    vertical-align: text-top;
     text-align: left;
-    width: 20%;
+    width: 100px;
+    padding: 10px;
+    background-color: #505050;
 }
-div.movies-window {
+.movies-window {
+    vertical-align: text-top;
     text-align: center;
-    width: 60%;
+    padding: 10px;
 }
-div.watchlist-window {
+.watchlist-window {
+    vertical-align: text-top;
     text-align: center;
-    width: 20%;
-}
-
-
-.browse-menu {
-
+    width: 100px;
+    padding: 10px;
+    background-color: #505050;
 }
 .browse-submenu {
-
+    display: none;
 }
 .browse-link {
 
@@ -72,60 +85,4 @@ div.watchlist-window {
 .visible {display: block;}
 .hidden {display: none;}
 
-
-/* DEPRECATED - Dropdown Browse Menu */
-/* .dropdown-menu {
-    position: relative;
-    display: inline-block;
-}
-    .menu-btn {
-        border: 2px solid white;
-        border-radius: 5px;
-        background-color: white;
-        height: 36px;
-        font-size: 100%;
-        cursor: pointer;
-    }
-    .menu-content {
-        display: none;
-        position: absolute;
-        border: 2px solid #f1f1f1;
-        border-radius: 2px;
-        background-color: #f1f1f1;
-        min-width: 100px;
-    }
-    .submenu-btn {
-        min-width: 100%;
-        font-family: Arial, Helvetica, sans-serif;
-        color: black;
-        cursor: pointer;
-        padding: 10px;
-        display: block;
-    }
-    .submenu-content {
-        display: none;
-        position: absolute;
-        left: 104px;
-        border: 2px solid #f1f1f1;
-        border-radius: 2px;
-        background-color: #f1f1f1;
-        min-width: 100px;
-    }
-    .submenu-link {
-        min-width: 100%;
-        font-family: Arial, Helvetica, sans-serif;
-        color: black;
-        cursor: pointer;
-        padding: 10px;
-        display: block;
-    }
-    .menu-btn:hover, .menu-btn:focus {
-        background-color: #8F8F8F;
-    }
-    .submenu-btn:hover, .submenu-btn:focus {
-        background-color: #8F8F8F;
-    }
-    .submenu-link:hover {
-        background-color: #8F8F8F;
-    } */
 

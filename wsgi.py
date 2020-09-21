@@ -103,25 +103,25 @@ def browse():
 
 @app.route('/search')
 def search():
-	category = request.args.get("SearchCategory")  # i.e. Title, Genre, Director, or Actor
+	category = request.args.get("SearchCategory").strip().lower()  # i.e. title, genre, director, or actor
 	query = request.args.get("SearchQuery").strip().lower()
 	if query == "":
 		servData["filteredMovies"] = servData["allMovies"]
 	else:
 		servData["filteredMovies"] = list()
 		for movie in servData["allMovies"]:
-			if category == "Title":
+			if category == "title":
 				if movie.title.strip().lower() == query:
 					servData["filteredMovies"].append(movie)
-			elif category == "Genre":
+			elif category == "genre":
 				for genre in movie.genres:
 					if genre.name.strip().lower() == query:
 						servData["filteredMovies"].append(movie)
 						break
-			elif category == "Director":
+			elif category == "director":
 				if movie.director.director_full_name.strip().lower() == query:
 					servData["filteredMovies"].append(movie)
-			elif category == "Actor":
+			elif category == "actor":
 				for actor in movie.actors:
 					if query in actor.actor_full_name.strip().lower().split():
 						servData["filteredMovies"].append(movie)

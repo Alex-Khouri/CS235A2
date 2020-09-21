@@ -8,15 +8,12 @@
     <title id="title">Getflix</title>
 </head>
 <body>
-    <table style="width:100%">
+    <table>
         <tr>
-            <td>
-            <div id="BannerLogo" class="banner">
+            <td id="BannerLogo" class="banner">
                 <a href="/"><img src="/static/images/getflix_logo.png" alt="Getflix Logo" height="60px"></a>
-            </div>
             </td>
-            <td>
-            <div id="Searchbar" class="banner">
+            <td id="Searchbar" class="banner">
                 <form action="/search">
                 <input id="SearchBox" class="textbox" type="text" name="SearchQuery" placeholder="Search Movies..." size=15>
                 <select id="SearchCategory" class="button" name="SearchCategory">
@@ -27,22 +24,17 @@
                 </select>
                 <input id="SearchSubmit" class="button" type="submit" value="Search" onclick="showMainWindow();">
                 </form>
-            </div>
             </td>
-            <td>
-            <div id="LoginPanel" class="banner" style="text-align:right; padding-right:0px">
+            <td id="LoginPanel" class="banner" style="text-align:right; padding-right:0px">
                 <input id="LoginButton" class="button" type="submit" value="Login" onclick="showLoginWindow();">
-            </div>
-            <div id="LogoutPanel" class="banner" style="text-align:right; padding-right:0px; display:none">
+            </td>
+            <td id="LogoutPanel" class="banner" style="text-align:right; padding-right:0px; display:none">
                 <form action="/logout">
                 <input id="LogoutButton" class="button" type="submit" value="Logout" onclick="logoutUser();">
                 </form>
-            </div>
             </td>
-            <td>
-            <div id="RegisterPanel" class="banner" style="text-align:left; padding-left:0px">
+            <td id="RegisterPanel" class="banner" style="text-align:left; padding-left:0px">
                 <input id="RegisterButton" class="button" type="submit" value="Register" onclick="showRegisterWindow();">
-            </div>
             </td>
         </tr>
     </table>
@@ -50,47 +42,35 @@
     <div id="MainWindow" class="window">
         <table>
             <tr>
-                <td>
-                <div id="BrowseWindow" class="browse-window">
+                <td id="BrowseWindow" class="browse-window">
                     <h3>Browse Movies...</h3>
-                    <div id="BrowseMovies" class="browse-menu">
-                        <h4>Titles</h4>
-                        <div id="BrowseTitles" class="browse-submenu">
-                        <ul>
-                            {% for link in charLinks %}
-                            <li>{{ link|safe }}</li>
-                            {% endfor %}
-                        </ul>
-                        </div>
-                        <h4>Genres</h4>
-                        <div id="BrowseGenres" class="browse-submenu">
-                        <ul>
-                            {% for link in genreLinks %}
-                            <li>{{ link|safe }}</li>
-                            {% endfor %}
-                        </ul>
-                        </div>
-                        <h4>Directors</h4>
-                        <div id="BrowseDirectors" class="browse-submenu">
-                        <ul>
-                            {% for link in directorLinks %}
-                            <li>{{ link|safe }}</li>
-                            {% endfor %}
-                        </ul>
-                        </div>
-                        <h4>Actors</h4>
-                        <div id="BrowseActors" class="browse-submenu">
-                        <ul>
-                            {% for link in actorLinks %}
-                            <li>{{ link|safe }}</li>
-                            {% endfor %}
-                        </ul>
-                        </div>
-                    </div>
-                </div>
+                    <hr style="height:3px; background-color:black; border-color:black; border-radius:3px">
+                    <a onclick="toggleBrowseTitles();"><h4 id="titlesHeading">&#8594 Titles</h4></a>
+                    <ul id="BrowseTitles" class="browse-submenu">
+                        {% for link in charLinks %}
+                        <li>{{ link|safe }}</li>
+                        {% endfor %}
+                    </ul>
+                    <a onclick="toggleBrowseGenres();"><h4 id="genresHeading">&#8594 Genres</h4></a>
+                    <ul id="BrowseGenres" class="browse-submenu">
+                        {% for link in genreLinks %}
+                        <li>{{ link|safe }}</li>
+                        {% endfor %}
+                    </ul>
+                    <a onclick="toggleBrowseDirectors();"><h4 id="directorsHeading">&#8594 Directors</h4></a>
+                    <ul id="BrowseDirectors" class="browse-submenu">
+                        {% for link in directorLinks %}
+                        <li>{{ link|safe }}</li>
+                        {% endfor %}
+                    </ul>
+                    <a onclick="toggleBrowseActors();"><h4 id="actorsHeading">&#8594 Actors</h4></a>
+                    <ul id="BrowseActors" class="browse-submenu">
+                        {% for link in actorLinks %}
+                        <li>{{ link|safe }}</li>
+                        {% endfor %}
+                    </ul>
                 </td>
-                <td>
-                <div id="MovieListWindow" class="movies-window">
+                <td id="MovieListWindow" class="movies-window">
                     {% for movie in filteredMovies %}
                     <h3>{{ movie.title }} <em>({{ movie.year }})</em></h3>
                     <p><b>Genres: </b>{{ movie.get_genres_string() }}</p>
@@ -100,12 +80,21 @@
                     <p><b>Rating: </b>{{ movie.rating }}/10</p>
                     <hr style="height:2px; background-color:white; border-color:white; border-radius:2px">
                     {% endfor %}
-                </div>
                 </td>
-                <td>
-                <div id="WatchlistWindow" class="watchlist-window">
-    
-                </div>
+                <td id="WatchlistWindow" class="watchlist-window">
+                    <h3>Watchlist:</h3>
+                    <hr style="height:3px; background-color:black; border-color:black; border-radius:3px">
+                    {% if currentWatchlist != None %}
+                        {% for movie in currentWatchlist %}
+                        <h3>{{ movie.title }} <em>({{ movie.year }})</em></h3>
+                        <p><b>Genres: </b>{{ movie.get_genres_string() }}</p>
+                        <p><b>Director: </b>{{ movie.director.director_full_name }}</p>
+                        <p><b>Actors: </b>{{ movie.get_actors_string() }}</p>
+                        <p><b>Synopsis: </b><em>"{{ movie.description }}"</em></p>
+                        <p><b>Rating: </b>{{ movie.rating }}/10</p>
+                        <hr style="height:2px; background-color:white; border-color:white; border-radius:2px">
+                        {% endfor %}
+                    {% endif %}
                 </td>
             </tr>
         </table>
