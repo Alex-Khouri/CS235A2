@@ -69,20 +69,20 @@ function toggleBrowseActors() {
 
 function loginUser() {
     showMainWindow()
-    hide("LoginPanel");
-    show("LogoutPanel");
-    hide("RegisterPanel");
+    hide("LoginButton");
+    show("LogoutButton");
+    hide("RegisterButton");
 }
 function logoutUser() {
-    show("LoginPanel");
-    hide("LogoutPanel");
-    show("RegisterPanel");
+    show("LoginButton");
+    hide("LogoutButton");
+    show("RegisterButton");
 }
 function registerUser() {
     showMainWindow();
-    hide("LoginPanel");
-    show("LogoutPanel");
-    hide("RegisterPanel");
+    hide("LoginButton");
+    show("LogoutButton");
+    hide("RegisterButton");
 }
 
 
