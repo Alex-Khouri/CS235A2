@@ -13,7 +13,7 @@
             <td id="BannerLogo" class="banner">
                 <a href="/"><img src="/static/images/getflix_logo.png" alt="Getflix Logo" height="60px"></a>
             </td>
-            <td id="Searchbar" class="banner">
+            <td id="Searchbar" class="banner" style="width:30%;">
                 <form action="/search">
                 <input id="SearchBox" class="textbox" type="text" name="SearchQuery" placeholder="Search Movies..." size=15>
                 <select id="SearchCategory" class="button" name="SearchCategory">
@@ -23,7 +23,7 @@
                     <option value="actor">Actor</option>
                 </select>
                 <input id="SearchSubmit" class="button" type="submit" value="Search" onclick="showMainWindow();">
-                </form>
+            </form>
             </td>
             <td id="LoginPanel" class="banner" style="text-align:right; padding-right:0px">
                 <input id="LoginButton" class="button" type="submit" value="Login" onclick="showLoginWindow();">
@@ -31,7 +31,7 @@
             <td id="LogoutPanel" class="banner" style="text-align:right; padding-right:0px; display:none">
                 <form action="/logout">
                 <input id="LogoutButton" class="button" type="submit" value="Logout" onclick="logoutUser();">
-                </form>
+            </form>
             </td>
             <td id="RegisterPanel" class="banner" style="text-align:left; padding-left:0px">
                 <input id="RegisterButton" class="button" type="submit" value="Register" onclick="showRegisterWindow();">
@@ -42,7 +42,7 @@
     <div id="MainWindow" class="window">
         <table>
             <tr>
-                <td id="BrowseWindow" class="browse-window">
+                <td id="BrowseWindow" class="browse-window" style="width:20%;">
                     <h3>Browse Movies...</h3>
                     <hr style="height:3px; background-color:black; border-color:black; border-radius:3px">
                     <a onclick="toggleBrowseTitles();"><h4 id="titlesHeading">&#8594 Titles</h4></a>
@@ -81,7 +81,7 @@
                     <hr style="height:2px; background-color:white; border-color:white; border-radius:2px">
                     {% endfor %}
                 </td>
-                <td id="WatchlistWindow" class="watchlist-window">
+                <td id="WatchlistWindow" class="watchlist-window" style="width:20%;">
                     <h3>Watchlist:</h3>
                     <hr style="height:3px; background-color:black; border-color:black; border-radius:3px">
                     {% if currentWatchlist != None %}
