@@ -29,6 +29,29 @@ div.banner {
 div.window {
     text-align: center;
 }
+div.browse-window {
+    text-align: left;
+    width: 20%;
+}
+div.movies-window {
+    text-align: center;
+    width: 60%;
+}
+div.watchlist-window {
+    text-align: center;
+    width: 20%;
+}
+
+
+.browse-menu {
+
+}
+.browse-submenu {
+
+}
+.browse-link {
+
+}
 
 
 .button {
@@ -50,8 +73,8 @@ div.window {
 .hidden {display: none;}
 
 
-/* Dropdown Browse Menu - DO NOT TOUCH */
-.dropdown-menu {
+/* DEPRECATED - Dropdown Browse Menu */
+/* .dropdown-menu {
     position: relative;
     display: inline-block;
 }
@@ -104,5 +127,5 @@ div.window {
     }
     .submenu-link:hover {
         background-color: #8F8F8F;
-    }
+    } */
 

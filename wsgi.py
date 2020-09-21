@@ -4,8 +4,8 @@ from domainmodel.user import User
 
 app = Flask(__name__)
 repo = MemoryRepo('datafiles/Data1000Movies.csv')
+titleChars = ["0-9","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
 servData = {
-	"titleChars": ["0-9","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"],
 	"allMovies": repo.movies,
 	"allDirectors": repo.directors,
 	"allActors": repo.actors,
@@ -14,7 +14,11 @@ servData = {
 	"currentUser": None,
 	"currentWatchlist": None,
 	"authMessage": "",
-	"filteredMovies": repo.movies
+	"filteredMovies": repo.movies,
+	"charLinks": [f'<a class="browse-link" href="/browse?BrowseCategory=TitleChar&BrowseQuery={char}">{char}</a>' for char in titleChars],
+	"genreLinks": [f'<a class="browse-link" href="/browse?BrowseCategory=Genre&BrowseQuery={genre.name}">{genre.name}</a>' for genre in repo.genres],
+	"directorLinks": [f'<a class="browse-link" href="/browse?BrowseCategory=Director&BrowseQuery={director.director_full_name}">{director.director_full_name}</a>' for director in repo.directors],
+	"actorLinks": [f'<a class="browse-link" href="/browse?BrowseCategory=Actor&BrowseQuery={actor.actor_full_name}">{actor.actor_full_name}</a>' for actor in repo.actors]
 }
 
 
@@ -71,7 +75,7 @@ def logout():
 def browse():
 	category = request.args.get("BrowseCategory")  # i.e. TitleChar, Genre, Director, or Actor
 	query = request.args.get("BrowseQuery").strip().lower()  # "0-9" if category == TitleChar
-	if query == "":
+	if query == "":  # There are no known circumstances that can trigger this
 		servData["filteredMovies"] = servData["allMovies"]
 	else:
 		servData["filteredMovies"] = list()

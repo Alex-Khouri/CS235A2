@@ -11,34 +11,8 @@
     <table style="width:100%">
         <tr>
             <td>
-                <!-- TO DO: Populate buttons with correct form actions, check positions of submenu content -->
-            <div class="dropdown-menu">
-                <form action="/browse">
-                <button id="BrowseButton" class="menu-btn">Browse Movies...</button>
-                <div id="BrowseContent" class="menu-content">
-                    <button id="TitlesButton" class="submenu-btn">Titles &#8594</button>
-                    <div id="TitlesContent" class="submenu-content">
-
-                    </div>
-                    <button id="GenresButton" class="submenu-btn">Genres &#8594</button>
-                    <div id="GenresContent" class="submenu-content">
-                        
-                    </div>
-                    <button id="DirectorsButton" class="submenu-btn">Directors &#8594</button>
-                    <div id="DirectorsContent" class="submenu-content">
-                        
-                    </div>
-                    <button id="ActorsButton" class="submenu-btn">Actors &#8594</button>
-                    <div id="ActorsContent" class="submenu-content">
-                        
-                    </div>
-                </div>
-                </form>
-            </div>
-            </td>
-            <td>
             <div id="BannerLogo" class="banner">
-                <a onclick="showMainWindow();"><img src="/static/images/getflix_logo.png" alt="Getflix Logo" height="60px"></a>
+                <a href="/"><img src="/static/images/getflix_logo.png" alt="Getflix Logo" height="60px"></a>
             </div>
             </td>
             <td>
@@ -77,12 +51,46 @@
         <table>
             <tr>
                 <td>
-                <div id="BrowseWindow" class="window">
-    
+                <div id="BrowseWindow" class="browse-window">
+                    <h3>Browse Movies...</h3>
+                    <div id="BrowseMovies" class="browse-menu">
+                        <h4>Titles</h4>
+                        <div id="BrowseTitles" class="browse-submenu">
+                        <ul>
+                            {% for link in charLinks %}
+                            <li>{{ link|safe }}</li>
+                            {% endfor %}
+                        </ul>
+                        </div>
+                        <h4>Genres</h4>
+                        <div id="BrowseGenres" class="browse-submenu">
+                        <ul>
+                            {% for link in genreLinks %}
+                            <li>{{ link|safe }}</li>
+                            {% endfor %}
+                        </ul>
+                        </div>
+                        <h4>Directors</h4>
+                        <div id="BrowseDirectors" class="browse-submenu">
+                        <ul>
+                            {% for link in directorLinks %}
+                            <li>{{ link|safe }}</li>
+                            {% endfor %}
+                        </ul>
+                        </div>
+                        <h4>Actors</h4>
+                        <div id="BrowseActors" class="browse-submenu">
+                        <ul>
+                            {% for link in actorLinks %}
+                            <li>{{ link|safe }}</li>
+                            {% endfor %}
+                        </ul>
+                        </div>
+                    </div>
                 </div>
                 </td>
                 <td>
-                <div id="MovieListWindow" class="window">
+                <div id="MovieListWindow" class="movies-window">
                     {% for movie in filteredMovies %}
                     <h3>{{ movie.title }} <em>({{ movie.year }})</em></h3>
                     <p><b>Genres: </b>{{ movie.get_genres_string() }}</p>
@@ -95,7 +103,7 @@
                 </div>
                 </td>
                 <td>
-                <div id="WatchlistWindow" class="window">
+                <div id="WatchlistWindow" class="watchlist-window">
     
                 </div>
                 </td>
