@@ -25,6 +25,19 @@ function showRegisterWindow() {
 }
 
 
+function loginUser() {
+    showMainWindow()
+    hide("LoginButton");
+    show("LogoutButton");
+    hide("RegisterButton");
+}
+function logoutUser() {
+    show("LoginButton");
+    hide("LogoutButton");
+    show("RegisterButton");
+}
+
+
 function toggleBrowseTitles() {
     if (document.getElementById("BrowseTitles").style.display != "block") {
         show("BrowseTitles");
@@ -65,26 +78,6 @@ function toggleBrowseActors() {
         document.getElementById("actorsHeading").innerHTML = "&#8594 Actors";
     }
 }
-
-
-function loginUser() {
-    showMainWindow()
-    hide("LoginButton");
-    show("LogoutButton");
-    hide("RegisterButton");
-}
-function logoutUser() {
-    show("LoginButton");
-    hide("LogoutButton");
-    show("RegisterButton");
-}
-function registerUser() {
-    showMainWindow();
-    hide("LoginButton");
-    show("LogoutButton");
-    hide("RegisterButton");
-}
-
 
 
 // DEPRECATED - Dropdown Browse Menu

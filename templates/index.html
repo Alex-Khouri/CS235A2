@@ -8,6 +8,17 @@
     <title id="title">Getflix</title>
 </head>
 <body>
+    <!-- FIX THIS -->
+    {% if session["authStatus"] == "logged out" %}
+    <script>logoutUser()</script>
+    {% elif session["authStatus"] == "logged in" %}
+    <script>loginUser()</script>
+    {% elif session["authStatus"] == "logging in" %}
+    <script>showLoginWindow()</script>
+    {% elif session["authStatus"] == "registering" %}
+    <script>showRegisterWindow()</script>
+    {% endif %}
+    <!-- /FIX THIS -->
     <table>
         <tr>
             <td id="BannerLogo" class="banner">
@@ -27,7 +38,7 @@
             </td>
             <td id="LoginPanel" class="banner" style="text-align:right; padding-right:0px">
                 <input id="LoginButton" class="button" type="submit" value="Login" onclick="showLoginWindow();">
-                <a href="/"><input id="LogoutButton" class="button" style="display:none" value="Logout" onclick="logoutUser();"></a>
+                <a href="/logout"><input id="LogoutButton" class="button" style="display:none" value="Logout"></a>
                 <input id="RegisterButton" class="button" type="submit" value="Register" onclick="showRegisterWindow();">
             </td>
         </tr>
@@ -96,7 +107,7 @@
     <div id="LoginWindow" class="window" style="display:none">
         <h3>Enter Login Details:</h3>
         <form action="/login">
-        <table>
+        <table style="text-align:left">
             <tr>
                 <td class="form-label">
                 <label for="LoginUsername">Username: </label>
@@ -113,8 +124,14 @@
                 <input id="LoginPassword" class="textbox" type="password" name="LoginPassword" size=30>
                 </td>
             </tr>
+            <tr>
+                <td></td><!-- Empty table column for formatting -->
+                <td>
+                <input id="LoginSubmit" class="button" type="submit" value="Login">
+                </td>
+            </tr>
         </table>
-        <input id="LoginSubmit" class="button" type="submit" value="Login" onclick="loginUser();">
+        <p id="AuthMessage">{{ session["authMessage"] }}</p>
         </form>
     </div>
     <div id="RegisterWindow" class="window" style="display:none">
@@ -145,8 +162,14 @@
             <input id="RegPassword2" class="textbox" type="password" name="RegPassword2" size=30>
             </td>
         </tr>
+        <tr>
+            <td></td><!-- Empty table column for formatting -->
+            <td>
+            <input id="RegSubmit" class="button" type="submit" value="Register">
+            </td>
+        </tr>
         </table>
-        <input id="RegSubmit" class="button" type="submit" value="Register" onclick="registerUser();">
+        <p id="AuthMessage">{{ session["authMessage"] }}</p>
         </form>
     </div>
 </body>
