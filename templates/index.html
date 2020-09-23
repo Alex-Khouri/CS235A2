@@ -8,10 +8,10 @@
     <title id="title">Getflix</title>
 </head>
 <body>
-    <span id="AuthStatus" style="display:block;">{{ session["authStatus"] }}</span>
+    <span id="AuthStatus" style="display:none;">{{ session["authStatus"] }}</span>
     <!-- Valid `AuthStatus` values: "logged in", "logged out", "logging in", "registering" -->
     <table>
-        <tr style="display:flex; justify-content:center; align-items:center">
+        <tr style="display:flex; justify-content:space-between; align-items:center">
             <td id="BannerLogo" class="banner">
                 <a href="/"><img src="/static/images/getflix_logo.png" alt="Getflix Logo" height="60px"></a>
             </td>

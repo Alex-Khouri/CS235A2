@@ -10,6 +10,7 @@ a {
     cursor: pointer;
 }
 table {
+    width: 100%;
     text-align: justify;
     table-layout: fixed;
     margin-left: auto;
@@ -32,6 +33,7 @@ td.form-label {
 td.form-input {
     text-align: left;
 }
+
 
 .flex-row {
     display: flex;
@@ -67,11 +69,6 @@ td.form-input {
 .browse-submenu {
     display: none;
 }
-.browse-link {
-
-}
-
-
 .button {
     border: 2px solid white;
     border-radius: 5px;

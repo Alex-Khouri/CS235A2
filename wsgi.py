@@ -16,17 +16,17 @@ servData = {
 	"allActors": repo.actors,
 	"allGenres": repo.genres,
 	"allUsers": repo.users,
-	"charLinks": [f'<a class="browse-link" href="/browse?BrowseCategory=TitleChar&BrowseQuery={char}">{char}</a>' for char in titleChars],
-	"genreLinks": [f'<a class="browse-link" href="/browse?BrowseCategory=Genre&BrowseQuery={genre.name}">{genre.name}</a>' for genre in repo.genres],
-	"directorLinks": [f'<a class="browse-link" href="/browse?BrowseCategory=Director&BrowseQuery={director.director_full_name}">{director.director_full_name}</a>' for director in repo.directors],
-	"actorLinks": [f'<a class="browse-link" href="/browse?BrowseCategory=Actor&BrowseQuery={actor.actor_full_name}">{actor.actor_full_name}</a>' for actor in repo.actors]
+	"charLinks": [f'<a href="/browse?BrowseCategory=TitleChar&BrowseQuery={char}">{char}</a>' for char in titleChars],
+	"genreLinks": [f'<a href="/browse?BrowseCategory=Genre&BrowseQuery={genre.name}">{genre.name}</a>' for genre in repo.genres],
+	"directorLinks": [f'<a href="/browse?BrowseCategory=Director&BrowseQuery={director.director_full_name}">{director.director_full_name}</a>' for director in repo.directors],
+	"actorLinks": [f'<a href="/browse?BrowseCategory=Actor&BrowseQuery={actor.actor_full_name}">{actor.actor_full_name}</a>' for actor in repo.actors]
 }
 
 
 @app.route('/')
 def index():
 	session["currUsername"] = session.get("currUsername")
-	if session["authStatus"] in ["registering", "logging in"]:
+	if session.get("authStatus") in ["registering", "logging in"]:
 		session["authStatus"] = "logged out"
 	else:
 		session["authStatus"] = session.get("authStatus", "logged out")
