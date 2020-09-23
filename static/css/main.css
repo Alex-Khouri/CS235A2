@@ -10,7 +10,6 @@ a {
     cursor: pointer;
 }
 table {
-    width: 100%;
     text-align: justify;
     table-layout: fixed;
     margin-left: auto;
@@ -34,10 +33,14 @@ td.form-input {
     text-align: left;
 }
 
-
+.flex-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .banner {
-    padding-left: 10px;
-    padding-right: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 .window {
     text-align: center;

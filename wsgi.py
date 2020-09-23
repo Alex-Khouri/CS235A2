@@ -26,17 +26,6 @@ servData = {
 @app.route('/')
 def index():
 	session["currUsername"] = session.get("currUsername")
-	session["authStatus"] = session.get("authStatus", "logged out")
-	session["authMessage"] = ""
-	clientData = {
-		"filteredMovies": repo.movies,
-		"currWatchlist": None
-	}
-	return render_template('index.html', **servData, **clientData)
-
-@app.route('/logo')
-def logo():
-	session["currUsername"] = session.get("currUsername")
 	if session["authStatus"] in ["registering", "logging in"]:
 		session["authStatus"] = "logged out"
 	else:
