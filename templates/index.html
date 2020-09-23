@@ -8,23 +8,14 @@
     <title id="title">Getflix</title>
 </head>
 <body>
-    <!-- FIX THIS -->
-    {% if session["authStatus"] == "logged out" %}
-    <script>logoutUser()</script>
-    {% elif session["authStatus"] == "logged in" %}
-    <script>loginUser()</script>
-    {% elif session["authStatus"] == "logging in" %}
-    <script>showLoginWindow()</script>
-    {% elif session["authStatus"] == "registering" %}
-    <script>showRegisterWindow()</script>
-    {% endif %}
-    <!-- /FIX THIS -->
+    <span id="AuthStatus" style="display:block;">{{ session["authStatus"] }}</span>
+    <!-- Valid `AuthStatus` values: "logged in", "logged out", "logging in", "registering" -->
     <table>
         <tr>
             <td id="BannerLogo" class="banner">
-                <a href="/"><img src="/static/images/getflix_logo.png" alt="Getflix Logo" height="60px"></a>
+                <a href="/logo"><img src="/static/images/getflix_logo.png" alt="Getflix Logo" height="60px"></a>
             </td>
-            <td id="Searchbar" class="banner" style="width:30%;">
+            <td id="Searchbar" class="banner">
                 <form action="/search">
                 <input id="SearchBox" class="textbox" type="text" name="SearchQuery" placeholder="Search Movies..." size=15>
                 <select id="SearchCategory" class="button" name="SearchCategory">
@@ -34,11 +25,13 @@
                     <option value="actor">Actor</option>
                 </select>
                 <input id="SearchSubmit" class="button" type="submit" value="Search" onclick="showMainWindow();">
-            </form>
+                </form>
             </td>
-            <td id="LoginPanel" class="banner" style="text-align:right; padding-right:0px">
+            <td class="banner">
                 <input id="LoginButton" class="button" type="submit" value="Login" onclick="showLoginWindow();">
-                <a href="/logout"><input id="LogoutButton" class="button" style="display:none" value="Logout"></a>
+                <form action="/logout">
+                <input id="LogoutButton" class="button" style="display:none" type="submit" value="Logout">
+                </form>
                 <input id="RegisterButton" class="button" type="submit" value="Register" onclick="showRegisterWindow();">
             </td>
         </tr>

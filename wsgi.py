@@ -6,7 +6,8 @@ app = Flask(__name__)
 app.secret_key = b'09s1nfe5m9dj4fs0'
 # Flask session uses the following keys:
 # 		authStatus, authMessage, currUsername
-# Valid authStatus values: "logged in", "logged out", "logging in", "registering"
+# Valid `authStatus` values: "logged in", "logged out", "logging in", "registering"
+# Session only contains basic data types (complex data types are stored in `clientData`)
 repo = MemoryRepo('datafiles/Data1000Movies.csv')
 titleChars = ["0-9","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
 servData = {
@@ -33,9 +34,23 @@ def index():
 	}
 	return render_template('index.html', **servData, **clientData)
 
+@app.route('/logo')
+def logo():
+	session["currUsername"] = session.get("currUsername")
+	if session["authStatus"] in ["registering", "logging in"]:
+		session["authStatus"] = "logged out"
+	else:
+		session["authStatus"] = session.get("authStatus", "logged out")
+	session["authMessage"] = ""
+	clientData = {
+		"filteredMovies": repo.movies,
+		"currWatchlist": None
+	}
+	return render_template('index.html', **servData, **clientData)
+
 @app.route('/login')
 def login():
-	username = request.args.get('LoginUsername')
+	username = request.args.get('LoginUsername').strip().lower()
 	password = request.args.get('LoginPassword')
 	user = repo.get_user(username)
 	clientData = {
@@ -81,6 +96,8 @@ def register():
 
 @app.route('/logout')
 def logout():
+	session["authStatus"] = "logged out"
+	session["authMessage"] = ""
 	session["currUsername"] = None
 	clientData = {
 		"filteredMovies": repo.movies,
@@ -119,7 +136,10 @@ def browse():
 						clientData["filteredMovies"].append(movie)
 						break
 			else:
-				print("ERROR: Invalid browsing category passed from HTML")
+				print("WARNING: Invalid browsing category passed from HTML")
+	session["currUsername"] = session.get("currUsername")
+	session["authStatus"] = session.get("authStatus", "logged out")
+	session["authMessage"] = ""
 	return render_template('index.html', **servData, **clientData)
 
 @app.route('/search')
@@ -152,7 +172,10 @@ def search():
 						clientData["filteredMovies"].append(movie)
 						break
 			else:
-				print("ERROR: Invalid search category passed from HTML")
+				print("WARNING: Invalid search category passed from HTML")
+	session["currUsername"] = session.get("currUsername")
+	session["authStatus"] = session.get("authStatus", "logged out")
+	session["authMessage"] = ""
 	return render_template('index.html', **servData, **clientData)
 
 
