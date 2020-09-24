@@ -45,26 +45,26 @@
                     <hr style="height:3px; background-color:black; border-color:black; border-radius:3px">
                     <a onclick="toggleBrowseTitles();"><h4 id="titlesHeading">&#8594 Titles</h4></a>
                     <ul id="BrowseTitles" class="browse-submenu">
-                        {% for link in charLinks %}
-                        <li>{{ link|safe }}</li>
+                        {% for char in titleChars %}
+                        <li>{{ ('<a href="/browse?BrowseCategory=TitleChar&BrowseQuery=' + char + '">' + char + '</a>')|safe }}</li>
                         {% endfor %}
                     </ul>
                     <a onclick="toggleBrowseGenres();"><h4 id="genresHeading">&#8594 Genres</h4></a>
                     <ul id="BrowseGenres" class="browse-submenu">
-                        {% for link in genreLinks %}
-                        <li>{{ link|safe }}</li>
+                        {% for genre in allGenres %}
+                        <li>{{ ('<a href="/browse?BrowseCategory=Genre&BrowseQuery=' + genre.name + '">' + genre.name + '</a>')|safe }}</li>
                         {% endfor %}
                     </ul>
                     <a onclick="toggleBrowseDirectors();"><h4 id="directorsHeading">&#8594 Directors</h4></a>
                     <ul id="BrowseDirectors" class="browse-submenu">
-                        {% for link in directorLinks %}
-                        <li>{{ link|safe }}</li>
+                        {% for director in allDirectors %}
+                        <li>{{ ('<a href="/browse?BrowseCategory=Director&BrowseQuery=' + director.director_full_name + '">' + director.director_full_name + '</a>')|safe }}</li>
                         {% endfor %}
                     </ul>
                     <a onclick="toggleBrowseActors();"><h4 id="actorsHeading">&#8594 Actors</h4></a>
                     <ul id="BrowseActors" class="browse-submenu">
-                        {% for link in actorLinks %}
-                        <li>{{ link|safe }}</li>
+                        {% for actor in allActors %}
+                        <li>{{ ('<a href="/browse?BrowseCategory=Actor&BrowseQuery=' + actor.actor_full_name + '">' + actor.actor_full_name + '</a>')|safe }}</li>
                         {% endfor %}
                     </ul>
                 </td>

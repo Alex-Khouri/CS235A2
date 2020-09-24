@@ -10,17 +10,13 @@ app.secret_key = b'09s1nfe5m9dj4fs0'
 # Valid `clientData` session keys (complex data types):
 #  		filteredMovies, currWatchlist
 repo = MemoryRepo('datafiles/Data1000Movies.csv')
-titleChars = ["0-9","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
 servData = {
+	"titleChars": ["0-9","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"],
 	"allMovies": repo.movies,
 	"allDirectors": repo.directors,
 	"allActors": repo.actors,
 	"allGenres": repo.genres,
-	"allUsers": repo.users,
-	"charLinks": [f'<a href="/browse?BrowseCategory=TitleChar&BrowseQuery={char}">{char}</a>' for char in titleChars],
-	"genreLinks": [f'<a href="/browse?BrowseCategory=Genre&BrowseQuery={genre.name}">{genre.name}</a>' for genre in repo.genres],
-	"directorLinks": [f'<a href="/browse?BrowseCategory=Director&BrowseQuery={director.director_full_name}">{director.director_full_name}</a>' for director in repo.directors],
-	"actorLinks": [f'<a href="/browse?BrowseCategory=Actor&BrowseQuery={actor.actor_full_name}">{actor.actor_full_name}</a>' for actor in repo.actors]
+	"allUsers": repo.users
 }
 
 
@@ -114,15 +110,16 @@ def browse():
 					clientData["filteredMovies"].append(movie)
 			elif category == "Genre":
 				for genre in movie.genres:
-					if genre.name.strip().lower() == query:
+					if query in genre.name.strip().lower():
 						clientData["filteredMovies"].append(movie)
 						break
 			elif category == "Director":
-				if movie.director.director_full_name.strip().lower() == query:
+				if query in movie.director.director_full_name.strip().lower():
 					clientData["filteredMovies"].append(movie)
 			elif category == "Actor":
 				for actor in movie.actors:
-					if query in actor.actor_full_name.strip().lower().split():
+					if query in actor.actor_full_name.strip().lower():
+						print(query)
 						clientData["filteredMovies"].append(movie)
 						break
 			else:
@@ -146,19 +143,19 @@ def search():
 	else:
 		for movie in servData["allMovies"]:
 			if category == "title":
-				if movie.title.strip().lower() == query:
+				if query in movie.title.strip().lower():
 					clientData["filteredMovies"].append(movie)
 			elif category == "genre":
 				for genre in movie.genres:
-					if genre.name.strip().lower() == query:
+					if query in genre.name.strip().lower():
 						clientData["filteredMovies"].append(movie)
 						break
 			elif category == "director":
-				if movie.director.director_full_name.strip().lower() == query:
+				if query in movie.director.director_full_name.strip().lower():
 					clientData["filteredMovies"].append(movie)
 			elif category == "actor":
 				for actor in movie.actors:
-					if query in actor.actor_full_name.strip().lower().split():
+					if query in actor.actor_full_name.strip().lower():
 						clientData["filteredMovies"].append(movie)
 						break
 			else:
