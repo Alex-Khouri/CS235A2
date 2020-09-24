@@ -29,7 +29,7 @@ class Watchlist:
 			self.watchlist_movie_list = newMovieList
 
 	def add_movie(self, movie):
-		if not movie in self.watchlist_movie_list:
+		if movie not in self.watchlist_movie_list:
 			self.watchlist_movie_list.append(movie)
 			return True
 		else:

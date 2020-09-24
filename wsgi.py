@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template, session
 from repository.memory_repo import MemoryRepo
 from domainmodel.user import User
+from domainmodel.review import Review
 
 app = Flask(__name__)
 app.secret_key = b'09s1nfe5m9dj4fs0'
@@ -22,7 +23,6 @@ servData = {
 
 @app.route('/')
 def index():
-	session["currUsername"] = session.get("currUsername")
 	if session.get("authStatus") in ["registering", "logging in"]:
 		session["authStatus"] = "logged out"
 	else:
@@ -30,7 +30,7 @@ def index():
 	session["authMessage"] = ""
 	clientData = {
 		"filteredMovies": repo.movies,
-		"currWatchlist": None
+		"currWatchlist": repo.get_watchlist(session.get("currUsername"))
 	}
 	return render_template('index.html', **servData, **clientData)
 
@@ -39,10 +39,6 @@ def login():
 	username = request.args.get('LoginUsername').strip().lower()
 	password = request.args.get('LoginPassword')
 	user = repo.get_user(username)
-	clientData = {
-		"filteredMovies": repo.movies,
-		"currWatchlist": None
-	}
 	if user is None:
 		session["authStatus"] = "logging in"
 		session["authMessage"] = "Invalid username - please try again"
@@ -53,7 +49,10 @@ def login():
 		session["authStatus"] = "logged in"
 		session["authMessage"] = ""
 		session["currUsername"] = username
-		clientData["currWatchlist"] = user.watchlist
+	clientData = {
+		"filteredMovies": repo.movies,
+		"currWatchlist": repo.get_watchlist(username)
+	}
 	return render_template('index.html', **servData, **clientData)
 
 @app.route('/register')
@@ -61,10 +60,6 @@ def register():
 	username = request.args.get('RegUsername').strip().lower()
 	password1 = request.args.get('RegPassword1')
 	password2 = request.args.get('RegPassword2')
-	clientData = {
-		"filteredMovies": repo.movies,
-		"currWatchlist": None
-	}
 	if password1 != password2:
 		session["authStatus"] = "registering"
 		session["authMessage"] = "Passwords don't match - please try again"
@@ -77,7 +72,10 @@ def register():
 		session["currUsername"] = username
 		user = User(username, password1)
 		repo.add_user(user)
-		clientData["currWatchlist"] = user.watchlist
+	clientData = {
+		"filteredMovies": repo.movies,
+		"currWatchlist": repo.get_watchlist(username)
+	}
 	return render_template('index.html', **servData, **clientData)
 
 @app.route('/logout')
@@ -91,14 +89,50 @@ def logout():
 	}
 	return render_template('index.html', **servData, **clientData)
 
+@app.route('/add_movie')
+def add_movie():
+	session["currUsername"] = session.get("currUsername")
+	clientData = {
+		"filteredMovies": repo.movies,
+		"currWatchlist": repo.get_watchlist(session.get("currUsername"))
+	}
+	if session["currUsername"] is None:
+		session["authStatus"] = "logging in"
+		session["authMessage"] = "You must be logged in to update your watchlist"
+		return render_template('index.html', **servData, **clientData)
+	session["authStatus"] = session.get("authStatus", "logged out")
+	session["authMessage"] = ""
+	user = repo.get_user(session.get("currUsername"))
+	movie = repo.get_movie(request.args.get("MovieTitle"))
+	user.watchlist.add_movie(movie)
+
+@app.route('/add_review')
+def add_review():
+	session["currUsername"] = session.get("currUsername")
+	clientData = {
+		"filteredMovies": repo.movies,
+		"currWatchlist": repo.get_watchlist(session.get("currUsername"))
+	}
+	if session["currUsername"] is None:
+		session["authStatus"] = "logging in"
+		session["authMessage"] = "You must be logged in to add reviews"
+		return render_template('index.html', **servData, **clientData)
+	session["authStatus"] = session.get("authStatus", "logged out")
+	session["authMessage"] = ""
+	user = repo.get_user(session.get("currUsername"))
+	movie = repo.get_movie(request.args.get("MovieTitle"))
+	review = Review(user, movie, request.args.get("ReviewComments"), request.args.get("ReviewRating"))
+	movie.add_review(review)
+	user.add_review(review)
+	return render_template('index.html', **servData, **clientData)
+
 @app.route('/browse')
 def browse():
 	category = request.args.get("BrowseCategory")  # i.e. TitleChar, Genre, Director, or Actor
 	query = request.args.get("BrowseQuery").strip().lower()  # "0-9" if category == TitleChar
-	user = repo.get_user(session["currUsername"])
 	clientData = {
 		"filteredMovies": list(),
-		"currWatchlist": user.watchlist if user is not None else None
+		"currWatchlist": repo.get_watchlist(session.get("currUsername"))
 	}
 	if query == "":  # There are no known circumstances that should trigger this
 		clientData["filteredMovies"] = servData["allMovies"]
@@ -133,10 +167,9 @@ def browse():
 def search():
 	category = request.args.get("SearchCategory").strip().lower()  # i.e. title, genre, director, or actor
 	query = request.args.get("SearchQuery").strip().lower()
-	user = repo.get_user(session["currUsername"])
 	clientData = {
 		"filteredMovies": list(),
-		"currWatchlist": user.watchlist if user is not None else None
+		"currWatchlist": repo.get_watchlist(session.get("currUsername"))
 	}
 	if query == "":
 		clientData["filteredMovies"] = servData["allMovies"]

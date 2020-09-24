@@ -6,6 +6,13 @@ function show(ID) {
 function hide(ID) {
     document.getElementById(ID).style.display = "none";
 }
+function toggle(ID) {
+    if (document.getElementById(ID).style.display != "block") {
+        show(ID);
+    } else {
+        hide(ID);
+    }
+}
 
 
 function showMainWindow() {
@@ -22,20 +29,6 @@ function showRegisterWindow() {
     hide("MainWindow");
     hide("LoginWindow");
     show("RegisterWindow");
-}
-function toggleReviews(ID) {
-    if (document.getElementById(ID).style.display != "block") {
-        show(ID);
-    } else {
-        hide(ID);
-    }
-}
-function toggleReviewForm(ID) {
-    if (document.getElementById(ID).style.display != "block") {
-        show(ID);
-    } else {
-        hide(ID);
-    }
 }
 
 
