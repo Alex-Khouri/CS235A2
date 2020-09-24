@@ -4,10 +4,11 @@ from domainmodel.user import User
 
 app = Flask(__name__)
 app.secret_key = b'09s1nfe5m9dj4fs0'
-# Flask session uses the following keys:
+# Valid Flask session keys (basic data types):
 # 		authStatus, authMessage, currUsername
 # Valid `authStatus` values: "logged in", "logged out", "logging in", "registering"
-# Session only contains basic data types (complex data types are stored in `clientData`)
+# Valid `clientData` session keys (complex data types):
+#  		filteredMovies, currWatchlist
 repo = MemoryRepo('datafiles/Data1000Movies.csv')
 titleChars = ["0-9","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
 servData = {
