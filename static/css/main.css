@@ -49,14 +49,13 @@ td.form-input {
 }
 .browse-window {
     vertical-align: text-top;
-    text-align: left;
     width: 100px;
     padding: 10px;
     background-color: #505050;
 }
 .movies-window {
     vertical-align: text-top;
-    text-align: center;
+    text-align: left;
     padding: 10px;
 }
 .watchlist-window {
@@ -84,6 +83,11 @@ td.form-input {
     border-radius: 5px;
     background-color: white;
     height: 30px;
+    font-size: 100%;
+}.textarea {
+    border: 2px solid white;
+    border-radius: 5px;
+    background-color: white;
     font-size: 100%;
 }
 .visible {display: block;}

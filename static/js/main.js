@@ -23,6 +23,20 @@ function showRegisterWindow() {
     hide("LoginWindow");
     show("RegisterWindow");
 }
+function toggleReviews(ID) {
+    if (document.getElementById(ID).style.display != "block") {
+        show(ID);
+    } else {
+        hide(ID);
+    }
+}
+function toggleReviewForm(ID) {
+    if (document.getElementById(ID).style.display != "block") {
+        show(ID);
+    } else {
+        hide(ID);
+    }
+}
 
 
 function loginUser() {

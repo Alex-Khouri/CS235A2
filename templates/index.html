@@ -70,12 +70,56 @@
                 </td>
                 <td id="MovieListWindow" class="movies-window">
                     {% for movie in filteredMovies %}
-                    <h3>{{ movie.title }} <em>({{ movie.year }})</em></h3>
+                    <div style="text-align:center"><h3>{{ movie.title }} <em>({{ movie.year }})</em></h3></div>
                     <p><b>Genres: </b>{{ movie.get_genres_string() }}</p>
                     <p><b>Director: </b>{{ movie.director.director_full_name }}</p>
                     <p><b>Actors: </b>{{ movie.get_actors_string() }}</p>
                     <p><b>Synopsis: </b><em>"{{ movie.description }}"</em></p>
                     <p><b>Rating: </b>{{ movie.rating }}/10</p>
+                    <!-- FINISH MOVIE BUTTON FUNCTIONALITIES -->
+                    <div id="MovieButtons" class="banner" style="display:block; text-align:center">
+                        <form action="/addmovie">
+                        <input id="AddMovie" class="button" type="submit" value="Add to Watchlist">
+                        </form><br>
+                        <input id="ShowReviews" class="button" type="submit" onclick="toggleReviews('{{ movie.title }} Reviews');" value="Show Reviews">
+                        <input id="AddReview" class="button" type="submit" onclick="toggleReviewForm('{{ movie.title }} ReviewForm');" value="Add Review">
+                    </div>
+                    <div id="{{ movie.title }} Reviews" style="display:none;">
+                        <div style="text-align:center"><h4><u>Reviews:</u></h4></div>
+                        {% for review in movie.reviews %}
+                        <p><b>Time/Date: </b>{{ review.timestamp }}</p>
+                        <p><b>Author: </b>{{ review.user.username }}</p>
+                        <p><b>Rating: </b>{{ review.rating }}</p>
+                        <p><b>Comments: </b><em>"{{ review.review_text }}"</em></p>
+                        <hr style="height:2px; background-color:black; border-color:black; border-radius:2px">
+                        {% endfor %}
+                    </div>
+                    <form action="/addreview">
+                    <table id="{{ movie.title }} ReviewForm" style="display:none">
+                        <tr>
+                            <td class="form-label">
+                            <label for="ReviewRating">Rating (1-10): </label>
+                            </td>
+                            <td class="form-input">
+                            <input id="ReviewRating" class="textbox" type="number" name="ReviewRating" size=30>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="form-label">
+                            <label for="ReviewComments">Comments: </label>
+                            </td>
+                            <td class="form-input">
+                            <textarea id="ReviewComments" class="textarea" name="ReviewComments" rows="4" cols=36></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td><!-- Empty table column for formatting -->
+                            <td>
+                            <input id="LoginSubmit" class="button" type="submit" value="Submit">
+                            </td>
+                        </tr>
+                    </table>
+                    </form>
                     <hr style="height:2px; background-color:white; border-color:white; border-radius:2px">
                     {% endfor %}
                 </td>
@@ -100,7 +144,7 @@
     <div id="LoginWindow" class="window" style="display:none">
         <h3>Enter Login Details:</h3>
         <form action="/login">
-        <table style="text-align:left">
+        <table>
             <tr>
                 <td class="form-label">
                 <label for="LoginUsername">Username: </label>
