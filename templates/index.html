@@ -30,7 +30,7 @@
             <td id="LoginPanel" class="banner" style="display:flex">
                 <input id="LoginButton" class="button" type="submit" value="Login" onclick="showLoginWindow();">
                 <form action="/logout">
-                <input id="LogoutButton" class="button" style="display:none" type="submit" value="Logout">
+                <input id="LogoutButton" class="button" style="display:none" type="submit" value="Logout ({{ session['currUsername'] }})">
                 </form>
                 <input id="RegisterButton" class="button" type="submit" value="Register" onclick="showRegisterWindow();">
             </td>
