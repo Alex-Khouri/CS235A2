@@ -17,20 +17,20 @@
             </td>
             <td id="Searchbar" class="banner">
                 <form action="/search">
-                <input id="SearchBox" class="textbox" type="text" name="SearchQuery" placeholder="Search Movies..." size=15>
-                <select id="SearchCategory" class="button" name="SearchCategory">
-                    <option value="title">Title</option>
-                    <option value="genre">Genre</option>
-                    <option value="director">Director</option>
-                    <option value="actor">Actor</option>
-                </select>
-                <input id="SearchSubmit" class="button" type="submit" value="Search" onclick="showMainWindow();">
+                    <input id="SearchBox" class="textbox" type="text" name="SearchQuery" placeholder="Search Movies..." size=15>
+                    <select id="SearchCategory" class="button" name="SearchCategory">
+                        <option value="title">Title</option>
+                        <option value="genre">Genre</option>
+                        <option value="director">Director</option>
+                        <option value="actor">Actor</option>
+                    </select>
+                    <input id="SearchSubmit" class="button" type="submit" value="Search" onclick="showMainWindow();">
                 </form>
             </td>
             <td id="LoginPanel" class="banner" style="display:flex">
                 <input id="LoginButton" class="button" type="submit" value="Login" onclick="showLoginWindow();">
                 <form action="/logout">
-                <input id="LogoutButton" class="button" style="display:none" type="submit" value="Logout ({{ session['currUsername'] }})">
+                    <input id="LogoutButton" class="button" style="display:none" type="submit" value="Logout ({{ session['currUsername'] }})">
                 </form>
                 <input id="RegisterButton" class="button" type="submit" value="Register" onclick="showRegisterWindow();">
             </td>
@@ -79,8 +79,8 @@
                     <!-- TEST THESE FEATURES -->
                     <div id="MovieButtons" class="banner" style="display:block; text-align:center">
                         <form action="/add_movie">
-                        <input type="hidden" name="MovieTitle" value="{{ movie.title }}">
-                        <input id="AddMovie" class="button" type="submit" value="Add to Watchlist">
+                            <input type="hidden" name="MovieTitle" value="{{ movie.title }}">
+                            <input id="AddMovie" class="button" type="submit" value="Add to Watchlist">
                         </form><br>
                         <input id="ShowReviews" class="button" type="submit" onclick="toggleElement('{{ movie.title }} Reviews');" value="Show Reviews">
                         <input id="AddReview" class="button" type="submit" onclick="toggleElement('{{ movie.title }} ReviewForm');" value="Add Review">
@@ -128,14 +128,15 @@
                 <td id="WatchlistWindow" class="watchlist-window" style="width:20%;">
                     <h3>Watchlist:</h3>
                     <hr style="height:3px; background-color:black; border-color:black; border-radius:3px">
-                    {% if currentWatchlist != None %}
-                        {% for movie in currentWatchlist %}
+                    {% if currWatchlist != None %}
+                        {% for movie in currWatchlist %}
                         <h3>{{ movie.title }} <em>({{ movie.year }})</em></h3>
                         <p><b>Genres: </b>{{ movie.get_genres_string() }}</p>
                         <p><b>Director: </b>{{ movie.director.director_full_name }}</p>
-                        <p><b>Actors: </b>{{ movie.get_actors_string() }}</p>
-                        <p><b>Synopsis: </b><em>"{{ movie.description }}"</em></p>
-                        <p><b>Rating: </b>{{ movie.rating }}/10</p>
+                        <form action="/remove_movie">
+                            <input type="hidden" name="MovieTitle" value="{{ movie.title }}">
+                            <input id="RemoveMovie" class="button" type="submit" value="Remove">
+                        </form>
                         <hr style="height:2px; background-color:white; border-color:white; border-radius:2px">
                         {% endfor %}
                     {% endif %}

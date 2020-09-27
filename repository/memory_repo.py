@@ -72,11 +72,10 @@ class MemoryRepo:
 			return False
 
 	def get_user(self, username):
-		if username is None:
-			return None
-		for user in self.repo_users:
-			if user.username.strip().lower() == username.strip().lower():
-				return user
+		if username is not None:
+			for user in self.repo_users:
+				if user.username.strip().lower() == username.strip().lower():
+					return user
 		return None
 
 	def get_movie(self, movieTitle):
@@ -88,13 +87,11 @@ class MemoryRepo:
 		return None
 
 	def get_watchlist(self, username):
-		if username is None:
-			return None
-		user = self.get_user(username)
-		if user is not None:
-			return user.watchlist
-		else:
-			return None
+		if username is not None:
+			user = self.get_user(username)
+			if user is not None:
+				return user.watchlist
+		return None
 
 
 class TestMemoryRepo:

@@ -23,7 +23,7 @@ servData = {
 
 @app.route('/')
 def index():
-	if session.get("authStatus") in ["registering", "logging in"]:
+	if session.get("authStatus") in ["registering", "logging in"] or session.get("currUsername") is None:
 		session["authStatus"] = "logged out"
 	else:
 		session["authStatus"] = session.get("authStatus", "logged out")
@@ -92,6 +92,24 @@ def logout():
 @app.route('/add_movie')
 def add_movie():
 	session["currUsername"] = session.get("currUsername")
+	user = repo.get_user(session["currUsername"])
+	clientData = {
+		"filteredMovies": repo.movies,
+		"currWatchlist": repo.get_watchlist(session.get("currUsername"))
+	}
+	if user is None:
+		session["authStatus"] = "logging in"
+		session["authMessage"] = "You must be logged in to update your watchlist"
+		return render_template('index.html', **servData, **clientData)
+	session["authStatus"] = session.get("authStatus", "logged out")
+	session["authMessage"] = ""
+	movie = repo.get_movie(request.args.get("MovieTitle"))
+	user.watchlist.add_movie(movie)
+	return render_template('index.html', **servData, **clientData)
+
+@app.route('/remove_movie')
+def remove_movie():
+	session["currUsername"] = session.get("currUsername")
 	clientData = {
 		"filteredMovies": repo.movies,
 		"currWatchlist": repo.get_watchlist(session.get("currUsername"))
@@ -102,9 +120,10 @@ def add_movie():
 		return render_template('index.html', **servData, **clientData)
 	session["authStatus"] = session.get("authStatus", "logged out")
 	session["authMessage"] = ""
-	user = repo.get_user(session.get("currUsername"))
+	user = repo.get_user(session["currUsername"])
 	movie = repo.get_movie(request.args.get("MovieTitle"))
-	user.watchlist.add_movie(movie)
+	user.watchlist.remove_movie(movie)
+	return render_template('index.html', **servData, **clientData)
 
 @app.route('/add_review')
 def add_review():
