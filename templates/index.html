@@ -76,7 +76,7 @@
                     <p><b>Actors: </b>{{ movie.get_actors_string() }}</p>
                     <p><b>Synopsis: </b><em>"{{ movie.description }}"</em></p>
                     <p><b>Rating: </b>{{ movie.rating }}/10</p>
-                    <!-- TEST THESE FEATURES -->
+                    <!-- TEST REVIEWS -->
                     <div id="MovieButtons" class="banner" style="display:block; text-align:center">
                         <form action="/add_movie">
                             <input type="hidden" name="MovieTitle" value="{{ movie.title }}">
