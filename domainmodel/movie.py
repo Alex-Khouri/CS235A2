@@ -72,7 +72,7 @@ class Movie:
 
 	@property
 	def rating(self):
-		return self.movie_rating
+		return round(self.movie_rating, 1)
 
 	@property
 	def votes(self):
@@ -136,7 +136,7 @@ class Movie:
 
 	@ID.setter
 	def ID(self, newID):
-		self.movie_ID = self.movie_ID  # This value should never be manually reassigned
+		self.movie_ID = self.movie_ID  # This value should never be manually changed
 		print("WARNING: Movie IDs cannot be manually reassigned")
 
 	def add_actor(self, newActor):

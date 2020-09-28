@@ -76,14 +76,13 @@
                     <p><b>Actors: </b>{{ movie.get_actors_string() }}</p>
                     <p><b>Synopsis: </b><em>"{{ movie.description }}"</em></p>
                     <p><b>Rating: </b>{{ movie.rating }}/10</p>
-                    <!-- TEST REVIEW ADDING -->
                     <div id="MovieButtons" class="banner" style="display:block; text-align:center">
                         <form action="/add_movie">
                             <input type="hidden" name="MovieTitle" value="{{ movie.title }}">
                             <input id="AddMovie" class="button" type="submit" value="Add to Watchlist">
                         </form><br>
-                        <input id="ShowReviews" class="button" type="submit" onclick="toggle(`{{ (movie.ID + 'Reviews')|safe }}`);" value="Show Reviews">
-                        <input id="AddReview" class="button" type="submit" onclick="toggle(`{{ (movie.ID + 'ReviewForm')|safe }}`);" value="Add Review">
+                        <input id="ShowReviews" class="button" type="submit" onclick="toggle(`{{ (movie.ID + 'Reviews')|safe }}`); hide(`{{ (movie.ID + 'ReviewForm')|safe }}`);" value="Show Reviews">
+                        <input id="AddReview" class="button" type="submit" onclick="toggle(`{{ (movie.ID + 'ReviewForm')|safe }}`); hide(`{{ (movie.ID + 'Reviews')|safe }}`);" value="Add Review">
                     </div><br>
                     <div id="Add Review" style="display:flex; justify-content:center">
                     <form action="/add_review">
@@ -115,13 +114,12 @@
                     </form>
                     </div>
                     <div id="{{ (movie.ID + 'Reviews')|safe }}" style="display:none;">
-                        <div style="text-align:center"><h4><u>Reviews:</u></h4></div>
                         {% for review in movie.reviews %}
-                        <p><b>Time/Date: </b>{{ review.timestamp }}</p>
+                        <hr style="height:2px; background-color:black; border-color:black; border-radius:2px">
+                        <p><b>Date: </b>{{ review.date }}</p>
                         <p><b>Author: </b>{{ review.user.username }}</p>
                         <p><b>Rating: </b>{{ review.rating }}</p>
                         <p><b>Comments: </b><em>"{{ review.review_text }}"</em></p>
-                        <hr style="height:2px; background-color:black; border-color:black; border-radius:2px">
                         {% endfor %}
                     </div>
                     <hr style="height:2px; background-color:white; border-color:white; border-radius:2px">

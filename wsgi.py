@@ -140,9 +140,17 @@ def add_review():
 	session["authMessage"] = ""
 	user = repo.get_user(session.get("currUsername"))
 	movie = repo.get_movie(request.args.get("MovieTitle"))
-	review = Review(user, movie, request.args.get("ReviewComments"), request.args.get("ReviewRating"))
-	movie.add_review(review)
-	user.add_review(review)
+	try:
+		rating = round(float(request.args.get("ReviewRating")))
+		print(rating)
+		if rating in range(1, 11):
+			review = Review(user, movie, request.args.get("ReviewComments"), rating)
+			movie.add_review(review)
+			user.add_review(review)
+		else:
+			raise ValueError
+	except ValueError:
+		print("WARNING: Invalid input data for movie review")
 	return render_template('index.html', **servData, **clientData)
 
 @app.route('/browse')
