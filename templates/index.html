@@ -76,18 +76,19 @@
                     <p><b>Actors: </b>{{ movie.get_actors_string() }}</p>
                     <p><b>Synopsis: </b><em>"{{ movie.description }}"</em></p>
                     <p><b>Rating: </b>{{ movie.rating }}/10</p>
-                    <!-- TEST REVIEWS -->
+                    <!-- TEST REVIEW ADDING -->
                     <div id="MovieButtons" class="banner" style="display:block; text-align:center">
                         <form action="/add_movie">
                             <input type="hidden" name="MovieTitle" value="{{ movie.title }}">
                             <input id="AddMovie" class="button" type="submit" value="Add to Watchlist">
                         </form><br>
-                        <input id="ShowReviews" class="button" type="submit" onclick="toggleElement('{{ movie.title }} Reviews');" value="Show Reviews">
-                        <input id="AddReview" class="button" type="submit" onclick="toggleElement('{{ movie.title }} ReviewForm');" value="Add Review">
+                        <input id="ShowReviews" class="button" type="submit" onclick="toggle(`{{ (movie.ID + 'Reviews')|safe }}`);" value="Show Reviews">
+                        <input id="AddReview" class="button" type="submit" onclick="toggle(`{{ (movie.ID + 'ReviewForm')|safe }}`);" value="Add Review">
                     </div><br>
+                    <div id="Add Review" style="display:flex; justify-content:center">
                     <form action="/add_review">
                         <input type="hidden" name="MovieTitle" value="{{ movie.title }}">
-                        <table id="{{ movie.title }} ReviewForm" style="display:none">
+                        <table id="{{ (movie.ID + 'ReviewForm')|safe }}" style="display:none; align-self:center;">
                             <tr>
                                 <td class="form-label">
                                 <label for="ReviewRating">Rating (1-10): </label>
@@ -106,13 +107,14 @@
                             </tr>
                             <tr>
                                 <td></td><!-- Empty table column for formatting -->
-                                <td>
+                                <td style="text-align:center">
                                 <input id="LoginSubmit" class="button" type="submit" value="Submit">
                                 </td>
                             </tr>
                         </table>
                     </form>
-                    <div id="{{ movie.title }} Reviews" style="display:none;">
+                    </div>
+                    <div id="{{ (movie.ID + 'Reviews')|safe }}" style="display:none;">
                         <div style="text-align:center"><h4><u>Reviews:</u></h4></div>
                         {% for review in movie.reviews %}
                         <p><b>Time/Date: </b>{{ review.timestamp }}</p>

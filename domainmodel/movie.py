@@ -19,6 +19,9 @@ class Movie:
 		self.movie_reviews = list()
 		self.movie_rating = None
 		self.movie_votes = 0
+		self.movie_ID = None
+		if self.movie_title is not None and self.movie_year is not None:
+			self.movie_ID = self.movie_title.replace(" ", "") + str(self.movie_year)
 	
 	def __repr__(self):
 		return f"<Movie {self.movie_title}, {self.movie_year}>"
@@ -75,6 +78,10 @@ class Movie:
 	def votes(self):
 		return self.movie_votes
 
+	@property
+	def ID(self):
+		return self.movie_ID
+
 	@title.setter
 	def title(self, newTitle):
 		if isinstance(newTitle, str) and len(newTitle) > 0:
@@ -126,6 +133,11 @@ class Movie:
 	def votes(self, newVotes):
 		if isinstance(newVotes, int):
 			self.movie_votes = newVotes
+
+	@ID.setter
+	def ID(self, newID):
+		self.movie_ID = self.movie_ID  # This value should never be manually reassigned
+		print("WARNING: Movie IDs cannot be manually reassigned")
 
 	def add_actor(self, newActor):
 		if not newActor in self.movie_actors:

@@ -130,7 +130,7 @@ def add_review():
 	session["currUsername"] = session.get("currUsername")
 	clientData = {
 		"filteredMovies": repo.movies,
-		"currWatchlist": repo.get_watchlist(session.get("currUsername"))
+		"currWatchlist": repo.get_watchlist(session["currUsername"])
 	}
 	if session["currUsername"] is None:
 		session["authStatus"] = "logging in"
