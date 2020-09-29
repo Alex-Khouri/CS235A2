@@ -68,43 +68,21 @@
                         {% endfor %}
                     </ul>
                 </td>
-                <!-- TEST PAGINATION -->
                 <td id="MovieListWindow" class="movies-window">
                     <div id="MoviesPage0" style="display:block">
-                    {% set lastPage = filteredMovies|length//10 %}
+                    {% set pageSize = 10 %}
+                    {% set lastPage = (filteredMovies|length - 1)//pageSize %}
                     {% set page = 0 %}  <!-- Enables variable access outside for-loop -->
                     {% for m in range(filteredMovies|length) %}
                         {% set movie = filteredMovies[m] %}
-                        {% set page = m // 10 %}
-                        {% if page > 0 and m % 10 == 0 %}
-                        <table>  <!-- Pagination buttons for previous page -->
-                            <tr style="display:flex; justify-content:space-between; align-items:center">
-                                <td>
-                                {% if (page-1) > 0 %}
-                                <input id="p{{ page }}FirstPage" class="button" style="display:block;" type="submit" value="First Page" onclick="show(`MoviesPage0`); hide(`MoviesPage{{ (page-1)|safe }}`); window.scrollTo(0,0);">
-                                {% endif %}
-                                </td>
-                                <td>
-                                {% if (page-1) > 0 %}
-                                <input id="p{{ page }}PrevPage" class="button" style="display:block;" type="submit" value="Previous Page" onclick="show(`MoviesPage{{ (page-2)|safe }}`); hide(`MoviesPage{{ (page-1)|safe }}`); window.scrollTo(0,0);">
-                                {% endif %}
-                                </td>
-                                <td>
-                                {% if (page-1) < lastPage %}
-                                <input id="p{{ page }}NextPage" class="button" style="display:block;" type="submit" value="Next Page" onclick="show(`MoviesPage{{ page|safe }}`); hide(`MoviesPage{{ (page-1)|safe }}`); window.scrollTo(0,0);">
-                                {% endif %}
-                                </td>
-                                <!-- FIX `LAST PAGE` BUTTON!!! -->
-                                <td>
-                                {% if (page-1) < lastPage %}
-                                <input id="p{{ page }}LastPage" class="button" style="display:block;" type="submit" value="Last Page" onclick="show(`(MoviesPage{{ lastPage|safe }}`); hide(`MoviesPage{{ (page-1)|safe }}`); window.scrollTo(0,0);">
-                                {% endif %}
-                                </td>
-                            </tr>
-                        </table>
-                        </div>  <!-- Closing tag for previous page -->
+                        {% set page = m // pageSize %}
+                        {% if m % pageSize == 0 and page > 0 %}
                         <div id="MoviesPage{{ page|safe }}" style="display:none"> <!-- New page -->
                         {% endif %}
+                        Last Page: {{ lastPage }}<br>
+                        Page: {{ page }}<br>
+                        M: {{ m }}<br>
+                        Number of Movies: {{ filteredMovies|length }}<br>
                         <div style="text-align:center"><h3>{{ movie.title }} <em>({{ movie.year }})</em></h3></div>
                         <p><b>Genres: </b>{{ movie.get_genres_string() }}</p>
                         <p><b>Director: </b>{{ movie.director.director_full_name }}</p>
@@ -158,22 +136,35 @@
                             {% endfor %}
                         </div>
                         <hr style="height:2px; background-color:white; border-color:white; border-radius:2px">
+                        {% if m % pageSize == (pageSize-1) or m == (filteredMovies|length)-1 %}
+                        <table>  <!-- Pagination buttons -->
+                            <tr style="display:flex; justify-content:space-between; align-items:center">
+                                <td>
+                                {% if page > 0 %}
+                                <input id="p{{ page }}FirstPage" class="button" style="display:block;" type="submit" value="First Page" onclick="show(`MoviesPage0`); hide(`MoviesPage{{ page|safe }}`); window.scrollTo(0,0);">
+                                {% endif %}
+                                </td>
+                                <td>
+                                {% if page > 0 %}
+                                <input id="p{{ page }}PrevPage" class="button" style="display:block;" type="submit" value="Previous Page" onclick="show(`MoviesPage{{ (page-1)|safe }}`); hide(`MoviesPage{{ page|safe }}`); window.scrollTo(0,0);">
+                                {% endif %}
+                                </td>
+                                <td>
+                                {% if page < lastPage %}
+                                <input id="p{{ page }}NextPage" class="button" style="display:block;" type="submit" value="Next Page" onclick="show(`MoviesPage{{ (page+1)|safe }}`); hide(`MoviesPage{{ page|safe }}`); window.scrollTo(0,0);">
+                                {% endif %}
+                                </td>
+                                <!-- FIX `LAST PAGE` BUTTON!!! -->
+                                <td>
+                                {% if page < lastPage %}
+                                <input id="p{{ page }}LastPage" class="button" style="display:block;" type="submit" value="Last Page" onclick="show(`(MoviesPage{{ lastPage|safe }}`); hide(`MoviesPage{{ page|safe }}`); window.scrollTo(0,0);">
+                                {% endif %}
+                                </td>
+                            </tr>
+                        </table>
+                        </div>
+                        {% endif %}
                     {% endfor %}
-                    <table>  <!-- Pagination buttons for last page -->
-                        <tr style="display:flex; justify-content:space-between; align-items:center">
-                            <td>
-                            {% if page > 0 %}
-                            <input id="FirstPage" class="button" style="display:block;" type="submit" value="First Page" onclick="show(`MoviesPage0`); hide(`MoviesPage{{ (page-1)|safe }}`); window.scrollTo(0,0);">
-                            {% endif %}
-                            </td>
-                            <td>
-                            {% if page > 0 %}
-                            <input id="PrevPage" class="button" style="display:block;" type="submit" value="Previous" onclick="show(`MoviesPage{{ (page-1)|safe }}`); hide(`MoviesPage{{ page|safe }}`); window.scrollTo(0,0);">
-                            {% endif %}
-                            </td>
-                        </tr>
-                    </table>
-                    </div>  <!-- End of last page -->
                 </td>
                 <td id="WatchlistWindow" class="watchlist-window" style="width:20%;">
                     <h3>Watchlist:</h3>
