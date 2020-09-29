@@ -68,62 +68,87 @@
                         {% endfor %}
                     </ul>
                 </td>
+                <!-- TEST PAGINATION -->
                 <td id="MovieListWindow" class="movies-window">
-                    {% for movie in filteredMovies %}
-                    <div style="text-align:center"><h3>{{ movie.title }} <em>({{ movie.year }})</em></h3></div>
-                    <p><b>Genres: </b>{{ movie.get_genres_string() }}</p>
-                    <p><b>Director: </b>{{ movie.director.director_full_name }}</p>
-                    <p><b>Actors: </b>{{ movie.get_actors_string() }}</p>
-                    <p><b>Synopsis: </b><em>"{{ movie.description }}"</em></p>
-                    <p><b>Rating: </b>{{ movie.rating }}/10</p>
-                    <div id="MovieButtons" class="banner" style="display:block; text-align:center">
-                        <form action="/add_movie">
+                    <div id="MoviesPage0" style="display:block">
+                    {% for m in range(filteredMovies|length) %}
+                    {% set movie = filteredMovies[m] %}
+                    {% set page = m // 10 %}
+                    {% if page > 0 and m % 10 == 0 %}
+                    </div>  <!-- Closing tag for previous page -->
+                    <div id="MoviesPage{{ page|safe }}" style="display:none"> <!-- New page -->
+                    {% endif %}
+                        <div style="text-align:center"><h3>{{ movie.title }} <em>({{ movie.year }})</em></h3></div>
+                        <p><b>Genres: </b>{{ movie.get_genres_string() }}</p>
+                        <p><b>Director: </b>{{ movie.director.director_full_name }}</p>
+                        <p><b>Actors: </b>{{ movie.get_actors_string() }}</p>
+                        <p><b>Synopsis: </b><em>"{{ movie.description }}"</em></p>
+                        <p><b>Rating: </b>{{ movie.rating }}/10</p>
+                        <div id="MovieButtons" class="banner" style="display:block; text-align:center">
+                            <form action="/add_movie">
+                                <input type="hidden" name="MovieTitle" value="{{ movie.title }}">
+                                <input id="AddMovie" class="button" type="submit" value="Add to Watchlist">
+                            </form><br>
+                            <input id="ShowReviews" class="button" type="submit" onclick="toggle(`{{ (movie.ID + 'Reviews')|safe }}`); hide(`{{ (movie.ID + 'ReviewForm')|safe }}`);" value="Show Reviews">
+                            <input id="AddReview" class="button" type="submit" onclick="toggle(`{{ (movie.ID + 'ReviewForm')|safe }}`); hide(`{{ (movie.ID + 'Reviews')|safe }}`);" value="Add Review">
+                        </div><br>
+                        <div id="Add Review" style="display:flex; justify-content:center">
+                        <form action="/add_review">
                             <input type="hidden" name="MovieTitle" value="{{ movie.title }}">
-                            <input id="AddMovie" class="button" type="submit" value="Add to Watchlist">
-                        </form><br>
-                        <input id="ShowReviews" class="button" type="submit" onclick="toggle(`{{ (movie.ID + 'Reviews')|safe }}`); hide(`{{ (movie.ID + 'ReviewForm')|safe }}`);" value="Show Reviews">
-                        <input id="AddReview" class="button" type="submit" onclick="toggle(`{{ (movie.ID + 'ReviewForm')|safe }}`); hide(`{{ (movie.ID + 'Reviews')|safe }}`);" value="Add Review">
-                    </div><br>
-                    <div id="Add Review" style="display:flex; justify-content:center">
-                    <form action="/add_review">
-                        <input type="hidden" name="MovieTitle" value="{{ movie.title }}">
-                        <table id="{{ (movie.ID + 'ReviewForm')|safe }}" style="display:none; align-self:center;">
-                            <tr>
-                                <td class="form-label">
-                                <label for="ReviewRating">Rating (1-10): </label>
+                            <table id="{{ (movie.ID + 'ReviewForm')|safe }}" style="display:none; align-self:center;">
+                                <tr>
+                                    <td class="form-label">
+                                    <label for="ReviewRating">Rating (1-10): </label>
+                                    </td>
+                                    <td class="form-input">
+                                    <input id="ReviewRating" class="textbox" type="number" name="ReviewRating" min=1 max=10 size=6>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="form-label">
+                                    <label for="ReviewComments">Comments: </label>
+                                    </td>
+                                    <td class="form-input">
+                                    <textarea id="ReviewComments" class="textarea" name="ReviewComments" rows="4" cols=36></textarea>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td><!-- Empty table column for formatting -->
+                                    <td style="text-align:center">
+                                    <input id="LoginSubmit" class="button" type="submit" value="Submit">
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                        </div>
+                        <div id="{{ (movie.ID + 'Reviews')|safe }}" style="display:none;">
+                            {% for review in movie.reviews %}
+                            <hr style="height:2px; background-color:black; border-color:black; border-radius:2px">
+                            <p><b>Date: </b>{{ review.date }}</p>
+                            <p><b>Author: </b>{{ review.user.username }}</p>
+                            <p><b>Rating: </b>{{ review.rating }}</p>
+                            <p><b>Comments: </b><em>"{{ review.review_text }}"</em></p>
+                            {% endfor %}
+                        </div>
+                        <hr style="height:2px; background-color:white; border-color:white; border-radius:2px">
+                        {% if m % 10 == 0 and m > 0 %}
+                        <table>
+                            <tr style="display:flex; justify-content:space-between; align-items:center">
+                                <td>
+                                {% if page > 0 %}
+                                <input id="PrevPage" class="button" style="display:block;" type="submit" value="Previous" onclick="show(`MoviesPage{{ (page-1)|safe }}`); hide(`MoviesPage{{ page|safe }}`);">
+                                {% endif %}
                                 </td>
-                                <td class="form-input">
-                                <input id="ReviewRating" class="textbox" type="number" name="ReviewRating" min=1 max=10 size=6>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="form-label">
-                                <label for="ReviewComments">Comments: </label>
-                                </td>
-                                <td class="form-input">
-                                <textarea id="ReviewComments" class="textarea" name="ReviewComments" rows="4" cols=36></textarea>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td></td><!-- Empty table column for formatting -->
-                                <td style="text-align:center">
-                                <input id="LoginSubmit" class="button" type="submit" value="Submit">
+                                <td>
+                                {% if page < filteredMovies|length//10 %}
+                                <input id="NextPage" class="button" style="display:block;" type="submit" value="Next" onclick="show(`MoviesPage{{ (page+1)|safe }}`); hide(`MoviesPage{{ page|safe }}`);">
+                                {% endif %}
                                 </td>
                             </tr>
                         </table>
-                    </form>
-                    </div>
-                    <div id="{{ (movie.ID + 'Reviews')|safe }}" style="display:none;">
-                        {% for review in movie.reviews %}
-                        <hr style="height:2px; background-color:black; border-color:black; border-radius:2px">
-                        <p><b>Date: </b>{{ review.date }}</p>
-                        <p><b>Author: </b>{{ review.user.username }}</p>
-                        <p><b>Rating: </b>{{ review.rating }}</p>
-                        <p><b>Comments: </b><em>"{{ review.review_text }}"</em></p>
-                        {% endfor %}
-                    </div>
-                    <hr style="height:2px; background-color:white; border-color:white; border-radius:2px">
+                        {% endif %}
                     {% endfor %}
+                    </div>
                 </td>
                 <td id="WatchlistWindow" class="watchlist-window" style="width:20%;">
                     <h3>Watchlist:</h3>
