@@ -52,4 +52,4 @@ class Genre:
 
 
 if __name__ == "__main__":
-	from domainmodel.movie import Movie
+	from getflix.domainmodel.movie import Movie

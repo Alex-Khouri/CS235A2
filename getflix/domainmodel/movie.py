@@ -1,7 +1,7 @@
-from domainmodel.genre import Genre
-from domainmodel.actor import Actor
-from domainmodel.director import Director
-from domainmodel.review import Review
+from getflix.domainmodel.genre import Genre
+from getflix.domainmodel.actor import Actor
+from getflix.domainmodel.director import Director
+from getflix.domainmodel.review import Review
 
 class Movie:
 	def __init__(self, movTitle, movYear):

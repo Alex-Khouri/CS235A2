@@ -1,4 +1,4 @@
-from domainmodel.watchlist import Watchlist
+from getflix.domainmodel.watchlist import Watchlist
 
 class User:
 	def __init__(self, userName, userPassword):
@@ -98,5 +98,5 @@ class User:
 
 
 if __name__ == "__main__":
-	from domainmodel.movie import Movie
-	from domainmodel.review import Review
+	from getflix.domainmodel.movie import Movie
+	from getflix.domainmodel.review import Review

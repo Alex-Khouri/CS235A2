@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from domainmodel.user import User
+from getflix.domainmodel.user import User
 
 class Review:
 	def __init__(self, revUser, revMovie, revText, revRating):
@@ -71,4 +71,4 @@ class Review:
 
 
 if __name__ == "__main__":
-	from domainmodel.movie import Movie
+	from getflix.domainmodel.movie import Movie

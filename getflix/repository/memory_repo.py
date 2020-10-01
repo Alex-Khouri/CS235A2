@@ -1,4 +1,4 @@
-from datafilereaders.movie_file_csv_reader import MovieFileCSVReader
+from getflix.datafilereaders.movie_file_csv_reader import MovieFileCSVReader
 
 
 class MemoryRepo:
@@ -97,11 +97,11 @@ class MemoryRepo:
 class TestMemoryRepo:
 
 	def test_init(self):
-		repo = MemoryRepo('datafiles/Data1000Movies.csv')
+		repo = MemoryRepo('getflix/datafiles/Data1000Movies.csv')
 
 
 if __name__ == "__main__":
-	from domainmodel.movie import Movie
-	from domainmodel.actor import Actor
-	from domainmodel.genre import Genre
-	from domainmodel.director import Director
+	from getflix.domainmodel.movie import Movie
+	from getflix.domainmodel.actor import Actor
+	from getflix.domainmodel.genre import Genre
+	from getflix.domainmodel.director import Director
