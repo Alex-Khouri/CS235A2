@@ -1,7 +1,4 @@
-from getflix.domainmodel.genre import Genre
-from getflix.domainmodel.actor import Actor
-from getflix.domainmodel.director import Director
-from getflix.domainmodel.review import Review
+
 
 class Movie:
 	def __init__(self, movTitle, movYear):
@@ -15,7 +12,7 @@ class Movie:
 		self.movie_director = None
 		self.movie_actors = list()
 		self.movie_genres = list()
-		self.movie_runtime_minutes = None
+		self.movie_runtime_minutes = 0
 		self.movie_reviews = list()
 		self.movie_rating = None
 		self.movie_votes = 0
@@ -206,6 +203,11 @@ class Movie:
 		return ", ".join([genre.name for genre in self.movie_genres])
 
 
-class TestMovie:
-	def test_full_repr(self, movie):
-		return f"<Movie>\nTitle: {movie.title}\nYear: {movie.year}\nDescription: {movie.description}\nDirector: {movie.director}\nActors: {movie.actors}\nGenres: {movie.genres}\nRuntime: {movie.runtime_minutes}\nRating: {movie.rating}\nVotes: {movie.votes}\n</Movie>\n"
+if __name__ == "__main__":
+	from getflix.domainmodel.actor import Actor
+	from getflix.domainmodel.director import Director
+	from getflix.domainmodel.genre import Genre
+	from getflix.domainmodel.movie import Movie
+	from getflix.domainmodel.review import Review
+	from getflix.domainmodel.user import User
+	from getflix.domainmodel.watchlist import Watchlist

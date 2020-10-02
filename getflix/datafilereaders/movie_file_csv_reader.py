@@ -1,9 +1,9 @@
 import csv
 
-from getflix.domainmodel.movie import Movie
 from getflix.domainmodel.actor import Actor
-from getflix.domainmodel.genre import Genre
 from getflix.domainmodel.director import Director
+from getflix.domainmodel.genre import Genre
+from getflix.domainmodel.movie import Movie
 
 
 class MovieFileCSVReader:
@@ -77,7 +77,13 @@ class MovieFileCSVReader:
 					self.directors.add(director)
 					self.genres.update(set(genres))
 				except:
-					continue # Skips movies with invalid formatting
+					continue  # Skips movies with invalid formatting
 			csvfile.close()
 		except:
 			raise Exception("Error while reading CSV file!")
+
+
+if __name__ == "__main__":
+	from getflix.domainmodel.review import Review
+	from getflix.domainmodel.user import User
+	from getflix.domainmodel.watchlist import Watchlist

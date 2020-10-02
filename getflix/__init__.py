@@ -1,8 +1,13 @@
 from flask import Flask, request, render_template, session
 
 from getflix.repository.memory_repo import MemoryRepo
-from getflix.domainmodel.user import User
+from getflix.domainmodel.actor import Actor
+from getflix.domainmodel.director import Director
+from getflix.domainmodel.genre import Genre
+from getflix.domainmodel.movie import Movie
 from getflix.domainmodel.review import Review
+from getflix.domainmodel.user import User
+from getflix.domainmodel.watchlist import Watchlist
 
 def create_app(test_config=None):
     app = Flask(__name__)
@@ -16,12 +21,35 @@ def create_app(test_config=None):
     servData = {
         "titleChars": ["0-9","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"],
         "allMovies": repo.movies,
-        "allDirectors": repo.directors,
-        "allActors": repo.actors,
-        "allGenres": repo.genres,
+        "allDirectors": list(repo.directors),
+        "allActors": list(repo.actors),
+        "allGenres": list(repo.genres),
         "allUsers": repo.users
     }
+    servData["allDirectors"].sort()
+    servData["allActors"].sort()
+    servData["allGenres"].sort()
 
+    print(len(repo.movies))
+    print(len(repo.directors))
+    print(len(repo.actors))
+    print(len(repo.genres))
+
+    def is_valid_password(password):
+        if len(password) > 7:
+            hasDigit = False
+            hasUpper = False
+            hasLower = False
+            for char in password:
+                if char.isdigit():
+                    hasDigit = True
+                elif char.isupper():
+                    hasUpper = True
+                elif char.islower():
+                    hasLower = True
+            return hasDigit and hasUpper and hasLower
+        else:
+            return False
 
     @app.route('/')
     def index():
@@ -62,12 +90,18 @@ def create_app(test_config=None):
         username = request.args.get('RegUsername').strip().lower()
         password1 = request.args.get('RegPassword1')
         password2 = request.args.get('RegPassword2')
-        if password1 != password2:
+        if username == "":
             session["authStatus"] = "registering"
-            session["authMessage"] = "Passwords don't match - please try again"
+            session["authMessage"] = "Please enter a valid username"
         elif repo.get_user(username) is not None:
             session["authStatus"] = "registering"
             session["authMessage"] = "Username already taken - please try again"
+        elif password1 != password2:
+            session["authStatus"] = "registering"
+            session["authMessage"] = "Passwords don't match - please try again"
+        elif not is_valid_password(password1):
+            session["authStatus"] = "registering"
+            session["authMessage"] = "Passwords must contain at least 8 characters (including upper/lower-case letters and digits)"
         else:
             session["authStatus"] = "logged in"
             session["authMessage"] = ""

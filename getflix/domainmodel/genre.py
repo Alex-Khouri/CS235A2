@@ -39,6 +39,7 @@ class Genre:
 	def add_movie(self, newMovie):
 		if not newMovie in self.genre_movies:
 			self.genre_movies.append(newMovie)
+			newMovie.add_genre(self)
 			return True
 		else:
 			return False
@@ -46,6 +47,7 @@ class Genre:
 	def remove_movie(self, remMovie):
 		if remMovie in self.genre_movies:
 			self.genre_movies.remove(remMovie)
+			remMovie.remove_genre(self)
 			return True
 		else:
 			return False

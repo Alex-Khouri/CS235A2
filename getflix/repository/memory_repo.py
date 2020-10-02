@@ -94,14 +94,11 @@ class MemoryRepo:
 		return None
 
 
-class TestMemoryRepo:
-
-	def test_init(self):
-		repo = MemoryRepo('getflix/datafiles/Data1000Movies.csv')
-
-
 if __name__ == "__main__":
-	from getflix.domainmodel.movie import Movie
 	from getflix.domainmodel.actor import Actor
-	from getflix.domainmodel.genre import Genre
 	from getflix.domainmodel.director import Director
+	from getflix.domainmodel.genre import Genre
+	from getflix.domainmodel.movie import Movie
+	from getflix.domainmodel.review import Review
+	from getflix.domainmodel.user import User
+	from getflix.domainmodel.watchlist import Watchlist

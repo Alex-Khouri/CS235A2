@@ -1,13 +1,12 @@
 from datetime import datetime
 
-from getflix.domainmodel.user import User
 
 class Review:
 	def __init__(self, revUser, revMovie, revText, revRating):
 		self.review_user = revUser
 		self.review_movie = revMovie
 		self.review_text = revText.strip() if isinstance(revText, str) else None
-		self.review_rating = revRating if (isinstance(revRating, int) and (revRating in range (1,11))) else None
+		self.review_rating = revRating if (isinstance(revRating, int) and (revRating in range(1, 11))) else None
 		self.review_timestamp = datetime.now()
 		self.review_date = str(self.review_timestamp).split(' ')[0]
 
@@ -71,4 +70,10 @@ class Review:
 
 
 if __name__ == "__main__":
+	from getflix.domainmodel.actor import Actor
+	from getflix.domainmodel.director import Director
+	from getflix.domainmodel.genre import Genre
 	from getflix.domainmodel.movie import Movie
+	from getflix.domainmodel.review import Review
+	from getflix.domainmodel.user import User
+	from getflix.domainmodel.watchlist import Watchlist

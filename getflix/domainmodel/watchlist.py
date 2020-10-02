@@ -58,77 +58,11 @@ class Watchlist:
 			return None
 
 
-class TestWatchlistMethods:
-	def test_init(self):
-		watchlist = Watchlist()
-		assert str(watchlist) == "[]"
-
-	def test_add_movie(self):
-		watchlist = Watchlist()
-		watchlist.add_movie(Movie("Moana", 2016))
-		watchlist.add_movie(Movie("Ice Age", 2002))
-		watchlist.add_movie(Movie("Guardians of the Galaxy", 2012))
-		test_output = ""
-		for movie in watchlist:
-			test_output += str(movie) + "\n"
-		assert test_output.strip() == "<Movie Moana, 2016>\n<Movie Ice Age, 2002>\n<Movie Guardians of the Galaxy, 2012>"
-		assert str(watchlist) == "[<Movie Moana, 2016>, <Movie Ice Age, 2002>, <Movie Guardians of the Galaxy, 2012>]"
-
-	def test_remove_movie(self):
-		watchlist = Watchlist()
-		watchlist.add_movie(Movie("Moana", 2016))
-		watchlist.add_movie(Movie("Ice Age", 2002))
-		watchlist.add_movie(Movie("Guardians of the Galaxy", 2012))
-		watchlist.remove_movie(Movie("Moana", 2016))
-		watchlist.remove_movie(Movie("Guardians of the Galaxy", 2012))
-		test_output = ""
-		for movie in watchlist:
-			test_output += str(movie) + "\n"
-		assert test_output.strip() == "<Movie Ice Age, 2002>"
-		assert str(watchlist) == "[<Movie Ice Age, 2002>]"
-
-	def test_select_movie_to_watch(self):
-		watchlist = Watchlist()
-		watchlist.add_movie(Movie("Moana", 2016))
-		watchlist.add_movie(Movie("Ice Age", 2002))
-		watchlist.add_movie(Movie("Guardians of the Galaxy", 2012))
-		assert str(watchlist.select_movie_to_watch(0)) == "<Movie Moana, 2016>"
-		assert str(watchlist.select_movie_to_watch(1)) == "<Movie Ice Age, 2002>"
-		assert str(watchlist.select_movie_to_watch(2)) == "<Movie Guardians of the Galaxy, 2012>"
-		assert str(watchlist.select_movie_to_watch(3)) == "None"
-		assert str(watchlist.select_movie_to_watch(-1)) == "None"
-
-	def test_size(self):
-		watchlist = Watchlist()
-		assert watchlist.size() == 0
-		watchlist.add_movie(Movie("Moana", 2016))
-		watchlist.add_movie(Movie("Ice Age", 2002))
-		watchlist.add_movie(Movie("Guardians of the Galaxy", 2012))
-		assert watchlist.size() == 3
-		watchlist.remove_movie(Movie("Moana", 2016))
-		watchlist.remove_movie(Movie("Guardians of the Galaxy", 2012))
-		assert watchlist.size() == 1
-
-	def test_first_movie_in_watchlist(self):
-		watchlist = Watchlist()
-		watchlist.add_movie(Movie("Moana", 2016))
-		watchlist.add_movie(Movie("Ice Age", 2002))
-		watchlist.add_movie(Movie("Guardians of the Galaxy", 2012))
-		assert str(watchlist.first_movie_in_watchlist()) == "<Movie Moana, 2016>"
-		watchlist.remove_movie(Movie("Moana", 2016))
-		assert str(watchlist.first_movie_in_watchlist()) == "<Movie Ice Age, 2002>"
-		watchlist.remove_movie(Movie("Ice Age", 2002))
-		assert str(watchlist.first_movie_in_watchlist()) == "<Movie Guardians of the Galaxy, 2012>"
-		watchlist.remove_movie(Movie("Guardians of the Galaxy", 2012))
-		assert str(watchlist.first_movie_in_watchlist()) == "None"
-
-
 if __name__ == "__main__":
+	from getflix.domainmodel.actor import Actor
+	from getflix.domainmodel.director import Director
+	from getflix.domainmodel.genre import Genre
 	from getflix.domainmodel.movie import Movie
-	testObject = TestWatchlistMethods()
-	testObject.test_init()
-	testObject.test_add_movie()
-	testObject.test_remove_movie()
-	testObject.test_select_movie_to_watch()
-	testObject.test_size()
-	testObject.test_first_movie_in_watchlist()
+	from getflix.domainmodel.review import Review
+	from getflix.domainmodel.user import User
+	from getflix.domainmodel.watchlist import Watchlist
