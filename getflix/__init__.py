@@ -30,11 +30,6 @@ def create_app(test_config=None):
     servData["allActors"].sort()
     servData["allGenres"].sort()
 
-    print(len(repo.movies))
-    print(len(repo.directors))
-    print(len(repo.actors))
-    print(len(repo.genres))
-
     def is_valid_password(password):
         if len(password) > 7:
             hasDigit = False
