@@ -67,6 +67,8 @@ td.form-input {
 }
 .browse-submenu {
     display: none;
+    overflow: auto;
+    height: 300px;
 }
 .button {
     border: 2px solid #dfdfdf;
