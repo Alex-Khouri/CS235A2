@@ -84,22 +84,22 @@
                             <tr style="display:flex; justify-content:space-between; align-items:center">
                                 <td style="width:25%;" align="left">
                                 {% if page > 0 %}
-                                <input id="p{{ page }}FirstPage" class="button" style="display:block;" type="submit" value="First Page" onclick="show(`MoviesPage0`); hide(`MoviesPage{{ page|safe }}`); window.scrollTo(0,0);">
+                                <input id="p{{ page }}FirstPage" class="button" style="display:block;" type="submit" value="&lt&lt First Page" onclick="show(`MoviesPage0`); hide(`MoviesPage{{ page|safe }}`); window.scrollTo(0,0);">
                                 {% endif %}
                                 </td>
                                 <td style="width:25%;" align="left">
                                 {% if page > 0 %}
-                                <input id="p{{ page }}PrevPage" class="button" style="display:block;" type="submit" value="Previous Page" onclick="show(`MoviesPage{{ (page-1)|safe }}`); hide(`MoviesPage{{ page|safe }}`); window.scrollTo(0,0);">
+                                <input id="p{{ page }}PrevPage" class="button" style="display:block;" type="submit" value="&lt Previous Page" onclick="show(`MoviesPage{{ (page-1)|safe }}`); hide(`MoviesPage{{ page|safe }}`); window.scrollTo(0,0);">
                                 {% endif %}
                                 </td>
                                 <td style="width:25%;" align="right">
                                 {% if page < lastPage %}
-                                <input id="p{{ page }}NextPage" class="button" style="display:block;" type="submit" value="Next Page" onclick="show(`MoviesPage{{ (page+1)|safe }}`); hide(`MoviesPage{{ page|safe }}`); window.scrollTo(0,0);">
+                                <input id="p{{ page }}NextPage" class="button" style="display:block;" type="submit" value="Next Page &gt" onclick="show(`MoviesPage{{ (page+1)|safe }}`); hide(`MoviesPage{{ page|safe }}`); window.scrollTo(0,0);">
                                 {% endif %}
                                 </td>
                                 <td style="width:25%;" align="right">
                                 {% if page < lastPage %}
-                                <input id="p{{ page }}LastPage" class="button" style="display:block;" type="submit" value="Last Page" onclick="show(`MoviesPage{{ lastPage|safe }}`); hide(`MoviesPage{{ page|safe }}`); window.scrollTo(0,0);">
+                                <input id="p{{ page }}LastPage" class="button" style="display:block;" type="submit" value="Last Page &gt&gt" onclick="show(`MoviesPage{{ lastPage|safe }}`); hide(`MoviesPage{{ page|safe }}`); window.scrollTo(0,0);">
                                 {% endif %}
                                 </td>
                             </tr>
@@ -164,22 +164,22 @@
                             <tr style="display:flex; justify-content:space-between; align-items:center">
                                 <td style="width:25%;" align="left">
                                 {% if page > 0 %}
-                                <input id="p{{ page }}FirstPage" class="button" style="display:block;" type="submit" value="First Page" onclick="show(`MoviesPage0`); hide(`MoviesPage{{ page|safe }}`); window.scrollTo(0,0);">
+                                <input id="p{{ page }}FirstPage" class="button" style="display:block;" type="submit" value="&lt&lt First Page" onclick="show(`MoviesPage0`); hide(`MoviesPage{{ page|safe }}`); window.scrollTo(0,0);">
                                 {% endif %}
                                 </td>
                                 <td style="width:25%;" align="left">
                                 {% if page > 0 %}
-                                <input id="p{{ page }}PrevPage" class="button" style="display:block;" type="submit" value="Previous Page" onclick="show(`MoviesPage{{ (page-1)|safe }}`); hide(`MoviesPage{{ page|safe }}`); window.scrollTo(0,0);">
+                                <input id="p{{ page }}PrevPage" class="button" style="display:block;" type="submit" value="&lt Previous Page" onclick="show(`MoviesPage{{ (page-1)|safe }}`); hide(`MoviesPage{{ page|safe }}`); window.scrollTo(0,0);">
                                 {% endif %}
                                 </td>
                                 <td style="width:25%;" align="right">
                                 {% if page < lastPage %}
-                                <input id="p{{ page }}NextPage" class="button" style="display:block;" type="submit" value="Next Page" onclick="show(`MoviesPage{{ (page+1)|safe }}`); hide(`MoviesPage{{ page|safe }}`); window.scrollTo(0,0);">
+                                <input id="p{{ page }}NextPage" class="button" style="display:block;" type="submit" value="Next Page &gt" onclick="show(`MoviesPage{{ (page+1)|safe }}`); hide(`MoviesPage{{ page|safe }}`); window.scrollTo(0,0);">
                                 {% endif %}
                                 </td>
                                 <td style="width:25%;" align="right">
                                 {% if page < lastPage %}
-                                <input id="p{{ page }}LastPage" class="button" style="display:block;" type="submit" value="Last Page" onclick="show(`MoviesPage{{ lastPage|safe }}`); hide(`MoviesPage{{ page|safe }}`); window.scrollTo(0,0);">
+                                <input id="p{{ page }}LastPage" class="button" style="display:block;" type="submit" value="Last Page &gt&gt" onclick="show(`MoviesPage{{ lastPage|safe }}`); hide(`MoviesPage{{ page|safe }}`); window.scrollTo(0,0);">
                                 {% endif %}
                                 </td>
                             </tr>
