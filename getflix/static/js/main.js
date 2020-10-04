@@ -48,10 +48,13 @@ function logoutUser() {
 function toggleBrowseTitles() {
     if (document.getElementById("BrowseTitles").style.display != "block") {
         show("BrowseTitles");
-        hide("BrowseGenres");
-        hide("BrowseDirectors");
-        hide("BrowseActors");
         document.getElementById("titlesHeading").innerHTML = "&#8595 Titles";
+        hide("BrowseGenres");
+        document.getElementById("genresHeading").innerHTML = "&#8594 Genres";
+        hide("BrowseDirectors");
+        document.getElementById("directorsHeading").innerHTML = "&#8594 Directors";
+        hide("BrowseActors");
+        document.getElementById("actorsHeading").innerHTML = "&#8594 Actors";
     } else {
         hide("BrowseTitles");
         document.getElementById("titlesHeading").innerHTML = "&#8594 Titles";
@@ -60,10 +63,13 @@ function toggleBrowseTitles() {
 function toggleBrowseGenres() {
     if (document.getElementById("BrowseGenres").style.display != "block") {
         hide("BrowseTitles");
+        document.getElementById("titlesHeading").innerHTML = "&#8594 Titles";
         show("BrowseGenres");
-        hide("BrowseDirectors");
-        hide("BrowseActors");
         document.getElementById("genresHeading").innerHTML = "&#8595 Genres";
+        hide("BrowseDirectors");
+        document.getElementById("directorsHeading").innerHTML = "&#8594 Directors";
+        hide("BrowseActors");
+        document.getElementById("actorsHeading").innerHTML = "&#8594 Actors";
     } else {
         hide("BrowseGenres");
         document.getElementById("genresHeading").innerHTML = "&#8594 Genres";
@@ -72,10 +78,13 @@ function toggleBrowseGenres() {
 function toggleBrowseDirectors() {
     if (document.getElementById("BrowseDirectors").style.display != "block") {
         hide("BrowseTitles");
+        document.getElementById("titlesHeading").innerHTML = "&#8594 Titles";
         hide("BrowseGenres");
+        document.getElementById("genresHeading").innerHTML = "&#8594 Genres";
         show("BrowseDirectors");
-        hide("BrowseActors");
         document.getElementById("directorsHeading").innerHTML = "&#8595 Directors";
+        hide("BrowseActors");
+        document.getElementById("actorsHeading").innerHTML = "&#8594 Actors";
     } else {
         hide("BrowseDirectors");
         document.getElementById("directorsHeading").innerHTML = "&#8594 Directors";
@@ -84,8 +93,11 @@ function toggleBrowseDirectors() {
 function toggleBrowseActors() {
     if (document.getElementById("BrowseActors").style.display != "block") {
         hide("BrowseTitles");
+        document.getElementById("titlesHeading").innerHTML = "&#8594 Titles";
         hide("BrowseGenres");
+        document.getElementById("genresHeading").innerHTML = "&#8594 Genres";
         hide("BrowseDirectors");
+        document.getElementById("directorsHeading").innerHTML = "&#8594 Directors";
         show("BrowseActors");
         document.getElementById("actorsHeading").innerHTML = "&#8595 Actors";
     } else {
