@@ -14,6 +14,7 @@ class Movie:
 		self.movie_genres = list()
 		self.movie_runtime_minutes = 0
 		self.movie_reviews = list()
+		self.movie_review_count = 0
 		self.movie_rating = None
 		self.movie_votes = 0
 		self.movie_ID = None
@@ -79,6 +80,10 @@ class Movie:
 	def ID(self):
 		return self.movie_ID
 
+	@property
+	def review_count(self):
+		return self.movie_review_count
+
 	@title.setter
 	def title(self, newTitle):
 		if isinstance(newTitle, str) and len(newTitle) > 0:
@@ -136,6 +141,11 @@ class Movie:
 		self.movie_ID = self.movie_ID  # This value should never be manually changed
 		print("WARNING: Movie IDs cannot be manually reassigned")
 
+	@review_count.setter
+	def review_count(self, newCount):
+		self.movie_review_count = self.movie_review_count  # This value should never be manually changed
+		print("WARNING: Movie review counts cannot be manually reassigned")
+
 	def add_actor(self, newActor):
 		if not newActor in self.movie_actors:
 			self.movie_actors.append(newActor)
@@ -152,6 +162,7 @@ class Movie:
 
 	def add_review(self, newReview):
 		self.movie_reviews.append(newReview)
+		self.movie_review_count += 1
 		self.movie_votes += 1
 		v = self.movie_votes
 		if self.movie_rating is None:

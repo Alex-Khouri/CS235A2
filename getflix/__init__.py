@@ -173,7 +173,6 @@ def create_app(test_config=None):
         movie = repo.get_movie(request.args.get("MovieTitle"))
         try:
             rating = round(float(request.args.get("ReviewRating")))
-            print(rating)
             if rating in range(1, 11):
                 review = Review(user, movie, request.args.get("ReviewComments"), rating)
                 movie.add_review(review)
@@ -211,7 +210,6 @@ def create_app(test_config=None):
                 elif category == "Actor":
                     for actor in movie.actors:
                         if query in actor.actor_full_name.strip().lower():
-                            print(query)
                             clientData["filteredMovies"].append(movie)
                             break
                 else:

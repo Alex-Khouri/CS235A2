@@ -10,6 +10,7 @@
 <body>
     <span id="AuthStatus" style="display:none;">{{ session["authStatus"] }}</span>
     <!-- Valid `AuthStatus` values: "logged in", "logged out", "logging in", "registering" -->
+    <div style="position:sticky; top:0; background-color:#303030;">
     <table>
         <tr style="display:flex; justify-content:space-between; align-items:center">
             <td id="BannerLogo" class="banner">
@@ -37,6 +38,7 @@
         </tr>
     </table>
     <hr style="height:3px; background-color:black; border-color:black; border-radius:3px">
+    </div>
     <div id="MainWindow" class="window">
         <table>
             <tr>
@@ -129,7 +131,7 @@
                                     <label for="{{ movie.ID|safe }}ReviewRating">Rating (1-10): </label>
                                     </td>
                                     <td class="form-input">
-                                    <input id="{{ movie.ID|safe }}ReviewRating" class="textbox" type="number" name="{{ movie.ID|safe }}ReviewRating" min=1 max=10 size=6>
+                                    <input id="{{ movie.ID|safe }}ReviewRating" class="textbox" type="number" name="ReviewRating" min=1 max=10 size=6>
                                     </td>
                                 </tr>
                                 <tr>
@@ -137,7 +139,7 @@
                                     <label for="{{ movie.ID|safe }}ReviewComments">Comments: </label>
                                     </td>
                                     <td class="form-input">
-                                    <textarea id="{{ movie.ID|safe }}ReviewComments" class="textarea" name="{{ movie.ID|safe }}ReviewComments" rows="4" cols=36></textarea>
+                                    <textarea id="{{ movie.ID|safe }}ReviewComments" class="textarea" name="ReviewComments" rows="4" cols=36></textarea>
                                     </td>
                                 </tr>
                                 <tr>
@@ -150,13 +152,18 @@
                         </form>
                         </div>
                         <div id="{{ (movie.ID + 'Reviews')|safe }}" style="display:none;">
-                            {% for review in movie.reviews %}
-                            <hr style="height:2px; background-color:black; border-color:black; border-radius:2px">
-                            <p><b>Date: </b>{{ review.date }}</p>
-                            <p><b>Author: </b>{{ review.user.username }}</p>
-                            <p><b>Rating: </b>{{ review.rating }}</p>
-                            <p><b>Comments: </b><em>"{{ review.review_text }}"</em></p>
-                            {% endfor %}
+                            {% if movie.review_count == 0 %}
+                                <hr style="height:2px; background-color:black; border-color:black; border-radius:2px">
+                                <p style="text-align:center">No reviews to display</p>
+                            {% else %}
+                                {% for review in movie.reviews %}
+                                <hr style="height:2px; background-color:black; border-color:black; border-radius:2px">
+                                <p><b>Date: </b>{{ review.date }}</p>
+                                <p><b>Author: </b>{{ review.user.username }}</p>
+                                <p><b>Rating: </b>{{ review.rating }}</p>
+                                <p><b>Comments: </b><em>"{{ review.review_text }}"</em></p>
+                                {% endfor %}
+                            {% endif %}
                         </div>
                         <hr style="height:2px; background-color:white; border-color:white; border-radius:2px">
                         {% if m % pageSize == (pageSize-1) or m == (filteredMovies|length)-1 %}
