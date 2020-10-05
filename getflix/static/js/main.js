@@ -106,6 +106,21 @@ function toggleBrowseActors() {
     }
 }
 
+function toggleReviewsButton(ID) {
+    if (document.getElementById(ID).value === "Show Reviews") {
+        document.getElementById(ID).value = "Hide Reviews"
+    } else {
+        document.getElementById(ID).value = "Show Reviews"
+    }
+}
+function toggleDetailsButton(ID) {
+    if (document.getElementById(ID).value === "Show Details") {
+        document.getElementById(ID).value = "Hide Details"
+    } else {
+        document.getElementById(ID).value = "Show Details"
+    }
+}
+
 
 switch(document.getElementById("AuthStatus").innerHTML) {
     case "logged in":

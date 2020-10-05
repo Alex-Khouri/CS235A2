@@ -119,7 +119,7 @@
                                 <input type="hidden" name="MovieTitle" value="{{ movie.title }}">
                                 <input id="{{ movie.ID|safe }}AddMovie" class="button" type="submit" value="Add to Watchlist">
                             </form><br>
-                            <input id="{{ movie.ID|safe }}ShowReviews" class="button" type="submit" onclick="toggle(`{{ (movie.ID + 'Reviews')|safe }}`); hide(`{{ (movie.ID + 'ReviewForm')|safe }}`);" value="Show Reviews">
+                            <input id="{{ movie.ID|safe }}ShowReviews" class="button" type="submit" onclick="toggle(`{{ (movie.ID + 'Reviews')|safe }}`); hide(`{{ (movie.ID + 'ReviewForm')|safe }}`); toggleReviewsButton(`{{ movie.ID|safe }}ShowReviews`)" value="Show Reviews">
                             <input id="{{ movie.ID|safe }}AddReview" class="button" type="submit" onclick="toggle(`{{ (movie.ID + 'ReviewForm')|safe }}`); hide(`{{ (movie.ID + 'Reviews')|safe }}`);" value="Add Review">
                         </div><br>
                         <div id="{{ movie.ID|safe }}AddReview" style="display:flex; justify-content:center">
@@ -201,12 +201,20 @@
                     {% if currWatchlist != None %}
                         {% for movie in currWatchlist %}
                         <h3>{{ movie.title }} <em>({{ movie.year }})</em></h3>
-                        <p><b>Genres: </b>{{ movie.get_genres_string() }}</p>
-                        <p><b>Director: </b>{{ movie.director.director_full_name }}</p>
-                        <form action="/remove_movie">
-                            <input type="hidden" name="MovieTitle" value="{{ movie.title }}">
-                            <input id="RemoveMovie" class="button" type="submit" value="Remove">
-                        </form>
+                        <div style="display:flex; justify-content:space-between; align-items:center">
+                            <input id="{{ movie.title }}ShowDetails" class="button" type="submit" value="Show Details" onclick="toggle(`{{ movie.title }}Details`); toggleDetailsButton(`{{ movie.title }}ShowDetails`)">
+                            <form action="/remove_movie">
+                                <input type="hidden" name="MovieTitle" value="{{ movie.title }}">
+                                <input id="RemoveMovie" class="button" type="submit" value="Remove">
+                            </form>
+                        </div>
+                        <div id="{{ movie.title }}Details" style="display:none">
+                            <p><b>Genres: </b>{{ movie.get_genres_string() }}</p>
+                            <p><b>Director: </b>{{ movie.director.director_full_name }}</p>
+                            <p><b>Actors: </b>{{ movie.get_actors_string() }}</p>
+                            <p><b>Synopsis: </b><em>"{{ movie.description }}"</em></p>
+                            <p><b>Rating: </b>{{ movie.rating }}/10</p>
+                        </div>
                         <hr style="height:2px; background-color:white; border-color:white; border-radius:2px">
                         {% endfor %}
                     {% endif %}
