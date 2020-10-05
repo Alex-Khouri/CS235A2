@@ -104,4 +104,3 @@ if __name__ == "__main__":
 	from getflix.domainmodel.genre import Genre
 	from getflix.domainmodel.movie import Movie
 	from getflix.domainmodel.review import Review
-	from getflix.domainmodel.user import User

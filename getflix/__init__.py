@@ -15,7 +15,7 @@ def create_app(test_config=None):
     # Valid Flask session keys (basic data types):
     # 		authStatus, authMessage, currUsername
     # Valid `authStatus` values: "logged in", "logged out", "logging in", "registering"
-    # Valid `clientData` session keys (complex data types):
+    # Valid `clientData` keys (complex data types):
     #  		filteredMovies, currWatchlist
     repo = MemoryRepo('getflix/datafiles/Data1000Movies.csv')
     servData = {

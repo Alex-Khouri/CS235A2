@@ -65,4 +65,3 @@ if __name__ == "__main__":
 	from getflix.domainmodel.movie import Movie
 	from getflix.domainmodel.review import Review
 	from getflix.domainmodel.user import User
-	from getflix.domainmodel.watchlist import Watchlist
