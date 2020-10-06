@@ -21,14 +21,11 @@ def create_app(test_config=None):
     servData = {
         "titleChars": ["0-9","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"],
         "allMovies": repo.movies,
-        "allDirectors": list(repo.directors),
-        "allActors": list(repo.actors),
-        "allGenres": list(repo.genres),
+        "allDirectors": sorted(list(repo.directors)),
+        "allActors": sorted(list(repo.actors)),
+        "allGenres": sorted(list(repo.genres)),
         "allUsers": repo.users
     }
-    servData["allDirectors"].sort()
-    servData["allActors"].sort()
-    servData["allGenres"].sort()
 
     def is_valid_password(password):
         if len(password) > 7:
