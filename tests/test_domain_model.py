@@ -87,7 +87,6 @@ def test_user_watch_movie():
 	assert movie in user.watched_movies
 	assert user.time_spent_watching_movies_minutes == movie.runtime_minutes
 
-
 def test_user_remove_review():
 	user = User("Bob", "Password1")
 	review = Review(User("Bob", "Password1"), Movie("Imception", 2011), "It was pretty weird", 6)
