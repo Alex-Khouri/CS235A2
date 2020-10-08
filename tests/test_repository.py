@@ -11,7 +11,7 @@ from getflix.domainmodel.watchlist import Watchlist
 
 @pytest.fixture
 def repo():
-    return MemoryRepo('getflix/datafiles/Data1000Movies.csv')
+    return MemoryRepo('tests/data/Data1000Movies.csv')
 
 @pytest.fixture
 def user():

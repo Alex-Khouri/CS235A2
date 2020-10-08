@@ -9,7 +9,7 @@ from getflix.domainmodel.review import Review
 from getflix.domainmodel.user import User
 from getflix.domainmodel.watchlist import Watchlist
 
-def create_app(test_config=None):
+def create_app():
     app = Flask(__name__)
     app.secret_key = b'09s1nfe5m9dj4fs0'
     # Valid Flask session keys (basic data types):
