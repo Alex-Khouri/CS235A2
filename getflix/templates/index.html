@@ -9,6 +9,7 @@
 </head>
 <body>
     <span id="AuthStatus" style="display:none;">{{ session["authStatus"] }}</span>
+    <!-- IF PREVIOUS LINE IS EDITED, PYTEST FOR WEB APP MUST BE UPDATED  -->
     <!-- Valid `AuthStatus` values: "logged in", "logged out", "logging in", "registering" -->
     <div style="position:sticky; top:0; background-color:#303030;">
     <table>
@@ -250,6 +251,7 @@
             </tr>
         </table>
         <p id="AuthMessage">{{ session["authMessage"] }}</p>
+        <!-- IF PREVIOUS LINE IS EDITED, PYTEST FOR WEB APP MUST BE UPDATED  -->
         </form>
     </div>
     <div id="RegisterWindow" class="window" style="display:none">

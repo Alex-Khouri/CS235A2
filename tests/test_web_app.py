@@ -13,6 +13,26 @@ from getflix.domainmodel.watchlist import Watchlist
 
 from getflix import create_app
 
+
+def get_auth_status(responseData):
+    html = str(responseData)
+    statusTag = '<span id="AuthStatus" style="display:none;">'
+    statusStart = html.index(statusTag) + len(statusTag)
+    statusEnd = statusStart
+    while html[statusEnd] != "<":
+        statusEnd += 1
+    return html[statusStart:statusEnd]
+
+def get_auth_message(responseData):
+    html = str(responseData)
+    messageTag = '<p id="AuthMessage">'
+    messageStart = html.index(messageTag) + len(messageTag)
+    messageEnd = messageStart
+    while html[messageEnd] != "<":
+        messageEnd += 1
+    return html[messageStart:messageEnd]
+
+
 @pytest.fixture
 def client():
     test_app = create_app()
@@ -20,8 +40,15 @@ def client():
     return test_app.test_client()
 
 
-def test_register(client, repo):
+def test_register(client):
     response = client.get("/register?RegUsername=bob&RegPassword1=Mypassword1&RegPassword2=Mypassword1")
-    assert response.status_code == 200
-    # assert response.get("authStatus") == "logged in"
-    # assert response.get("authMessage") == ""
+    authStatus = get_auth_status(response.data)
+    authMessage = get_auth_message(response.data)
+    assert authStatus == "logged in"
+    assert authMessage == ""
+
+def test_login(client):
+    pass
+
+def test_logout(client):
+    pass
