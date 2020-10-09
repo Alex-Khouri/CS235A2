@@ -16,7 +16,7 @@ def create_app():
     # 		authStatus, authMessage, currUsername
     # Valid `authStatus` values: "logged in", "logged out", "logging in", "registering"
     # Valid `clientData` keys (complex data types):
-    #  		filteredMovies, currWatchlist
+    #  		filteredMovies, currWatchlist, watchlistSize
     repo = MemoryRepo('getflix/datafiles/Data1000Movies.csv')
     servData = {
         "titleChars": ["0-9","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"],
@@ -43,6 +43,13 @@ def create_app():
         else:
             return False
 
+    def watchlist_size(watchlist):
+        if watchlist is not None:
+            return watchlist.size()
+        else:
+            return 0
+
+
     @app.route('/')
     def index():
         if session.get("authStatus") in ["registering", "logging in"] or session.get("currUsername") is None:
@@ -52,7 +59,8 @@ def create_app():
         session["authMessage"] = ""
         clientData = {
             "filteredMovies": repo.movies,
-            "currWatchlist": repo.get_watchlist(session.get("currUsername"))
+            "currWatchlist": repo.get_watchlist(session.get("currUsername")),
+            "watchlistSize": watchlist_size(repo.get_watchlist(session.get("currUsername")))
         }
         return render_template('index.html', **servData, **clientData)
 
@@ -73,7 +81,8 @@ def create_app():
             session["currUsername"] = username
         clientData = {
             "filteredMovies": repo.movies,
-            "currWatchlist": repo.get_watchlist(username)
+            "currWatchlist": repo.get_watchlist(username),
+            "watchlistSize": watchlist_size(repo.get_watchlist(username))
         }
         return render_template('index.html', **servData, **clientData)
 
@@ -102,7 +111,8 @@ def create_app():
             repo.add_user(user)
         clientData = {
             "filteredMovies": repo.movies,
-            "currWatchlist": repo.get_watchlist(username)
+            "currWatchlist": repo.get_watchlist(username),
+            "watchlistSize": watchlist_size(repo.get_watchlist(username))
         }
         return render_template('index.html', **servData, **clientData)
 
@@ -123,7 +133,8 @@ def create_app():
         user = repo.get_user(session["currUsername"])
         clientData = {
             "filteredMovies": repo.movies,
-            "currWatchlist": repo.get_watchlist(session.get("currUsername"))
+            "currWatchlist": repo.get_watchlist(session.get("currUsername")),
+            "watchlistSize": watchlist_size(repo.get_watchlist(session.get("currUsername")))
         }
         if user is None:
             session["authStatus"] = "logging in"
@@ -133,6 +144,7 @@ def create_app():
         session["authMessage"] = ""
         movie = repo.get_movie(request.args.get("MovieTitle"))
         user.watchlist.add_movie(movie)
+        clientData["watchlistSize"] = watchlist_size(user.watchlist)
         return render_template('index.html', **servData, **clientData)
 
     @app.route('/remove_movie')
@@ -140,7 +152,8 @@ def create_app():
         session["currUsername"] = session.get("currUsername")
         clientData = {
             "filteredMovies": repo.movies,
-            "currWatchlist": repo.get_watchlist(session.get("currUsername"))
+            "currWatchlist": repo.get_watchlist(session.get("currUsername")),
+            "watchlistSize": watchlist_size(repo.get_watchlist(session.get("currUsername")))
         }
         if session["currUsername"] is None:
             session["authStatus"] = "logging in"
@@ -151,6 +164,7 @@ def create_app():
         user = repo.get_user(session["currUsername"])
         movie = repo.get_movie(request.args.get("MovieTitle"))
         user.watchlist.remove_movie(movie)
+        clientData["watchlistSize"] = watchlist_size(user.watchlist)
         return render_template('index.html', **servData, **clientData)
 
     @app.route('/add_review')
@@ -158,7 +172,8 @@ def create_app():
         session["currUsername"] = session.get("currUsername")
         clientData = {
             "filteredMovies": repo.movies,
-            "currWatchlist": repo.get_watchlist(session["currUsername"])
+            "currWatchlist": repo.get_watchlist(session["currUsername"]),
+            "watchlistSize": watchlist_size(repo.get_watchlist(session.get("currUsername")))
         }
         if session["currUsername"] is None:
             session["authStatus"] = "logging in"
@@ -186,7 +201,8 @@ def create_app():
         query = request.args.get("BrowseQuery").strip().lower()  # "0-9" if category == TitleChar
         clientData = {
             "filteredMovies": list(),
-            "currWatchlist": repo.get_watchlist(session.get("currUsername"))
+            "currWatchlist": repo.get_watchlist(session.get("currUsername")),
+            "watchlistSize": watchlist_size(repo.get_watchlist(session.get("currUsername")))
         }
         if query == "":  # There are no known circumstances that should trigger this
             clientData["filteredMovies"] = servData["allMovies"]
@@ -222,7 +238,8 @@ def create_app():
         query = request.args.get("SearchQuery").strip().lower()
         clientData = {
             "filteredMovies": list(),
-            "currWatchlist": repo.get_watchlist(session.get("currUsername"))
+            "currWatchlist": repo.get_watchlist(session.get("currUsername")),
+            "watchlistSize": watchlist_size(repo.get_watchlist(session.get("currUsername")))
         }
         if query == "":
             clientData["filteredMovies"] = servData["allMovies"]

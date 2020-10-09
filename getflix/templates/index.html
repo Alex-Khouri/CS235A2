@@ -72,6 +72,8 @@
                     </ul>
                 </td>
                 <td id="MovieListWindow" class="movies-window">
+                <span id="MovieListSize" style="display:none;">{{ filteredMovies|length }}</span>
+                <!-- IF PREVIOUS LINE IS EDITED, PYTEST FOR WEB APP MUST BE UPDATED  -->
                     <div id="MoviesPage0" style="display:block">
                     {% set pageSize = 10 %}
                     {% set lastPage = (filteredMovies|length - 1)//pageSize %}
@@ -197,6 +199,8 @@
                     {% endfor %}
                 </td>
                 <td id="WatchlistWindow" class="watchlist-window" style="width:20%;">
+                <span id="WatchlistSize" style="display:none;">{{ watchlistSize }}</span>
+                <!-- IF PREVIOUS LINE IS EDITED, PYTEST FOR WEB APP MUST BE UPDATED  -->
                     <h3>Watchlist:</h3>
                     <hr style="height:3px; background-color:black; border-color:black; border-radius:3px">
                     {% if currWatchlist != None %}
