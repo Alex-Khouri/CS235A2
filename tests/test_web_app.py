@@ -15,44 +15,56 @@ from getflix import create_app
 
 
 def get_auth_status(responseData):
-    html = str(responseData)
-    statusTag = '<span id="AuthStatus" style="display:none;">'
-    statusStart = html.index(statusTag) + len(statusTag)
-    statusEnd = statusStart
-    while html[statusEnd] != "<":
-        statusEnd += 1
-    status = html[statusStart:statusEnd].replace("&#39;" , "'")
-    return status
+    try:
+        html = str(responseData)
+        statusTag = '<span id="AuthStatus" style="display:none;">'
+        statusStart = html.index(statusTag) + len(statusTag)
+        statusEnd = statusStart
+        while html[statusEnd] != "<":
+            statusEnd += 1
+        status = html[statusStart:statusEnd].replace("&#39;" , "'")
+        return status
+    except ValueError:
+        raise ValueError("AuthStatus html tag edited without updating test file!")
 
 def get_auth_message(responseData):
-    html = str(responseData)
-    messageTag = '<p id="AuthMessage">'
-    messageStart = html.index(messageTag) + len(messageTag)
-    messageEnd = messageStart
-    while html[messageEnd] != "<":
-        messageEnd += 1
-    message = html[messageStart:messageEnd].replace("&#39;" , "'")
-    return message
+    try:
+        html = str(responseData)
+        messageTag = '<p id="AuthMessage">'
+        messageStart = html.index(messageTag) + len(messageTag)
+        messageEnd = messageStart
+        while html[messageEnd] != "<":
+            messageEnd += 1
+        message = html[messageStart:messageEnd].replace("&#39;" , "'")
+        return message
+    except ValueError:
+        raise ValueError("AuthMessage html tags edited without updating test file!")
 
 def get_watchlist_size(responseData):
-    html = str(responseData)
-    sizeTag = '<span id="WatchlistSize" style="display:none;">'
-    sizeStart = html.index(sizeTag) + len(sizeTag)
-    sizeEnd = sizeStart
-    while html[sizeEnd] != "<":
-        sizeEnd += 1
-    size = html[sizeStart:sizeEnd].replace("&#39;" , "'")
-    return size
+    try:
+        html = str(responseData)
+        sizeTag = '<span id="WatchlistSize" style="display:none;">'
+        sizeStart = html.index(sizeTag) + len(sizeTag)
+        sizeEnd = sizeStart
+        while html[sizeEnd] != "<":
+            sizeEnd += 1
+        size = html[sizeStart:sizeEnd].replace("&#39;" , "'")
+        return size
+    except ValueError:
+        raise ValueError("WatchlistSize html tag edited without updating test file!")
 
 def get_movie_list_size(responseData):
-    html = str(responseData)
-    sizeTag = '<span id="MovieListSize" style="display:none;">'
-    sizeStart = html.index(sizeTag) + len(sizeTag)
-    sizeEnd = sizeStart
-    while html[sizeEnd] != "<":
-        sizeEnd += 1
-    size = html[sizeStart:sizeEnd].replace("&#39;" , "'")
-    return size
+    try:
+        html = str(responseData)
+        sizeTag = '<span id="MovieListSize" style="display:none;">'
+        sizeStart = html.index(sizeTag) + len(sizeTag)
+        sizeEnd = sizeStart
+        while html[sizeEnd] != "<":
+            sizeEnd += 1
+        size = html[sizeStart:sizeEnd].replace("&#39;" , "'")
+        return size
+    except ValueError:
+        raise ValueError("MovieListSize html tag edited without updating test file!")
 
 
 @pytest.fixture
